@@ -23,7 +23,17 @@ export default function Home() {
       </div>
       <div className="flex h-[100vh] items-center justify-center">
         <div className="flex h-fit flex-col gap-8">
-          <h2 className="text-center text-lg font-bold">TECH STACK</h2>
+          <h2 className="text-center text-lg font-bold tracking-wider">
+            PORTFOLIO
+          </h2>
+        </div>
+      </div>
+
+      <div className="flex h-[100vh] items-center justify-center">
+        <div className="flex h-fit flex-col gap-8">
+          <h2 className="text-center text-lg font-bold tracking-wider">
+            TECH STACK
+          </h2>
           <div className="grid grid-cols-3 justify-center gap-5">
             <TechStackBadge
               logo={TypeScriptLogo}
@@ -61,6 +71,22 @@ export default function Home() {
               description="Database schemas with type-safety."
             />
           </div>
+        </div>
+      </div>
+
+      <div className="flex h-[100vh] items-center justify-center">
+        <div className="flex h-fit flex-col gap-8">
+          <h2 className="text-center text-lg font-bold tracking-wider">
+            ABOUT ME
+          </h2>
+        </div>
+      </div>
+
+      <div className="flex h-[100vh] items-center justify-center">
+        <div className="flex h-fit flex-col gap-8">
+          <h2 className="text-center text-lg font-bold tracking-wider">
+            CONTACT
+          </h2>
         </div>
       </div>
     </div>
