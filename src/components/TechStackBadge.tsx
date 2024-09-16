@@ -1,3 +1,5 @@
+import "./card.css";
+
 export default function TechStackBadge({
   name,
   description,
@@ -8,7 +10,7 @@ export default function TechStackBadge({
   logo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }) {
   return (
-    <div className="group relative">
+    <div className="card group relative rounded-[14px]">
       <div className="absolute inset-0 rounded-[14px] bg-gradient-to-b from-[#339DFF] to-[#312FAD] opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"></div>
       <div className="relative z-10 m-0.5 flex h-24 w-60 items-center justify-start rounded-xl bg-[#0a0a0a] p-3 transition duration-200 ease-in-out group-hover:bg-neutral-900">
         <div className="flex items-center gap-2.5">

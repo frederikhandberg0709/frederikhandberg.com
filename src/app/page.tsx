@@ -1,19 +1,11 @@
 "use client";
 
-import TechStackBadge from "@/components/TechStackBadge";
-import {
-  ReactLogo,
-  TypeScriptLogo,
-  NextJSLogo,
-  ViteLogo,
-  PostgreSQLLogo,
-  PrismaLogo,
-  RemixLogo,
-} from "@/assets/TechStackLogos";
 import NavbarMenu from "@/components/NavbarMenu";
 import "../components/input.css";
 import RoundedButton from "@/components/RoundedButton";
 import { useRef } from "react";
+import Portfolio from "@/components/sections/Portfolio";
+import TechStack from "@/components/sections/TechStack";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -45,59 +37,25 @@ export default function Home() {
         id="portfolio"
         className="flex h-[100vh] items-center justify-center"
       >
-        <div className="flex h-fit flex-col gap-8">
+        <div className="gap-full flex h-fit flex-col">
           <h2 className="text-center text-lg font-bold tracking-wider">
             PORTFOLIO
           </h2>
+          <Portfolio />
         </div>
       </div>
 
       <div
         ref={techStackRef}
         id="tech-stack"
-        className="flex h-[100vh] items-center justify-center"
+        className="flex items-center justify-center"
       >
         <div className="flex h-fit flex-col gap-8">
           <h2 className="text-center text-lg font-bold tracking-wider">
             TECH STACK
           </h2>
-          <div className="grid grid-cols-3 justify-center gap-5">
-            <TechStackBadge
-              logo={TypeScriptLogo}
-              name="TypeScript"
-              description="JavaScript but now with static typing."
-            />
-            <TechStackBadge
-              logo={ReactLogo}
-              name="React"
-              description="Front-end library."
-            />
-            <TechStackBadge
-              logo={NextJSLogo}
-              name="NextJS"
-              description="React framework."
-            />
-            <TechStackBadge
-              logo={RemixLogo}
-              name="Remix"
-              description="React framework."
-            />
-            <TechStackBadge
-              logo={ViteLogo}
-              name="Vite"
-              description="Development environment."
-            />
-            <TechStackBadge
-              logo={PostgreSQLLogo}
-              name="PostgreSQL"
-              description="Relational database management system."
-            />
-            <TechStackBadge
-              logo={PrismaLogo}
-              name="Prisma ORM"
-              description="Database schemas with type-safety."
-            />
-          </div>
+
+          <TechStack />
         </div>
       </div>
 
