@@ -5,11 +5,11 @@ import NavbarLink from "./NavbarLink";
 import { useEffect, useState } from "react";
 
 interface NavbarMenuProps {
-  homeRef: React.RefObject<HTMLElement>;
-  portfolioRef: React.RefObject<HTMLElement>;
-  techStackRef: React.RefObject<HTMLElement>;
-  aboutMeRef: React.RefObject<HTMLElement>;
-  contactRef: React.RefObject<HTMLElement>;
+  homeRef: React.RefObject<HTMLElement | null>;
+  portfolioRef: React.RefObject<HTMLElement | null>;
+  techStackRef: React.RefObject<HTMLElement | null>;
+  aboutMeRef: React.RefObject<HTMLElement | null>;
+  contactRef: React.RefObject<HTMLElement | null>;
 }
 
 export default function NavbarMenu({
@@ -69,7 +69,7 @@ export default function NavbarMenu({
     }`;
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
+    <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
       <div className="mx-20 my-3 flex w-full items-center justify-between">
         <Link
           href="#home"
@@ -136,6 +136,6 @@ export default function NavbarMenu({
           Contact
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }
