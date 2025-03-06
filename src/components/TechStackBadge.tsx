@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./card.css";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./Dialog";
+import { X } from "lucide-react";
 
 interface TechStackBadgeProps {
   name: string;
@@ -54,9 +55,17 @@ export default function TechStackBadge({
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogContent className="max-w-md border-neutral-800 bg-neutral-900 text-white">
             <DialogHeader>
-              <DialogTitle className="flex items-center gap-2 text-lg font-bold">
-                <Logo height={24} width={24} />
-                {detailedInfo.title || name}
+              <DialogTitle className="flex items-center justify-between gap-2 text-lg font-bold">
+                <div className="flex items-center gap-2">
+                  <Logo height={24} width={24} />
+                  {detailedInfo.title || name}
+                </div>
+                <button
+                  className="rounded-full p-1 text-gray-400 hover:bg-neutral-800 hover:text-white"
+                  onClick={() => setDialogOpen(false)}
+                >
+                  <X />
+                </button>
               </DialogTitle>
             </DialogHeader>
 
