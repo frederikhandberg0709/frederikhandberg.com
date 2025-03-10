@@ -1,13 +1,13 @@
 "use client";
 
 import NavbarMenu from "@/components/NavbarMenu";
-import "../components/input.css";
 import { useRef } from "react";
+import Header from "@/components/sections/Header";
 import Portfolio from "@/components/sections/Portfolio";
 import TechStack from "@/components/sections/TechStack";
+import AboutMe from "@/components/sections/AboutMe";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
-import AboutMe from "@/components/sections/AboutMe";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -26,13 +26,13 @@ export default function Home() {
         contactRef={contactRef}
       />
 
-      <div ref={homeRef} id="home" className="flex min-h-screen justify-center">
-        <h1 className="mt-96 text-center text-4xl font-bold leading-normal">
-          Building fun software projects while studying
-          <br />
-          for a degree in Software Engineering
-        </h1>
-      </div>
+      <header
+        ref={homeRef}
+        id="home"
+        className="flex min-h-screen justify-center"
+      >
+        <Header />
+      </header>
 
       <section
         ref={portfolioRef}
@@ -66,7 +66,7 @@ export default function Home() {
         <Contact />
       </section>
 
-      <section>
+      <section className="relative">
         <Footer />
       </section>
     </main>

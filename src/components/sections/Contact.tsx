@@ -2,7 +2,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import emailjs from "@emailjs/browser";
 import Button from "../buttons/Button";
 import Link from "next/link";
-import FloatingInput from "../FloatingInput";
+import FloatingInput from "../inputs/FloatingInput";
+import FloatingTextArea from "../inputs/FloatingTextArea";
 
 interface FormData {
   user_name: string;
@@ -90,7 +91,7 @@ export default function Contact() {
         <Link
           href="mailto:hello@frederikhandberg.com"
           aria-label="Email hello@frederikhandberg.com"
-          className="text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+          className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
         >
           hello@frederikhandberg.com
         </Link>
@@ -137,7 +138,7 @@ export default function Contact() {
           autoComplete="off"
         />
 
-        <div className="floating-input relative w-full">
+        {/* <div className="floating-input relative w-full">
           <textarea
             name="message"
             placeholder="Message"
@@ -156,7 +157,16 @@ export default function Contact() {
           >
             Message <span className="ml-1 text-red-500">*</span>
           </label>
-        </div>
+        </div> */}
+        <FloatingTextArea
+          id="message"
+          name="message"
+          label="Message"
+          placeholder="Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
 
         <Button
           type="submit"
