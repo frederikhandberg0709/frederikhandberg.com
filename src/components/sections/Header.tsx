@@ -1,6 +1,8 @@
+import { useTheme } from "next-themes";
 import { useState } from "react";
 
 export default function Header() {
+  const { theme } = useTheme();
   const [hovered, setHovered] = useState<string | null>(null);
 
   const handleMouseEnter = (id: string) => () => {
@@ -11,14 +13,27 @@ export default function Header() {
     setHovered(null);
   };
 
-  // Define a base color for text
-  const textColor = `rgba(242, 243, 244, ${hovered ? 0.3 : 1})`;
+  const getTextColor = () => {
+    if (theme === "dark") {
+      return `rgba(242, 243, 244, ${hovered ? 0.3 : 1})`;
+    } else {
+      return `rgba(17, 24, 39, ${hovered ? 0.3 : 1})`;
+    }
+  };
+
+  const hoveredTextColor = () => {
+    if (theme === "dark") {
+      return "rgba(242, 243, 244, 1)";
+    } else {
+      return "rgba(17, 24, 39, 1)";
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-[15px] text-white">
+    <div className="flex flex-col items-center justify-center gap-[15px]">
       <h1
-        style={{ color: textColor }}
-        className="transition-color text-center text-4xl font-bold leading-normal duration-300"
+        style={{ color: getTextColor() }}
+        className="transition-color text-center text-4xl font-bold leading-normal text-black duration-300 max-[810px]:text-2xl dark:text-white"
       >
         Building fun{" "}
         <div className="relative inline-block">
@@ -26,7 +41,7 @@ export default function Header() {
             className="transition-color emoji-hover font-bold duration-300"
             style={{
               color:
-                hovered === "projects" ? "rgba(242, 243, 244, 1)" : textColor,
+                hovered === "projects" ? hoveredTextColor() : getTextColor(),
             }}
             data-emoji="💻 🚀"
             onMouseEnter={handleMouseEnter("projects")}
@@ -43,9 +58,7 @@ export default function Header() {
             className="transition-color emoji-hover font-bold duration-300"
             style={{
               color:
-                hovered === "engineering"
-                  ? "rgba(242, 243, 244, 1)"
-                  : textColor,
+                hovered === "engineering" ? hoveredTextColor() : getTextColor(),
             }}
             data-emoji="📚 🏫"
             onMouseEnter={handleMouseEnter("engineering")}

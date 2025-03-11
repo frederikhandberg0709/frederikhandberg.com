@@ -59,7 +59,7 @@ export default function TechStack() {
       <div
         ref={cardsRef}
         id="cards"
-        className="grid grid-cols-3 justify-center gap-5 p-20"
+        className="grid justify-center gap-5 p-20 md:grid-cols-2 lg:grid-cols-3"
       >
         <TechStackBadge
           logo={JavaLogo}

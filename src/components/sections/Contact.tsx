@@ -107,7 +107,7 @@ export default function Contact() {
 
       <form
         onSubmit={handleSubmit}
-        className="flex w-fit flex-col items-center gap-6"
+        className="flex w-full flex-col items-center gap-6 min-[415px]:w-fit"
       >
         <FloatingInput
           id="user_name"
@@ -138,26 +138,6 @@ export default function Contact() {
           autoComplete="off"
         />
 
-        {/* <div className="floating-input relative w-full">
-          <textarea
-            name="message"
-            placeholder="Message"
-            className="min-h-[200px] w-[400px] rounded-xl bg-black/5 px-[20px] py-5 text-black outline-none transition duration-200 ease-in-out hover:bg-black/15 focus:bg-black/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/15"
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
-          <label
-            htmlFor="message"
-            className={`pointer-events-none absolute left-0 top-0 h-full origin-left transform px-[25px] py-3.5 text-gray-400 transition-all duration-150 ease-in-out ${
-              formData.message
-                ? "translate-y-[-12px] scale-75 text-blue-500"
-                : ""
-            }`}
-          >
-            Message <span className="ml-1 text-red-500">*</span>
-          </label>
-        </div> */}
         <FloatingTextArea
           id="message"
           name="message"

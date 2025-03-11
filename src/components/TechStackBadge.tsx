@@ -33,7 +33,7 @@ export default function TechStackBadge({
       >
         <div className="absolute inset-0 rounded-[14px] bg-gradient-to-b from-[#339DFF] to-[#312FAD] opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"></div>
         <div
-          className={`relative z-10 m-0.5 flex h-24 w-60 items-center justify-start rounded-xl bg-[#0a0a0a] p-3 transition duration-200 ease-in-out group-hover:bg-neutral-900 ${hasDetails ? "cursor-pointer" : ""}`}
+          className={`relative z-10 m-0.5 flex h-24 w-60 items-center justify-start rounded-xl bg-white p-3 transition duration-200 ease-in-out dark:bg-[#0a0a0a] dark:group-hover:bg-neutral-900 ${hasDetails ? "cursor-pointer" : ""}`}
         >
           <div className="flex items-center gap-2.5">
             <Logo height={50} width={50} className="min-w-fit" />

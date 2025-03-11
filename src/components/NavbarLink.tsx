@@ -17,7 +17,7 @@ export default function NavbarLink({
       href={href}
       onClick={onClick}
       className={twMerge(
-        "rounded-full px-5 py-2 font-bold transition ease-linear hover:bg-white/10 hover:text-white active:bg-white/30",
+        "rounded-full px-5 py-2 font-bold transition ease-linear hover:bg-black/10 hover:text-black active:bg-black/30 dark:hover:bg-white/10 dark:hover:text-white dark:active:bg-white/30",
         className,
       )}
     >

@@ -8,6 +8,7 @@ import TechStack from "@/components/sections/TechStack";
 import AboutMe from "@/components/sections/AboutMe";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main>
+    <main className="w-full">
       <NavbarMenu
         homeRef={homeRef}
         portfolioRef={portfolioRef}
@@ -33,6 +34,7 @@ export default function Home() {
       >
         <Header />
       </header>
+      <ThemeToggle />
 
       <section
         ref={portfolioRef}

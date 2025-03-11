@@ -52,7 +52,12 @@ const FloatingTextArea = React.forwardRef<
     const isLabelActive = isFocused || value.length > 0;
 
     return (
-      <div className={cn("floating-input relative w-full", containerClassName)}>
+      <div
+        className={cn(
+          "floating-input relative w-full px-4 sm:px-0",
+          containerClassName,
+        )}
+      >
         <textarea
           ref={ref}
           id={id}
@@ -64,7 +69,7 @@ const FloatingTextArea = React.forwardRef<
           onBlur={handleBlur}
           required={required}
           className={cn(
-            "min-h-[200px] w-[400px] rounded-xl bg-black/5 px-[20px] py-5 text-black outline-none transition duration-200 ease-in-out hover:bg-black/15 focus:bg-black/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/15",
+            "min-h-[200px] w-full rounded-xl bg-black/10 px-[20px] py-5 text-black outline-none transition duration-200 ease-in-out hover:bg-black/15 focus:bg-black/15 active:bg-black/20 min-[415px]:w-[400px] dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/15",
             textAreaClassName,
             className,
           )}

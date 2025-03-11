@@ -3,6 +3,8 @@
 import Link from "next/link";
 import NavbarLink from "./NavbarLink";
 import { useEffect, useState } from "react";
+import ButtonLink from "./buttons/ButtonLink";
+import MobileNavMenu from "./MobileNavMenu";
 
 interface NavbarMenuProps {
   homeRef: React.RefObject<HTMLElement | null>;
@@ -23,7 +25,6 @@ export default function NavbarMenu({
 
   useEffect(() => {
     const handleScroll = () => {
-      // Navbar active section
       const sections = [
         { id: "home", ref: homeRef },
         { id: "portfolio", ref: portfolioRef },
@@ -53,7 +54,7 @@ export default function NavbarMenu({
   const handleNavLinkClick = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      const yOffset = 5; // Scroll down an additional 5px
+      const yOffset = 5;
       const y =
         section.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
@@ -64,13 +65,13 @@ export default function NavbarMenu({
   const linkClass = (section: string) =>
     `${
       activeSection === section
-        ? "text-white"
-        : "text-white/50 hover:text-white"
+        ? "text-black dark:text-white"
+        : "text-black/50 hover:text-black dark:text-white/50 dark:hover:text-white"
     }`;
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
-      <div className="mx-20 my-3 flex w-full items-center justify-between">
+      <div className="mx-20 my-3 hidden w-full items-center justify-between max-[900px]:mx-12 min-[810px]:flex">
         <Link
           href="#home"
           onClick={(e) => {
@@ -84,7 +85,7 @@ export default function NavbarMenu({
           Handberg
         </Link>
 
-        <div className="rounded-full bg-black/50 backdrop-blur-xl">
+        <div className="rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
           <div className="m-2 flex gap-2.5">
             <NavbarLink
               href="#home"
@@ -125,16 +126,21 @@ export default function NavbarMenu({
           </div>
         </div>
 
-        <Link
-          href={"#contact"}
+        <ButtonLink
+          href="#contact"
           onClick={(e) => {
             e.preventDefault();
             handleNavLinkClick("contact");
           }}
-          className="linear scale-100 rounded-full bg-gradient-to-br from-[#339DFF] to-[#312fad] px-5 py-2 font-bold shadow-none transition duration-200 hover:scale-105 hover:shadow-[0_5px_25px_15px_rgba(47,67,173,0.35)] active:scale-95"
+          variant="primary_glow"
+          rounded="full"
         >
           Contact
-        </Link>
+        </ButtonLink>
+      </div>
+
+      <div className="min-[810px]:hidden">
+        <MobileNavMenu />
       </div>
     </nav>
   );

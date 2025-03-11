@@ -33,7 +33,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 dark:bg-blue-500 dark:hover:bg-blue-600 dark:active:bg-blue-700",
       primary_glow:
-        "bg-gradient-to-br from-[#339DFF] to-[#312fad] hover:shadow-[0_5px_25px_15px_rgba(47,67,173,0.35)]",
+        "text-white bg-gradient-to-br from-[#339DFF] to-[#312fad] hover:shadow-[0_5px_20px_10px_rgba(47,67,173,0.35)] dark:hover:shadow-[0_5px_25px_15px_rgba(47,67,173,0.35)]",
       secondary: "",
     };
 
