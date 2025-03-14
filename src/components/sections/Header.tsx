@@ -1,9 +1,14 @@
 import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleMouseEnter = (id: string) => () => {
     setHovered(id);
@@ -13,8 +18,14 @@ export default function Header() {
     setHovered(null);
   };
 
+  const isDarkMode =
+    mounted &&
+    (theme === "dark" ||
+      (theme === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches));
+
   const getTextColor = () => {
-    if (theme === "dark") {
+    if (isDarkMode) {
       return `rgba(242, 243, 244, ${hovered ? 0.3 : 1})`;
     } else {
       return `rgba(17, 24, 39, ${hovered ? 0.3 : 1})`;
@@ -22,18 +33,32 @@ export default function Header() {
   };
 
   const hoveredTextColor = () => {
-    if (theme === "dark") {
+    if (isDarkMode) {
       return "rgba(242, 243, 244, 1)";
     } else {
       return "rgba(17, 24, 39, 1)";
     }
   };
 
+  if (!mounted) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-[15px]">
+        <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
+          Building fun <span className="font-bold">software projects</span>{" "}
+          while studying
+          <br />
+          for a degree in{" "}
+          <span className="font-bold">Software Engineering</span>.
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center gap-[15px]">
       <h1
         style={{ color: getTextColor() }}
-        className="transition-color text-center text-4xl font-bold leading-normal text-black duration-300 max-[810px]:text-2xl dark:text-white"
+        className="text-center text-4xl font-bold leading-normal transition-colors duration-300 max-[810px]:text-2xl"
       >
         Building fun{" "}
         <div className="relative inline-block">

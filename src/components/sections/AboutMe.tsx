@@ -1,11 +1,17 @@
+import NameWithHoverImage from "../NameWithHoverImage";
+
 export default function AboutMe() {
   return (
     <div className="flex h-fit w-full max-w-7xl flex-col gap-8 px-6 md:px-8">
       <h2 className="text-center text-lg font-bold tracking-wider">ABOUT ME</h2>
       <div className="max-w-none space-y-6">
         <p>
-          Hello, my name is Frederik Handberg and I am 22 years old. I am born
-          and raised in Horsens, in a family of five.
+          Hello, my name is{" "}
+          <NameWithHoverImage imageSrc="/photo-of-me.jpg">
+            Frederik Handberg
+          </NameWithHoverImage>{" "}
+          and I am 22 years old. I am born and raised in Horsens, in a family of
+          five.
         </p>
 
         <p>

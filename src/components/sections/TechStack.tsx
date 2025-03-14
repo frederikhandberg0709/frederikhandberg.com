@@ -427,6 +427,27 @@ export default function TechStack() {
           name="Prisma ORM"
           description="Database schemas with type-safety."
           hasDetails={true}
+          detailedInfo={{
+            title: "Prisma ORM",
+            description:
+              "Prisma ORM is a type-safe database toolkit, that allows you to write queries and define database schemas in TypeScript.",
+            personalExperience: (
+              <p>
+                In my social network portfolio project, I used Prisma ORM to
+                define all my database schemas. Prisma automatically generates
+                TypeScript types for these schemas, allowing me to use them
+                throughout my application, and this is what makes Prisma
+                type-safe. This means I can&apos;t accidentally reference a
+                non-existent field in a table, as TypeScript will catch the
+                error.
+                <br />
+                <br />
+                Prisma also provides a very useful query API, making it easy to
+                fetch data from specific tables. It can also be used to insert
+                data into a table, update data, or to delete data from a table.
+              </p>
+            ),
+          }}
         />
       </div>
     </div>

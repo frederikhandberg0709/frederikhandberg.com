@@ -3,9 +3,8 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -25,19 +24,19 @@ const ThemeToggle = () => {
   const toggleTheme = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      setIsDarkMode((prev) => !prev);
-      setTheme(isDarkMode ? "light" : "dark");
+      setTheme(resolvedTheme === "dark" ? "light" : "dark");
     }
   };
 
+  const isDarkMode = mounted && resolvedTheme === "dark";
+
   if (!mounted) {
-    return null;
+    return <div className="h-12 w-12 rounded-full bg-gray-200"></div>;
   }
 
   return (
     <div className="flex flex-col items-center gap-6">
       <button
-        value={theme}
         onClick={toggleTheme}
         className={`relative flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 dark:bg-gray-800 ${isAnimating ? "pointer-events-none" : ""}`}
         aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}

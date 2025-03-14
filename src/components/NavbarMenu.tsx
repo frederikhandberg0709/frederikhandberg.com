@@ -72,18 +72,20 @@ export default function NavbarMenu({
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
       <div className="mx-20 my-3 hidden w-full items-center justify-between max-[900px]:mx-12 min-[810px]:flex">
-        <Link
-          href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavLinkClick("home");
-          }}
-          className="flex flex-col items-start text-start font-bold leading-snug opacity-50 transition hover:opacity-100"
-        >
-          Frederik
-          <br />
-          Handberg
-        </Link>
+        <div className="flex w-[105px] justify-start">
+          <Link
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavLinkClick("home");
+            }}
+            className="flex flex-col items-start text-start font-bold leading-snug opacity-50 transition hover:opacity-100"
+          >
+            Frederik
+            <br />
+            Handberg
+          </Link>
+        </div>
 
         <div className="rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
           <div className="m-2 flex gap-2.5">
@@ -126,17 +128,19 @@ export default function NavbarMenu({
           </div>
         </div>
 
-        <ButtonLink
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavLinkClick("contact");
-          }}
-          variant="primary_glow"
-          rounded="full"
-        >
-          Contact
-        </ButtonLink>
+        <div className="flex w-[105px] justify-end">
+          <ButtonLink
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavLinkClick("contact");
+            }}
+            variant="primary_glow"
+            rounded="full"
+          >
+            Contact
+          </ButtonLink>
+        </div>
       </div>
 
       <div className="min-[810px]:hidden">
