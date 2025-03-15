@@ -1,3 +1,4 @@
+import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -5,10 +6,12 @@ export default function NameWithHoverImage({
   children,
   imageSrc,
   imageAlt = "Profile Image",
+  className,
 }: {
   children: React.ReactNode;
   imageSrc: string;
   imageAlt?: string;
+  className?: string;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -45,7 +48,10 @@ export default function NameWithHoverImage({
     <>
       <span
         ref={containerRef}
-        className="relative z-10 inline-block cursor-pointer font-bold transition-colors duration-300 hover:text-blue-500"
+        className={cn(
+          "relative z-10 inline-block cursor-pointer font-bold transition-colors duration-300 hover:text-blue-500",
+          className,
+        )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

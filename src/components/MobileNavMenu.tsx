@@ -108,7 +108,10 @@ export default function MobileNavMenu() {
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex h-screen w-screen flex-col items-center justify-center bg-black/75 backdrop-blur-md">
+        <div
+          className="fixed left-0 top-0 z-50 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-black/75 backdrop-blur-md"
+          style={{ height: "100dvh", width: "100%" }}
+        >
           <button
             onClick={() => setIsOpen(false)}
             className="absolute right-4 top-4 rounded-full bg-white/20 p-2"

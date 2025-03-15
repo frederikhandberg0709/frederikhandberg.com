@@ -1,3 +1,4 @@
+import Image from "next/image";
 import NameWithHoverImage from "../NameWithHoverImage";
 
 export default function AboutMe() {
@@ -7,12 +8,25 @@ export default function AboutMe() {
       <div className="max-w-none space-y-6">
         <p>
           Hello, my name is{" "}
-          <NameWithHoverImage imageSrc="/photo-of-me.jpg">
+          <NameWithHoverImage
+            imageSrc="/photo-of-me.jpg"
+            className="hidden sm:inline-block"
+          >
             Frederik Handberg
-          </NameWithHoverImage>{" "}
-          and I am 22 years old. I am born and raised in Horsens, in a family of
+          </NameWithHoverImage>
+          <span className="inline-block sm:hidden">Frederik Handberg</span> and
+          I am 22 years old. I am born and raised in Horsens, in a family of
           five.
         </p>
+
+        <Image
+          src="/photo-of-me.jpg"
+          alt="Image of me"
+          width={0}
+          height={0}
+          unoptimized
+          className="h-auto w-full rounded-lg sm:hidden"
+        />
 
         <p>
           Since a young age, I have always been interested in technology and
