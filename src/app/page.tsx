@@ -30,11 +30,12 @@ export default function Home() {
       <header
         ref={homeRef}
         id="home"
-        className="flex min-h-screen justify-center"
+        className="flex min-h-screen flex-col justify-center gap-3"
       >
         <Header />
+
+        <ThemeToggle />
       </header>
-      <ThemeToggle />
 
       <section
         ref={portfolioRef}

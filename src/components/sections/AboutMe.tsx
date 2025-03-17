@@ -3,7 +3,7 @@ import NameWithHoverImage from "../NameWithHoverImage";
 
 export default function AboutMe() {
   return (
-    <div className="flex h-fit w-full max-w-7xl flex-col gap-8 px-6 md:px-8">
+    <div className="flex h-fit w-full max-w-5xl flex-col gap-8 px-6 md:px-8">
       <h2 className="text-center text-lg font-bold tracking-wider">ABOUT ME</h2>
       <div className="max-w-none space-y-6">
         <p>

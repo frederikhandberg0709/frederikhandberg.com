@@ -55,7 +55,7 @@ export default function Header() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-[15px]">
+    <div className="flex h-screen flex-col items-center justify-center gap-[15px]">
       <h1
         style={{ color: getTextColor() }}
         className="text-center text-4xl font-bold leading-normal transition-colors duration-300 max-[810px]:text-2xl"
