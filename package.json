@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "gh-pages -d out",
+    "deploy": "gh-pages -d out -t",
     "static": "next build && touch ./out/.nojekyll && echo 'www.frederikhandberg.com' > ./out/CNAME"
   },
   "dependencies": {

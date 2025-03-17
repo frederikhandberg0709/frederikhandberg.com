@@ -17,7 +17,7 @@ export default function PortfolioCard({
   return (
     <Link
       href={linkURL}
-      className="relative h-[700px] w-full scale-100 overflow-hidden rounded-3xl transition-all duration-200 ease-in-out max-sm:active:scale-[1.02] sm:shadow-none sm:hover:scale-[1.02] sm:hover:shadow-[0px_0px_40px_20px_rgba(0,0,0,0.25)]"
+      className="relative h-[700px] w-full scale-100 overflow-hidden rounded-3xl transition-all duration-200 ease-in-out max-sm:active:scale-[1.02] sm:shadow-none sm:hover:scale-[1.02] sm:hover:shadow-[0px_0px_40px_20px_rgba(0,0,0,0.25)] sm:active:scale-[0.98]"
     >
       <div className="absolute bottom-8 left-10 right-10 z-[3]">
         <h2 className="text-2xl font-bold text-white">{title}</h2>
