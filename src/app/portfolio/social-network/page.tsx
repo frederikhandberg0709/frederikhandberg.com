@@ -99,7 +99,7 @@ export default function SocialNetwork() {
             </div>
           </div>
           <div className="space-y-5">
-            <h2 className="text-xl font-bold">Project Features</h2>
+            <h2 className="text-2xl font-bold">Project Features</h2>
             <p>
               I have tried implementing the features that people expect from a
               modern social network. This includes the basic features such as
@@ -167,6 +167,154 @@ export default function SocialNetwork() {
                 height={500}
                 className="h-auto w-full rounded-2xl"
                 layout="responsive"
+              />
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-bold">Bookmarks</p>
+              <p>
+                Users can bookmark posts and comments they want to save for
+                later. Bookmarks are stored in the database with a reference to
+                the user who bookmarked it, so that the user can view their
+                bookmarks on any device.
+              </p>
+              <Image
+                src="/my-bookmarks.jpeg"
+                alt="Page to view bookmarks"
+                width={1000}
+                height={500}
+                className="h-auto w-full rounded-2xl"
+                layout="responsive"
+              />
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-bold">Link Accounts</p>
+              <p>
+                Users can link multiple accounts together. This allows switching
+                between accounts without having to log in and out.
+              </p>
+              <Image
+                src="/link-new-account.jpeg"
+                alt="Page to link a new account"
+                width={1000}
+                height={500}
+                className="h-auto w-full rounded-2xl"
+                layout="responsive"
+              />
+
+              <p>
+                Users can easily switch between their linked accounts by
+                clicking on their profile menu and selecting the &apos;Switch
+                Account&apos; option, which will then display a list of all
+                linked accounts.
+              </p>
+
+              <Image
+                src="/profile-menu_(switch-account).png"
+                alt="Page to link a new account"
+                width={1000}
+                height={500}
+                className="h-auto w-auto rounded-2xl"
+              />
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-bold">User Profile</p>
+              <p>
+                The profile page includes a profile picture, banner, name,
+                username, and a biography.
+                <br />
+                This page also includes a timeline of the user&apos;s posts and
+                counters for the number of followers, how many people the user
+                is following, and the total number of posts from the user.
+              </p>
+
+              <Image
+                src="/profile_(follower).jpeg"
+                alt="Profile page as follower"
+                width={1000}
+                height={500}
+                className="h-auto w-auto rounded-2xl"
+              />
+
+              <p>
+                The user interface will slightly change depending on whether the
+                user is the author of the profile or a follower. For example, if
+                the user is the author, they will not see the &apos;Follow&apos;
+                button or notifications button. Instead, they will see an
+                &apos;Edit Profile&apos; button.
+              </p>
+
+              <Image
+                src="/profile_(author).jpeg"
+                alt="Profile page as author"
+                width={1000}
+                height={500}
+                className="h-auto w-auto rounded-2xl"
+              />
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-bold">Quote Posts</p>
+              <p>
+                Users can quote posts, which is similar to retweeting on
+                Twitter. The original post is embedded in the new post.
+              </p>
+
+              <Image
+                src="/quoted-post.jpeg"
+                alt="Quoted post"
+                width={1000}
+                height={500}
+                className="h-auto w-full rounded-2xl"
+              />
+            </div>
+
+            <div className="space-y-2.5">
+              <p className="font-bold">Notification System</p>
+              <p>
+                Clicking the bell icon on a user profile, will show the
+                notification settings to enable notifications whenever a user
+                publishes a new post.
+                <br />
+                <br />
+                Clicking the &apos;Specific notifications&apos; option, should
+                allow the user to select which notifications they want to
+                receive. Currently, only the &apos;New post&apos; notification
+                is working, but in the future, more options should be added.
+              </p>
+
+              <Image
+                src="/profile-notification-settings.png"
+                alt="Profile notification settings"
+                width={1000}
+                height={500}
+                className="h-auto w-auto rounded-2xl"
+              />
+
+              <p>
+                Socket.IO is only for sending notifications in real-time. This
+                means, that the notifications would be lost if the user is not
+                on the site. Therefore, notifications are also stored in the
+                database, so that the user can see them when they return to the
+                site.
+                <br />
+                <br />
+                Initially, notifications are shown as unread. The user can then
+                click on the notification to mark it as read.
+                <br />
+                <br />I should implement a dropdown menu to mark the
+                notifications as read or delete them. Then clicking on the
+                notification, should redirect the user to the post.
+              </p>
+
+              <Image
+                src="/notification-panel.png"
+                alt="Notification panel"
+                width={1000}
+                height={500}
+                className="h-auto w-auto rounded-2xl"
               />
             </div>
           </div>
