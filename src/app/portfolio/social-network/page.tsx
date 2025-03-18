@@ -45,7 +45,7 @@ export default function SocialNetwork() {
           </p>
           <Image
             src="/home.jpeg"
-            alt="Description"
+            alt="Home page of the social network"
             width={1000}
             height={500}
             className="h-auto w-full rounded-2xl"
@@ -116,7 +116,7 @@ export default function SocialNetwork() {
               </p>
               <Image
                 src="/login.jpeg"
-                alt="Description"
+                alt="Login page"
                 width={1000}
                 height={500}
                 className="h-auto w-full rounded-2xl"
@@ -161,8 +161,8 @@ export default function SocialNetwork() {
                 send a reset link to the user&apos; email with a token.
               </p>
               <Image
-                src="/reset password.jpeg"
-                alt="Description"
+                src="/reset-password.jpeg"
+                alt="Page to reset password"
                 width={1000}
                 height={500}
                 className="h-auto w-full rounded-2xl"
