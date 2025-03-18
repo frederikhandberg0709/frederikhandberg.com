@@ -172,8 +172,45 @@ export default function SocialNetwork() {
           </div>
           <div>
             <h2 className="text-xl font-bold">Future Development</h2>
-            <p>Search functionality</p>
-            <p></p>
+            <p className="font-bold">Search functionality</p>
+            <p>
+              There is currently a search input on the web application, but this
+              is not functional. Users should be able to search for posts by
+              keywords and hashtags, and to search for other users either by
+              their profile name or username.
+              <br />
+              <br />
+              It should not be too difficult to implement this feature. I think
+              one approach to implement this feature is by using URL params with
+              the user&apos;s search input, then querying the database for posts
+              or users that match the search input.
+              <br />
+              <br />
+              However, the way I have set up the search input as of now, I would
+              like the search results to update live as the user types. For
+              this, the URL params approach would not be ideal.
+              <br />
+              <br />
+              The search functionality could be implemented client-side where
+              the search results update in real-time as the user types, rather
+              than using URL parameters.
+              <br />
+              <br />
+              First of all, I should make sure to prevent excessive API calls as
+              the user types. A small delay of about 300ms after the user has
+              stopped typing could be made before sending the request to the
+              API.
+              <br />
+              I already use React Query for data fetching, so I should just
+              continue using that for the search functionality as well. It gives
+              me caching and state management capabilities to handle search
+              requests. This provides automatic loading states, error handling,
+              and data caching.
+              <br />
+              <br />
+              Lastly, I will need to create a dedicated API route for searching
+              posts and users, with filtering logic based on the search term.
+            </p>
           </div>
         </div>
       </div>
