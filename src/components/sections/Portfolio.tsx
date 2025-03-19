@@ -10,7 +10,7 @@ export default function Portfolio() {
         linkURL="/portfolio/social-network"
         title="Social media network"
         description="Building a social media platform from the ground up using Next.js. This project demonstrates fullstack development with modern web technologies, focusing on authentication, real-time interactions, and scalable architecture. A hands-on learning journey through practical implementation."
-        imageURL="/Home.jpeg"
+        imageURL="/home.jpeg"
       />
     </div>
   );

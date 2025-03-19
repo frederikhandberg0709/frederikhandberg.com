@@ -9,7 +9,7 @@ export default function AboutMe() {
         <p>
           Hello, my name is{" "}
           <NameWithHoverImage
-            imageSrc="/photo-of-me.jpg"
+            imageSrc="/photo-of-me.JPG"
             className="hidden sm:inline-block"
           >
             Frederik Handberg
@@ -20,11 +20,10 @@ export default function AboutMe() {
         </p>
 
         <Image
-          src="/photo-of-me.jpg"
+          src="/photo-of-me.JPG"
           alt="Image of me"
           width={0}
           height={0}
-          unoptimized
           className="h-auto w-full rounded-lg sm:hidden"
         />
 

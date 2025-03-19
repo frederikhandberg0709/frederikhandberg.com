@@ -75,7 +75,6 @@ export default function NameWithHoverImage({
           width={300}
           height={400}
           className="rounded-lg shadow-2xl"
-          priority
         />
       </div>
     </>
