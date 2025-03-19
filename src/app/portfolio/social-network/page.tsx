@@ -316,6 +316,22 @@ export default function SocialNetwork() {
                 height={500}
                 className="h-auto w-auto rounded-2xl"
               />
+
+              <p>
+                The notification panel could use some design improvements,
+                particularly regarding timestamp formatting. Currently,
+                timestamps display in a verbose format (e.g. &quot;9 seconds
+                ago&quot;), which uses too much space in the compact panel.
+                These should be converted to abbreviated formats (e.g.
+                &quot;9s&quot;) to take up less space.
+                <br />
+                <br />
+                The current implementation uses the same `formatDate` function
+                that I developed for posts and comments. However, since the
+                notification panel has more limited space than the posts, it
+                requires a more concise timestamp format specifically made for
+                the notification panel.
+              </p>
             </div>
           </div>
           <div>
