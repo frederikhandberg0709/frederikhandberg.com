@@ -53,7 +53,7 @@ export default function TechStackBadge({
 
       {hasDetails && detailedInfo && (
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogContent className="max-w-md border-neutral-800 bg-neutral-900 text-white">
+          <DialogContent className="max-w-md border-neutral-200 bg-white text-black dark:border-neutral-800 dark:bg-neutral-900 dark:text-white">
             <DialogHeader>
               <DialogTitle className="flex items-center justify-between gap-2 text-lg font-bold">
                 <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export default function TechStackBadge({
                   {detailedInfo.title || name}
                 </div>
                 <button
-                  className="rounded-full p-1 text-gray-400 hover:bg-neutral-800 hover:text-white"
+                  className="rounded-full p-1 text-gray-400 hover:bg-neutral-400 hover:text-white dark:hover:bg-neutral-800"
                   onClick={() => setDialogOpen(false)}
                 >
                   <X />
@@ -71,7 +71,7 @@ export default function TechStackBadge({
 
             <div className="mt-3 space-y-4">
               {detailedInfo.description && (
-                <p className="text-sm text-gray-300">
+                <p className="text-sm dark:text-gray-300">
                   {detailedInfo.description}
                 </p>
               )}
@@ -80,7 +80,7 @@ export default function TechStackBadge({
                 detailedInfo.keyFeatures.length > 0 && (
                   <div>
                     <h4 className="mb-1 text-sm font-bold">Key Features</h4>
-                    <ul className="list-disc space-y-1 pl-5 text-sm text-gray-300">
+                    <ul className="list-disc space-y-1 pl-5 text-sm dark:text-gray-300">
                       {detailedInfo.keyFeatures.map((feature, index) => (
                         <li key={index}>{feature}</li>
                       ))}
@@ -91,7 +91,7 @@ export default function TechStackBadge({
               {detailedInfo.personalExperience && (
                 <div>
                   <h4 className="mb-1 text-sm font-bold">My Experience</h4>
-                  <div className="text-sm text-gray-300">
+                  <div className="text-sm dark:text-gray-300">
                     {detailedInfo.personalExperience}
                   </div>
                 </div>

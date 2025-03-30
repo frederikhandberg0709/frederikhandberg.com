@@ -42,7 +42,7 @@ export const Dialog: React.FC<DialogProps> = ({
       <div className="fixed inset-0 z-50" onClick={() => onOpenChange(false)} />
       <div
         ref={dialogRef}
-        className="z-50 max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg border border-neutral-800 bg-neutral-900 p-6 shadow-lg"
+        className="z-50 max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg border border-neutral-300 bg-white p-6 shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

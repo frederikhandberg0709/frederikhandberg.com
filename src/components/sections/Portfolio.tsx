@@ -2,7 +2,7 @@ import PortfolioCard from "../PortfolioCard";
 
 export default function Portfolio() {
   return (
-    <div className="flex h-fit w-full max-w-5xl flex-col gap-8">
+    <div className="flex h-fit w-full max-w-5xl flex-col gap-8 max-lg:px-6">
       <h2 className="text-center text-lg font-bold tracking-wider">
         PORTFOLIO
       </h2>
