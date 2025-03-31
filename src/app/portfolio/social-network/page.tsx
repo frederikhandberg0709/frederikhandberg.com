@@ -172,8 +172,8 @@ export default function SocialNetwork() {
                   In a real-world application, password resets should be handled
                   more securely. Instead of allowing users to reset their
                   password directly by providing their email or username, the
-                  system should send a reset link to the user&apos; email with a
-                  token.
+                  system should send a reset link to the user&apos;s email with
+                  a token.
                 </p>
                 <Image
                   src="/reset-password.jpeg"
@@ -398,6 +398,70 @@ export default function SocialNetwork() {
                   Lastly, I will need to create a dedicated API route for
                   searching posts and users, with filtering logic based on the
                   search term.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-bold">Media upload</p>
+                <p>
+                  Users can add media (images and videos) to their posts.
+                  <br />
+                  However, they must do this by linking to the media they want
+                  to include in their post or comment.
+                  <br />
+                  This is because it is not currently possible to upload media
+                  directly from the platform.
+                  <br />
+                  <br />
+                  The media must be hosted elsewhere.
+                  <br />
+                  It would be much more ideal to allow users to upload their
+                  media directly on the platform.
+                  <br />
+                  <br />
+                  How could this be implemented? Instead of storing the media
+                  files directly in the database, it’s best to store only
+                  metadata and file URLs.
+                  <br />
+                  <br />
+                  So, we need a database table for the metadata and file URLs.
+                  And, it’s very important that the database table is storing a
+                  foreign key to the users table (who uploaded it) and a foreign
+                  key to the posts table (if attached to a post) or a foreign
+                  key to the comments table (if attached to a comment).
+                  <br />
+                  <br />
+                  We need these foreign keys because otherwise, the system has
+                  no idea who uploaded the media or which post or comment it
+                  should be included in.
+                  <br />
+                  <br />
+                  As stated earlier, storing media directly in a database table
+                  is less than ideal. This means, the system needs a storage
+                  solution. In a real-world application, this could be done
+                  using AWS S3 as the storage solution.
+                  <br />
+                  <br />
+                  The steps to upload media would be something like:
+                  <ol className="list-decimal pl-8">
+                    <li>
+                      The user uploads a file (this file is sent via
+                      `multipart/form-data`).
+                    </li>
+                    <li>Server should then process the file.</li>
+                  </ol>
+                  <br />
+                  The server would need to make sure the file follows some
+                  guidelines. For instance, there might be implemented a limit
+                  on how large the files are allowed to be, e.g. 5GB.
+                  <br />
+                  <br />
+                  The server would also need to make sure the file type is
+                  allowed. Since this is for media uploads, it does not make
+                  sense to allow users to upload a `.txt` file.
+                  <br />
+                  <br />
+                  Lastly, the server should make sure to save the metadata in
+                  the database table.
                 </p>
               </div>
             </div>
