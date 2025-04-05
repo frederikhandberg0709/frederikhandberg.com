@@ -35,9 +35,9 @@ export default function SocialNetwork() {
         </div>
       </nav>
       <div className="mb-14 mt-20 flex min-h-screen flex-col items-center justify-start">
-        <div className="flex w-full max-w-5xl flex-col gap-2.5">
+        <div className="flex w-full max-w-5xl flex-col gap-3">
           <h1 className="text-3xl font-bold max-sm:mx-3">Social Network</h1>
-          <div className="flex items-start gap-2.5 overflow-x-auto max-sm:px-3">
+          <div className="my-2.5 flex items-start gap-2.5 overflow-x-auto max-sm:px-3">
             <TechStackMiniBadge name="Next.js" />
             <TechStackMiniBadge name="TypeScript" />
             <TechStackMiniBadge name="Prisma ORM" />
@@ -462,6 +462,30 @@ export default function SocialNetwork() {
                   <br />
                   Lastly, the server should make sure to save the metadata in
                   the database table.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-bold">User interface improvements</p>
+                <p>
+                  When I started working on this project, my goal was not to
+                  build a beautiful user interface. Instead, I wanted to focus
+                  on learning the technical aspects of building a modern and
+                  complex web application.
+                  <br />
+                  <br />
+                  I focused on understanding how to implement user
+                  authentication, efficiently fetch and mutate data, how to
+                  structure a large project, and leverage the features provided
+                  by React (e.g. hooks) and Next.js (e.g. API routes and the App
+                  Router).
+                  <br />
+                  <br />
+                  However, if I were to improve the visual design of the
+                  application, I would focus on implementing a light mode and
+                  ensuring that the UI looks good on all screen sizes.
+                  <br />
+                  <br />
+                  Currently, the UI is optimized for desktop screens.
                 </p>
               </div>
             </div>

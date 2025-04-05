@@ -40,7 +40,7 @@ export default function Home() {
       <section
         ref={portfolioRef}
         id="portfolio"
-        className="flex min-h-screen items-center justify-center"
+        className="flex min-h-screen items-center justify-center py-20"
       >
         <Portfolio />
       </section>
