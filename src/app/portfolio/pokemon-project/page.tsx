@@ -75,7 +75,7 @@ export default function PokemonProject() {
                 <h2 className="text-2xl font-bold">Tech Stack</h2>
                 <ul className="ml-5 list-disc">
                   <li>
-                    <b>Framework:</b> Vite
+                    <b>Build Tool:</b> Vite
                   </li>
                   <li>
                     <b>Language:</b> TypeScript
@@ -193,6 +193,12 @@ export default function PokemonProject() {
                   className="h-auto w-full rounded-2xl"
                   layout="responsive"
                 />
+
+                <p>
+                  On this page, I use the `usePokemonDetails` hook to fetch
+                  additional information about the Pokémon, beyond just the name
+                  and URL.
+                </p>
               </div>
             </div>
           </div>
