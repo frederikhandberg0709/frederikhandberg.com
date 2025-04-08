@@ -34,7 +34,8 @@ export default function SocialNetwork() {
           </div>
         </div>
       </nav>
-      <div className="mb-14 mt-20 flex min-h-screen flex-col items-center justify-start">
+
+      <main className="mb-14 mt-20 flex min-h-screen flex-col items-center justify-start">
         <div className="flex w-full max-w-5xl flex-col gap-3">
           <h1 className="text-3xl font-bold max-sm:mx-3">Social Network</h1>
           <div className="my-2.5 flex items-start gap-2.5 overflow-x-auto max-sm:px-3">
@@ -60,6 +61,20 @@ export default function SocialNetwork() {
               className="h-auto w-full rounded-2xl"
               layout="responsive"
             />
+
+            <br />
+            <br />
+
+            <p>
+              GitHub repository:{" "}
+              <a
+                href="https://github.com/frederikhandberg0709/blop-social-media"
+                target="_blank"
+                className="text-blue-500 hover:text-blue-600 hover:underline"
+              >
+                https://github.com/frederikhandberg0709/blop-social-media
+              </a>
+            </p>
             <div className="space-y-4">
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold">Project Structure</h2>
@@ -491,7 +506,7 @@ export default function SocialNetwork() {
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }
