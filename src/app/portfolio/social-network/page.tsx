@@ -62,9 +62,6 @@ export default function SocialNetwork() {
               layout="responsive"
             />
 
-            <br />
-            <br />
-
             <p>
               GitHub repository:{" "}
               <a
