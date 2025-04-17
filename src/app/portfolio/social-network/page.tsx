@@ -171,12 +171,11 @@ export default function SocialNetwork() {
                   <br />
                   If the user exists:
                   <ul className="ml-5 list-disc">
-                    <li>The new password is securely hashed using</li>
-                    Argon2.
+                    <li>The new password is securely hashed using Argon2.</li>
                     <li>
                       The hashed password is stored in the database, replacing
+                      the old one.
                     </li>
-                    the old one.
                     <li>A success response is sent back.</li>
                   </ul>
                   <br />
