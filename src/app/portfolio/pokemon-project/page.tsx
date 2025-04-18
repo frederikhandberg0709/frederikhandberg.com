@@ -45,7 +45,7 @@ export default function PokemonProject() {
             <TechStackMiniBadge name="React Query" />
             <TechStackMiniBadge name="TailwindCSS" />
           </div>
-          <div className="flex max-w-5xl flex-col gap-5 max-sm:mx-3">
+          <div className="flex max-w-5xl flex-col gap-5 max-lg:mx-3">
             <p>
               This project is the second assignment for my WEB2 course. It is a
               Pokémon web app designed to display all Pokémon and their

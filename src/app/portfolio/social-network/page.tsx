@@ -45,7 +45,7 @@ export default function SocialNetwork() {
             <TechStackMiniBadge name="Express" />
             <TechStackMiniBadge name="Socket.IO" />
           </div>
-          <div className="flex max-w-5xl flex-col gap-5 max-sm:mx-3">
+          <div className="flex max-w-5xl flex-col gap-5 max-lg:mx-3">
             <p>
               <b>BLOP</b> is a social network I created as a portfolio project,
               designed to closely mirror the functionality of modern social
