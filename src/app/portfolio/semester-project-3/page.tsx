@@ -48,7 +48,7 @@ export default function SemesterProject3() {
           <div className="flex max-w-5xl flex-col gap-5 max-sm:mx-3">
             <p>
               This project was developed as part of our third semester project
-              (SEP3) for our <b>Software Engineering</b> degree.
+              (SEP3) for my <b>Software Engineering</b> degree.
               <br />
               <br />
               The goal of the semester project was to design and implement a

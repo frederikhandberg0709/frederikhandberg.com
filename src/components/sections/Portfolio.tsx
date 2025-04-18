@@ -20,6 +20,13 @@ export default function Portfolio() {
               information such as height, weight, stats, and abilities."
         imageURL="/pokemon-list.png"
       />
+      <PortfolioCard
+        linkURL="/portfolio/semester-project-3"
+        title="Semester Project 3"
+        description="This project was developed as part of our third semester project
+              (SEP3) for my Software Engineering degree."
+        imageURL="/Blazor_Properties.jpeg"
+      />
     </div>
   );
 }
