@@ -26,12 +26,9 @@ const PortfolioHeader: React.FC<PortfolioHeaderProps> = ({ meta }) => {
       </div>
 
       {meta.tags.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="my-3 flex items-start gap-2.5 overflow-x-auto">
           {meta.tags.map((tag) => (
-            <div
-              key={tag}
-              className="my-2.5 flex items-start gap-2.5 overflow-x-auto max-sm:px-3"
-            >
+            <div key={tag} className="">
               <TechStackMiniBadge name={tag} />
             </div>
           ))}
