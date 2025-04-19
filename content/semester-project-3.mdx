@@ -2,7 +2,7 @@
 title: "Semester Project 3"
 date: "2025-04-18"
 excerpt: "This project was developed as part of our third semester project
-  (SEP3) for my Software Engineering degree."
+  (SEP3) for my **Software Engineering** degree."
 author: "Frederik Handberg"
 coverImage: "/Blazor_Properties.jpeg"
 tags: ["Java Spring Boot", "SignalR", "Blazor", "JavaFX", "PostgreSQL"]
@@ -55,7 +55,8 @@ This project consists of five subsystems:
 
 ![High-level system architecture diagram](/High_level_system_architecture.png)
 
-**PostgreSQL database**
+### PostgreSQL database
+
 The PostgreSQL database is he data store for the entire system. It sores all the domain data such as:
 
 - User accounts.
@@ -66,7 +67,8 @@ The PostgreSQL database is he data store for the entire system. It sores all the
 
 The database is exclusively accessed by the Spring Boot REST server.
 
-**Spring Boot REST server**
+### Spring Boot REST server
+
 The REST server built with Java Spring Boot is the backend of the system.
 
 It acts as the middleman and is responsible for:
@@ -76,10 +78,12 @@ It acts as the middleman and is responsible for:
 - Writing and fetching data from the database.
 - Notifies the SignalR server when prices of a property changes.
 
-**SignalR notification server**
+### SignalR notification server
+
 The SignalR server is responsible for handling real-time communication with the Blazor web application.
 
-**JavaFX desktop application**
+### JavaFX desktop application
+
 The JavaFX desktop application is made for administrators of the real estate agency who manage the backend data.
 
 The app provides a GUI to:
@@ -91,7 +95,8 @@ The app provides a GUI to:
 
 The JavaFX desktop app is communicating with the REST API for all HTTP requests. Administrator accounts are assigned the `ADMIN` role.
 
-**Blazor web application**
+### Blazor web application
+
 The Blazor web application is the frontend for customers.
 
 It allows users to:
