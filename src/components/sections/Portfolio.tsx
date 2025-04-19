@@ -10,7 +10,7 @@ export default function Portfolio() {
         PORTFOLIO
       </h2>
       {projects.map((project) => (
-        <PortfolioCard key={project.slug} post={project} />
+        <PortfolioCard key={project.slug} project={project} />
       ))}
     </div>
   );
