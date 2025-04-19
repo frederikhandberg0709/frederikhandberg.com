@@ -1,0 +1,175 @@
+---
+title: "Social Network"
+date: "2025-03-22"
+excerpt: "**BLOP** is a social network I created as a portfolio project, designed to closely mirror the functionality of modern social media platforms. My goal was to make it as realistic and feature-rich as possible, providing users with an experience they would expect from today's social networks."
+author: "Frederik Handberg"
+coverImage: "/home.jpeg"
+tags: ["Next.js", "TypeScript", "Prisma ORM", "Express", "Socket.IO"]
+---
+
+GitHub repository: [https://github.com/frederikhandberg0709/blop-social-media](https://github.com/frederikhandberg0709/blop-social-media)
+
+## Project Structure
+
+This project is twofold, as it includes a **Next.js** project and an **Express.js** server.
+
+### Frontend & API (Next.js)
+
+The frontend was built using Next.js. There are two main reasons for why I chose Next.js. First of all, it's a fullstack framework that makes it easy for a small team (in my case, just me), to work quickly and efficiently since it comes with most of the necessary tools out of the box. Secondly, the React documentations specifically recommend using Next.js.
+
+Instead of setting up a separate server (such as Express or Spring Boot), Next.js lets me build a REST server directly in the same project by using API routes.
+
+### Notification Service (Express.js)
+
+I mentioned earlier that one of the advantages of Next.js is that you might not need a separate server since it provides API routes. I did use API routes for all my HTTP calls.
+
+However, I wanted a notification service using Socket.IO. Technically, I could have built it directly in Next.js, but that would mean I couldn't use the default Next.js server – I would have to set up my own custom server in Next.js instead. Because of this, I decided it was better to have a separate Express.js server for the notification service.
+
+I chose Socket.IO mainly because I already have experience with SignalR from my third-semester project, and since Socket.IO is very similar to SignalR, it seemed like the obvious choice.
+
+## Project Features
+
+I have tried implementing the features that people expect from a modern social network. This includes the basic features such as being able to like and comment on posts, but also more advanced features, such as being able to switch accounts.
+
+### User Authentication
+
+I used NextAuth to build the authentication system, allowing users to log in with either their email or username and a password. For security, passwords are hashed using Argon2 before being stored in the database.
+
+![Login page](/login.jpeg)
+
+### Reset Password
+
+The reset password functionality ensures that users can update their passwords if they forget it. Before submitting, the form performs validation checks:
+
+- If the new password meets security requirements
+- If the confirmation password matches the new password
+
+If the validation passes, the request is sent to the API with the identifier (email or username) and the new password.
+
+On the backend, in the API route, it searches for a user matching the provided identifier. If no user is found, it will return a "User not found" error.
+
+If the user exists:
+
+- The new password is securely hashed using Argon2.
+- The hashed password is stored in the database, replacing the old one.
+- A success response is sent back.
+
+In a real-world application, password resets should be handled more securely. Instead of allowing users to reset their password directly by providing their email or username, the system should send a reset link to the user's email with a token.
+
+![Reset password page](/reset-password.jpeg)
+
+### Bookmarks
+
+Users can bookmark posts and comments they want to save for later. Bookmarks are stored in the database with a reference to the user who bookmarked it, so that the user can view their bookmarks on any device.
+
+![My bookmarks page](/my-bookmarks.jpeg)
+
+### Link Accounts
+
+Users can link multiple accounts together. This allows switching between accounts without having to log in and out.
+
+![Link new account page](/link-new-account.jpeg)
+
+Users can easily switch between their linked accounts by clicking on their profile menu and selecting the 'Switch Account' option, which will then display a list of all linked accounts.
+
+![Switch account widget in profile menu](/profile-menu_switch-account.png)
+
+### User Profile
+
+The profile page includes a profile picture, banner, name, username, and a biography.  
+This page also includes a timeline of the user's posts and counters for the number of followers, how many people the user is following, and the total number of posts from the user.
+
+![Profile page viewed by follower](/profile_follower.jpeg)
+
+The user interface will slightly change depending on whether the user is the author of the profile or a follower. For example, if the user is the author, they will not see the 'Follow' button or notifications button. Instead, they will see an 'Edit Profile' button.
+
+![Profile page views by author](/profile_author.jpeg)
+
+### Quote Posts
+
+Users can quote posts, which is similar to retweeting on Twitter. The original post is embedded in the new post.
+
+![Quoted post](/quoted-post.jpeg)
+
+### Notification System
+
+Clicking the bell icon on a user profile, will show the notification settings to enable notifications whenever a user publishes a new post.
+
+Clicking the 'Specific notifications' option, should allow the user to select which notifications they want to receive. Currently, only the 'New post' notification is working, but in the future, more options should be added.
+
+![Notification settings for profile](/profile-notification-settings.png)
+
+Socket.IO is only for sending notifications in real-time. This means, that the notifications would be lost if the user is not on the site. Therefore, notifications are also stored in the database, so that the user can see them when they return to the site.
+
+Initially, notifications are shown as unread. The user can then click on the notification to mark it as read.
+
+I should implement a dropdown menu to mark the notifications as read or delete them. Then clicking on the notification, should redirect the user to the post.
+
+![Notification panel](/notification-panel.png)
+
+The notification panel could use some design improvements, particularly regarding timestamp formatting. Currently, timestamps display in a verbose format (e.g. "9 seconds ago"), which uses too much space in the compact panel. These should be converted to abbreviated formats (e.g. "9s") to take up less space.
+
+The current implementation uses the same `formatDate` function that I developed for posts and comments. However, since the notification panel has more limited space than the posts, it requires a more concise timestamp format specifically made for the notification panel.
+
+## Future Development
+
+There are some features and general improvements I would like to implement in the future.
+
+### Search functionality
+
+There is currently a search input on the web application, but this is not functional. Users should be able to search for posts by keywords and hashtags, and to search for other users either by their profile name or username.
+
+It should not be too difficult to implement this feature. I think one approach to implement this feature is by using URL params with the user's search input, then querying the database for posts or users that match the search input.
+
+However, the way I have set up the search input as of now, I would like the search results to update live as the user types. For this, the URL params approach would not be ideal.
+
+The search functionality could be implemented client-side where the search results update in real-time as the user types, rather than using URL parameters.
+
+First of all, I should make sure to prevent excessive API calls as the user types. A small delay of about 300ms after the user has stopped typing could be made before sending the request to the API.  
+I already use React Query for data fetching, so I should just continue using that for the search functionality as well. It gives me caching and state management capabilities to handle search requests. This provides automatic loading states, error handling, and data caching.
+
+Lastly, I will need to create a dedicated API route for searching posts and users, with filtering logic based on the search term.
+
+### Media upload
+
+Users can add media (images and videos) to their posts.
+
+However, they must do this by linking to the media they want to include in their post or comment.
+
+This is because it is not currently possible to upload media directly from the platform.
+
+The media must be hosted elsewhere.
+
+It would be much more ideal to allow users to upload their media directly on the platform.
+
+How could this be implemented?
+Instead of storing the media files directly in the database, it’s best to store only metadata and file URLs.
+
+So, we need a database table for the metadata and file URLs.
+And, it’s very important that the database table is storing a foreign key to the users table (who uploaded it) and a foreign key to the posts table (if attached to a post) or a foreign key to the comments table (if attached to a comment).
+
+We need these foreign keys because otherwise, the system has no idea who uploaded the media or which post or comment it should be included in.
+
+As stated earlier, storing media directly in a database table is less than ideal.
+This means, the system needs a storage solution. In a real-world application, this could be done using AWS S3 as the storage solution.
+
+The steps to upload media would be something like:
+
+1. The user uploads a file (this file is sent via `multipart/form-data`).
+2. Server should then process the file.
+   The server would need to make sure the file follows some guidelines.
+   For instance, there might be implemented a limit on how large the files are allowed to be, e.g. 5GB.
+
+The server would also need to make sure the file type is allowed. Since this is for media uploads, it does not make sense to allow users to upload a `.txt` file.
+
+Lastly, the server should make sure to save the metadata in the database table.
+
+### User interface improvements
+
+When I started working on this project, my goal was not to build a beautiful user interface. Instead, I wanted to focus on learning the technical aspects of building a modern and complex web application.
+
+I focused on understanding how to implement user authentication, efficiently fetch and mutate data, how to structure a large project, and leverage the features provided by React (e.g. hooks) and Next.js (e.g. API routes and the App Router).
+
+However, if I were to improve the visual design of the application, I would focus on implementing a light mode and ensuring that the UI looks good on all screen sizes.
+
+Currently, the UI is optimized for desktop screens.

@@ -1,23 +1,33 @@
 {
   "name": "frederikhandberg.com",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "generate-data": "node scripts/generate-portfolio-data.js",
+    "dev": "npm run generate-data && next dev --turbopack",
+    "build": "npm run generate-data && next build",
     "start": "next start",
     "lint": "next lint",
     "deploy": "gh-pages -d out -t",
-    "static": "next build && touch ./out/.nojekyll && echo 'www.frederikhandberg.com' > ./out/CNAME"
+    "static": "npm run generate-data && next build && touch ./out/.nojekyll && echo 'www.frederikhandberg.com' > ./out/CNAME"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.477.0",
-    "next": "15.1.2",
+    "next": "^15.3.1",
+    "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-icons": "^5.5.0",
+    "react-syntax-highlighter": "^15.6.1",
+    "reading-time": "^1.5.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {

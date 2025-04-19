@@ -1,0 +1,62 @@
+---
+title: "Pokémon Project"
+date: "2025-04-18"
+excerpt: "This project is the second assignment for my WEB2 course. It is a Pokémon web app designed to display all Pokémon and their information such as height, weight, stats, and abilities."
+author: "Frederik Handberg"
+coverImage: "/pokemon-list.png"
+tags: ["Vite", "TypeScript", "React Router v7", "React Query", "TailwindCSS"]
+---
+
+GitHub repository: [https://github.com/frederikhandberg0709/pokemon-project](https://github.com/frederikhandberg0709/pokemon-project)
+
+## Tech Stack
+
+- **Build-Tool:** Vite
+- **Language:** TypeScript
+- **Routing:** React Router v7
+- **Data Fetching**: React Query
+- **Styling:** TailwindCSS
+- **API:** PokéAPI
+
+## Implementation
+
+I have two React Query hooks that I use to fetch Pokémon information from the PokéAPI.
+
+The first hook is called `usePokemonList`. I use this to fetch all Pokémon. I also added support for pagination in this hook, as implementing pagination was one of the requirements for the assignment.
+
+I set the limit to 20, so that 20 Pokémon are displayed on each page.
+The user can click on the "Next" button to go to the next page.
+
+The second React Query hook I implement is called `usePokemonDetails`. The purpose of this hook is to fetch information for a specific Pokémon by providing its ID.
+One caveat of the PokéAPI is that it does not provide the ID in the JSON objects. Instead, the ID can be extracted from the URL. I achieved this by implementing a utility function that I called `getPokemonIdFromUrl`.
+
+This is not the only utility function I implemented. I ended up creating three utility functions in total.
+
+`getColorByPokemonId` is a utility function that assigns a color to each Pokémon depending on its ID. This function is being used in the Pokémon list. The color is simply assigned by calculation the remainder when dividing the ID by the number of types (which is 18).
+
+The last utility function I implement is called `getPokemonImageUrl`. I wanted to display an image of the Pokémon. This can be done using the URL `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`. Since I had already implemented the `getPokemonIdFromUrl` function, I was able to reuse it to extract the correct ID for the image URL.
+
+As can be seen in the first image of the web app, the Pokémon cards all have the same layout, so for this I implemented a component called `PokemonCard`. The component needs five pieces of information:
+
+- **id** – The ID of the Pokémon, used to fetch the correct information for that specific Pokémon.
+- **number** – The ID displayed in the format of #5 if the ID is 5.
+- **name** – The name of the Pokémon.
+- **imageSrc** – The URL for the Pokémon's image.
+- **cardColor** – The background color of the card, based on the Pokémon’s ID.
+
+```tsx
+<PokemonCard
+  key={pokemon.id}
+  id={pokemon.id}
+  name={pokemon.name}
+  number={`#${getPokemonIdFromUrl(pokemon.url)}`}
+  imageSrc={getPokemonImageUrl(pokemon.url)}
+  cardColor={getColorByPokemonId(Number(pokemon.id))}
+/>
+```
+
+Besides supporting pagination, another requirement was to include at least two routes in our web app and use React Router to switch between the routes. Therefore, I added a second page to display detailed information about a specific Pokémon.
+
+![Pokémon details page](/pokemon-details.png)
+
+On this page, I use the `usePokemonDetails` hook to fetch additional information about the Pokémon, beyond just the name and URL.
