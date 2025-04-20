@@ -43,9 +43,6 @@ const PortfolioCard: React.FC<PortfolioCardProps> = ({ project }) => {
           <span>{project.readingTime}</span>
         </div>
 
-        {/* <p className="mt-3 text-gray-700 dark:text-gray-300">
-          {project.excerpt}
-        </p> */}
         {project.excerpt && (
           <p className="my-3 text-gray-700 dark:text-gray-300">
             {project.excerpt.split(/(\*\*.*?\*\*)/).map((part, index) => {

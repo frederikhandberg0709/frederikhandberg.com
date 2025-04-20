@@ -3,6 +3,7 @@
 import Image from "next/image";
 import CodeBlock from "./CodeBlock";
 import Link from "next/link";
+import { formatId } from "@/utils/mdx-utils";
 
 const MDXComponents = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -145,18 +146,5 @@ const MDXComponents = {
     );
   },
 };
-
-function formatId(text: string): string {
-  return (
-    text
-      ?.toString()
-      ?.toLowerCase()
-      ?.replace(/\s+/g, "-")
-      ?.replace(/[^\w-]+/g, "")
-      ?.replace(/--+/g, "-")
-      ?.replace(/^-+/, "")
-      ?.replace(/-+$/, "") || ""
-  );
-}
 
 export default MDXComponents;

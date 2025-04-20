@@ -23,3 +23,16 @@ export function extractHeadings(content: string): TOCItem[] {
 
   return headings;
 }
+
+export function formatId(text: string): string {
+  return (
+    text
+      ?.toString()
+      ?.toLowerCase()
+      ?.replace(/\s+/g, "-")
+      ?.replace(/[^\w-]+/g, "")
+      ?.replace(/--+/g, "-")
+      ?.replace(/^-+/, "")
+      ?.replace(/-+$/, "") || ""
+  );
+}
