@@ -7,6 +7,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import MDXContent from "@/components/portfolio/MDXContent";
 import remarkGfm from "remark-gfm";
 import { TOCItem } from "@/types/portfolio";
+import { extractHeadings } from "@/utils/mdx-utils";
 
 type Params = Promise<{ slug: string }>;
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
@@ -59,8 +60,7 @@ export default async function PortfolioProjectPage(props: {
     },
   });
 
-  // TODO: Have not implemented yet
-  const headings: TOCItem[] = [];
+  const headings: TOCItem[] = extractHeadings(postData.content);
 
   return (
     <PortfolioLayout

@@ -80,7 +80,7 @@ const PortfolioLayout: React.FC<PortfolioLayoutProps> = ({
           </div>
 
           {tableOfContents && (
-            <aside className="hidden md:block md:w-1/4">
+            <aside className="mt-2.5 hidden md:block md:w-1/4">
               <div className="sticky top-20">{tableOfContents}</div>
             </aside>
           )}
