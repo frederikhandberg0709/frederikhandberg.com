@@ -23,7 +23,7 @@ export const MDXImage = ({
           alt={alt || ""}
           width={1200}
           height={800}
-          className="h-auto w-max cursor-pointer rounded-2xl transition hover:opacity-90"
+          className="h-auto w-max scale-100 cursor-pointer rounded-2xl transition hover:opacity-90 active:scale-[0.98]"
           style={{
             maxWidth: "100%",
             objectFit: "contain",

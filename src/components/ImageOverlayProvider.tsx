@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface ImageOverlayContextType {
   overlayImage: string | null;
@@ -29,6 +29,22 @@ export const ImageOverlayProvider: React.FC<ImageOverlayProviderProps> = ({
       document.body.style.overflow = "auto";
     }
   };
+
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && overlayImage) {
+        handleSetOverlayImage(null);
+      }
+    };
+
+    if (overlayImage) {
+      window.addEventListener("keydown", handleEscKey);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleEscKey);
+    };
+  }, [overlayImage]);
 
   return (
     <ImageOverlayContext.Provider
