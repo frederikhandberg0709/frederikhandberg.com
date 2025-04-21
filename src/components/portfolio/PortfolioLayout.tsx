@@ -77,7 +77,7 @@ const PortfolioLayoutContent: React.FC<PortfolioLayoutProps> = ({
               onClick={() => setOverlayImage(meta.coverImage || "")}
               width={1000}
               height={500}
-              className="h-auto w-full rounded-2xl"
+              className="h-auto w-full scale-100 rounded-2xl transition hover:opacity-90 active:scale-[0.98]"
             />
           </div>
         )}
