@@ -11,7 +11,7 @@ This project is built with:
 - TailwindCSS
 
 ## Connect with Me
-- Website: frederikhandberg.com
-- GitHub: @frederikhandberg0709
+- Website: [frederikhandberg.com](https://frederikhandberg.com/)
+- GitHub: [@frederikhandberg0709](https://github.com/frederikhandberg0709)
 - Email: hello@frederikhandberg.com
  
