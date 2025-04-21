@@ -99,7 +99,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
         }));
 
         const currentSectionHeading = headingPositions
-          .filter((heading) => heading.top <= scrollPosition + navbarHeight + 5)
+          .filter(
+            (heading) => heading.top <= scrollPosition + navbarHeight + 20,
+          )
           .slice(-1)[0];
 
         if (currentSectionHeading) {
