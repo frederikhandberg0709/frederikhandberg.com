@@ -5,6 +5,11 @@ import { PortfolioMeta } from "../../types/portfolio";
 import PortfolioHeader from "./PortfolioHeader";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { useContext } from "react";
+import {
+  ImageOverlayContext,
+  ImageOverlayProvider,
+} from "../ImageOverlayProvider";
 
 interface PortfolioLayoutProps {
   meta: PortfolioMeta;
@@ -12,11 +17,13 @@ interface PortfolioLayoutProps {
   tableOfContents?: React.ReactNode;
 }
 
-const PortfolioLayout: React.FC<PortfolioLayoutProps> = ({
+const PortfolioLayoutContent: React.FC<PortfolioLayoutProps> = ({
   meta,
   children,
   tableOfContents,
 }) => {
+  const { setOverlayImage } = useContext(ImageOverlayContext);
+
   return (
     <>
       <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between bg-white dark:bg-black">
@@ -67,6 +74,7 @@ const PortfolioLayout: React.FC<PortfolioLayoutProps> = ({
             <Image
               src={meta.coverImage}
               alt={meta.title}
+              onClick={() => setOverlayImage(meta.coverImage || "")}
               width={1000}
               height={500}
               className="h-auto w-full rounded-2xl"
@@ -87,6 +95,14 @@ const PortfolioLayout: React.FC<PortfolioLayoutProps> = ({
         </div>
       </article>
     </>
+  );
+};
+
+const PortfolioLayout: React.FC<PortfolioLayoutProps> = (props) => {
+  return (
+    <ImageOverlayProvider>
+      <PortfolioLayoutContent {...props} />
+    </ImageOverlayProvider>
   );
 };
 

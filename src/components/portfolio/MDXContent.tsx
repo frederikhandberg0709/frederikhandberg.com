@@ -3,6 +3,7 @@
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import MDXComponents from "./MDXComponents";
 import { useEffect, useState } from "react";
+import { ImageOverlayProvider } from "../ImageOverlayProvider";
 
 interface MDXContentProps {
   source: MDXRemoteSerializeResult;
@@ -21,5 +22,9 @@ export default function MDXContent({ source }: MDXContentProps) {
     );
   }
 
-  return <MDXRemote {...source} components={MDXComponents} />;
+  return (
+    <ImageOverlayProvider>
+      <MDXRemote {...source} components={MDXComponents} />
+    </ImageOverlayProvider>
+  );
 }

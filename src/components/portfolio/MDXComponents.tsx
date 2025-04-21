@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import CodeBlock from "./CodeBlock";
 import Link from "next/link";
 import { formatId } from "@/utils/mdx-utils";
+import { MDXImage } from "./MDXImage";
 
 const MDXComponents = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -65,41 +65,7 @@ const MDXComponents = {
       className="my-6 border-l-4 border-gray-300 pl-4 italic dark:border-gray-700"
     />
   ),
-  img: ({
-    alt,
-    src,
-    title,
-    ...props
-  }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-    if (!src) return null;
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { width, height, ...restProps } = props;
-
-    return (
-      <figure className="my-8">
-        <div className="overflow-hidden">
-          <Image
-            src={src}
-            alt={alt || ""}
-            width={1200}
-            height={800}
-            className="h-auto w-max rounded-2xl"
-            style={{
-              maxWidth: "100%",
-              objectFit: "contain",
-            }}
-            {...restProps}
-          />
-        </div>
-        {title && (
-          <figcaption className="mt-2 text-center text-sm text-gray-500">
-            {title}
-          </figcaption>
-        )}
-      </figure>
-    );
-  },
+  img: MDXImage,
   pre: ({ children }: React.HTMLAttributes<HTMLPreElement>) =>
     children as React.ReactElement,
   code: ({
