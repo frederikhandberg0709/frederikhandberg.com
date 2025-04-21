@@ -24,7 +24,7 @@ function throttle<T extends (...args: any[]) => any>(
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>("introduction");
   const navbarHeight = 68;
 
   const handleClick = (
@@ -33,7 +33,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
   ) => {
     e.preventDefault();
 
-    if (id === null) {
+    if (id === null || id === "introduction") {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -44,7 +44,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
         "",
         window.location.pathname + window.location.search,
       );
-      setActiveId(null);
+      setActiveId("introduction");
       return;
     }
 
@@ -80,39 +80,32 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
         return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
       });
 
+      const firstHeadingPosition =
+        headingElements.length > 0
+          ? headingElements[0].getBoundingClientRect().top + window.scrollY
+          : Number.MAX_SAFE_INTEGER;
+
       const determineActiveSection = throttle(() => {
-        if (window.scrollY < 100) {
-          setActiveId(null);
+        const scrollPosition = window.scrollY;
+
+        if (scrollPosition + navbarHeight < firstHeadingPosition) {
+          setActiveId("introduction");
           return;
         }
 
-        const viewportHeight = window.innerHeight;
+        const headingPositions = headingElements.map((el) => ({
+          id: el.id,
+          top: el.getBoundingClientRect().top + scrollPosition,
+        }));
 
-        const visibleHeadings = headingElements.filter((el) => {
-          const rect = el.getBoundingClientRect();
-          return rect.top >= navbarHeight && rect.top <= viewportHeight;
-        });
+        const currentSectionHeading = headingPositions
+          .filter((heading) => heading.top <= scrollPosition + navbarHeight + 5)
+          .slice(-1)[0];
 
-        if (visibleHeadings.length > 0) {
-          setActiveId(visibleHeadings[0].id);
-          return;
-        }
-
-        const headingsAboveViewport = headingElements
-          .filter((el) => el.getBoundingClientRect().top <= navbarHeight)
-          .sort((a, b) => {
-            return (
-              b.getBoundingClientRect().top - a.getBoundingClientRect().top
-            );
-          });
-
-        if (headingsAboveViewport.length > 0) {
-          setActiveId(headingsAboveViewport[0].id);
-          return;
-        }
-
-        if (headingElements.length > 0) {
-          setActiveId(headingElements[0].id);
+        if (currentSectionHeading) {
+          setActiveId(currentSectionHeading.id);
+        } else {
+          setActiveId("introduction");
         }
       }, 100);
 
@@ -140,7 +133,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
           <a
             href="#"
             onClick={(e) => handleClick(e, null)}
-            className="pl-3 text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+            className={`pl-3 hover:text-blue-700 dark:hover:text-blue-400 ${activeId === "introduction" ? "text-blue-600" : "text-gray-600 dark:text-gray-400"}`}
           >
             Introduction
           </a>
@@ -156,7 +149,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
               <a
                 href={`#${itemId}`}
                 onClick={(e) => handleClick(e, itemId)}
-                className={`text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 ${activeId === item.id ? "font-bold" : "font-normal"}`}
+                className={`hover:text-blue-700 dark:hover:text-blue-400 ${activeId === item.id ? "text-blue-600" : "text-gray-600 dark:text-gray-400"}`}
               >
                 {item.text}
               </a>
