@@ -26,7 +26,7 @@ const PortfolioLayoutContent: React.FC<PortfolioLayoutProps> = ({
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between bg-white dark:bg-black">
+      <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between bg-white/80 backdrop-blur-lg dark:bg-black">
         <div className="mx-3 my-3 w-full items-center justify-between sm:mx-20">
           <div className="flex items-center gap-3">
             <Link

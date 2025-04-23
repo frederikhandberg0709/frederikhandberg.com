@@ -56,7 +56,7 @@ export const ImageOverlayProvider: React.FC<ImageOverlayProviderProps> = ({
       {children}
       {overlayImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 backdrop-blur-sm"
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               handleSetOverlayImage(null);
