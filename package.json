@@ -22,6 +22,7 @@
     "next": "^15.3.1",
     "next-mdx-remote": "^5.0.0",
     "next-themes": "^0.4.5",
+    "nostr-react": "^0.7.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-icons": "^5.5.0",
