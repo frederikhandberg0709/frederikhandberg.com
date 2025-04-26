@@ -47,7 +47,7 @@ export default function BlogTimeline({
   };
 
   return (
-    <div className="flex flex-col items-center gap-[20px] sm:gap-[10px]">
+    <div className="flex flex-col items-center gap-[20px] overflow-x-hidden sm:gap-[10px]">
       {filterEvents(events)
         .slice(0, maxElements)
         .map((event) => {
@@ -61,7 +61,7 @@ export default function BlogTimeline({
                 content={event.content}
               />
 
-              <div className="h-px w-full bg-gray-100 dark:bg-gray-800 sm:h-0"></div>
+              <div className="h-px w-full bg-gray-200 dark:bg-gray-800 sm:h-0"></div>
             </div>
           );
         })}
