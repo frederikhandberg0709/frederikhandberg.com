@@ -33,9 +33,8 @@ export default function Blog() {
             </div>
           </div>
         </nav>
-        <h2 className="text-center text-lg font-bold tracking-wider">BLOG</h2>
 
-        <div className="mt-14">
+        <div className="mt-24">
           <NostrProvider relayUrls={relayUrls} debug={true}>
             <BlogTimeline filterType="all" />
           </NostrProvider>

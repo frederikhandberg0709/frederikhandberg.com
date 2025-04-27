@@ -6,13 +6,13 @@ import { extractMediaUrls } from "@/utils/extractMediaUrls";
 
 interface BlogTimelineProps {
   filterType: string;
-  activeSection: string;
-  maxElements: number;
+  activeSection?: string;
+  maxElements?: number;
 }
 
 export default function BlogTimeline({
   filterType,
-  activeSection,
+  // activeSection,
   maxElements,
 }: BlogTimelineProps) {
   const { events } = useNostrEvents({

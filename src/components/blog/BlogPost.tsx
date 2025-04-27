@@ -1,7 +1,7 @@
 "use client";
 
-import { convertTimestamp } from "@/utils/convertTimestamp";
-import { extractMediaUrls } from "@/utils/extractMediaUrls";
+import { convertTimestamp, NostrEvent } from "@/utils/convertTimestamp";
+import { processNostrContent } from "@/utils/processNostrContent";
 import styleHashtags from "@/utils/styleHashtags";
 import { useImageOverlay } from "@/utils/useImageOverlay";
 import { User } from "lucide-react";
@@ -13,7 +13,7 @@ interface BlogPostProps {
   displayName?: string;
   username?: string;
   content: string;
-  timestamp?: number;
+  timestamp: NostrEvent | { created_at: number };
 }
 
 export default function BlogPost({
@@ -27,18 +27,14 @@ export default function BlogPost({
   // const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
-  const hideMediaLinks = (content: string) => {
-    const regex = /https:\/\/.*\.(jpg|png|mp4|avi|mov|webp)/gi;
-    return content.replace(regex, "");
-  };
+  // const processContent = (content: string) => {
+  //   const mediaUrls = extractMediaUrls(content);
+  //   const textContent = hideMediaLinks(content);
+  //   return { mediaUrls, textContent };
+  // };
 
-  const processContent = (content: string) => {
-    const mediaUrls = extractMediaUrls(content);
-    const textContent = hideMediaLinks(content);
-    return { mediaUrls, textContent };
-  };
-
-  const { mediaUrls, textContent } = processContent(content);
+  // const { mediaUrls, textContent } = processContent(content);
+  const { mediaUrls, textContent } = processNostrContent(content);
 
   const renderMedia = ({
     images,
@@ -87,6 +83,8 @@ export default function BlogPost({
     );
   };
 
+  const hasTextContent = textContent.trim().length > 0;
+
   return (
     <div className="flex flex-col gap-2.5 border-gray-200 p-4 transition duration-200 hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800 sm:w-[600px] sm:rounded-2xl sm:border">
       <div className="flex items-center justify-between">
@@ -118,9 +116,16 @@ export default function BlogPost({
           </p>
         </div>
       </div>
-      <div className="hyphens-auto whitespace-pre-wrap leading-normal">
+
+      {hasTextContent && (
+        <div className="hyphens-auto whitespace-pre-wrap leading-normal">
+          {styleHashtags(textContent)}
+        </div>
+      )}
+
+      {/* <div className="hyphens-auto whitespace-pre-wrap leading-normal">
         {styleHashtags(textContent)}
-      </div>
+      </div> */}
 
       {renderMedia(mediaUrls)}
     </div>
