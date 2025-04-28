@@ -3,6 +3,7 @@
 import { useNostrEvents, useProfile } from "nostr-react";
 import BlogPost from "./BlogPost";
 import { extractMediaUrls } from "@/utils/extractMediaUrls";
+import { NostrEvent } from "@/utils/convertTimestamp";
 
 interface BlogTimelineProps {
   filterType: string;
@@ -32,8 +33,7 @@ export default function BlogTimeline({
     pubkey,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const filterEvents = (events: any[]) => {
+  const filterEvents = (events: NostrEvent[]) => {
     return events.filter((event) => {
       const { images, videos } = extractMediaUrls(event.content);
 

@@ -79,8 +79,8 @@ export default function MobileNavMenu() {
   };
 
   return (
-    <div className="w-full px-4 py-3">
-      <div className="flex w-full items-center justify-between gap-2.5">
+    <>
+      <div className="flex h-full w-full items-center justify-between gap-2.5 bg-white/80 px-4 py-3 backdrop-blur-lg dark:bg-black/80">
         <Link
           href="#home"
           onClick={(e) => {
@@ -178,6 +178,6 @@ export default function MobileNavMenu() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

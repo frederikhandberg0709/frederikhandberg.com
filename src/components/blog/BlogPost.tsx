@@ -26,14 +26,6 @@ export default function BlogPost({
   const { setOverlayImage } = useImageOverlay();
   // const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-
-  // const processContent = (content: string) => {
-  //   const mediaUrls = extractMediaUrls(content);
-  //   const textContent = hideMediaLinks(content);
-  //   return { mediaUrls, textContent };
-  // };
-
-  // const { mediaUrls, textContent } = processContent(content);
   const { mediaUrls, textContent } = processNostrContent(content);
 
   const renderMedia = ({
@@ -122,10 +114,6 @@ export default function BlogPost({
           {styleHashtags(textContent)}
         </div>
       )}
-
-      {/* <div className="hyphens-auto whitespace-pre-wrap leading-normal">
-        {styleHashtags(textContent)}
-      </div> */}
 
       {renderMedia(mediaUrls)}
     </div>

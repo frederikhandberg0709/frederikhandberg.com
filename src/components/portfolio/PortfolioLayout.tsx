@@ -55,7 +55,7 @@ const PortfolioLayoutContent: React.FC<PortfolioLayoutProps> = ({
         </div>
       </nav>
 
-      <article className="mx-auto mt-10 max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
+      <article className="mx-auto mt-10 max-w-4xl hyphens-auto px-4 py-10 sm:px-6 lg:px-8">
         <PortfolioHeader meta={meta} />
 
         {meta.excerpt && (
@@ -83,7 +83,7 @@ const PortfolioLayoutContent: React.FC<PortfolioLayoutProps> = ({
         )}
 
         <div className="flex flex-col gap-10 md:flex-row">
-          <div className="prose prose-lg dark:prose-invert prose-a:text-blue-600 max-w-none md:w-3/4">
+          <div className="prose prose-lg dark:prose-invert prose-a:text-blue-600 max-w-none break-words md:w-3/4">
             {children}
           </div>
 

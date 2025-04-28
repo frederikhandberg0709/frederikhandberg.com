@@ -143,7 +143,7 @@ export default function NavbarMenu({
         </div>
       </div>
 
-      <div className="min-[810px]:hidden">
+      <div className="w-full min-[810px]:hidden">
         <MobileNavMenu />
       </div>
     </nav>
