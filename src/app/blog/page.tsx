@@ -2,6 +2,7 @@
 
 import BlogTimeline from "@/components/blog/BlogTimeline";
 import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
+import { ProfileProvider } from "@/context/ProfileContext";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { NostrProvider } from "nostr-react";
@@ -36,7 +37,9 @@ export default function Blog() {
 
         <div className="mt-24">
           <NostrProvider relayUrls={relayUrls} debug={true}>
-            <BlogTimeline filterType="all" />
+            <ProfileProvider>
+              <BlogTimeline filterType="all" />
+            </ProfileProvider>
           </NostrProvider>
         </div>
       </ImageOverlayProvider>

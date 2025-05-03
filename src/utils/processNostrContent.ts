@@ -1,5 +1,19 @@
 import { extractMediaUrls } from "./extractMediaUrls";
 
+export function extractNostrNoteIds(content: string): string[] {
+  const bech32Regex = /(note1[a-zA-Z0-9]{20,})/g;
+  const noteIds: string[] = [];
+
+  let match;
+  while ((match = bech32Regex.exec(content)) !== null) {
+    if (match[1]) {
+      noteIds.push(match[1]);
+    }
+  }
+
+  return noteIds;
+}
+
 export function processNostrContent(content: string) {
   const mediaUrls = extractMediaUrls(content);
 

@@ -1,9 +1,11 @@
 "use client";
 
-import { useNostrEvents, useProfile } from "nostr-react";
+import { useNostrEvents } from "nostr-react";
 import BlogPost from "./BlogPost";
 import { extractMediaUrls } from "@/utils/extractMediaUrls";
 import { NostrEvent } from "@/utils/convertTimestamp";
+import { useProfileContext } from "@/context/ProfileContext";
+import { useEffect } from "react";
 
 interface BlogTimelineProps {
   filterType: string;
@@ -27,11 +29,17 @@ export default function BlogTimeline({
     },
   });
 
-  const pubkey =
-    "9c9f81ed795f0f5efa558932824687d84fc7e6a4cfa6db5d6d3b50fcb7ffaec2";
-  const { data: userData } = useProfile({
-    pubkey,
-  });
+  const { getProfile, loadProfile } = useProfileContext();
+
+  useEffect(() => {
+    if (events.length > 0) {
+      const uniquePubkeys = [...new Set(events.map((event) => event.pubkey))];
+
+      uniquePubkeys.forEach((pubkey) => {
+        loadProfile(pubkey);
+      });
+    }
+  }, [events, loadProfile]);
 
   const filterEvents = (events: NostrEvent[]) => {
     return events.filter((event) => {
@@ -51,6 +59,10 @@ export default function BlogTimeline({
       {filterEvents(events)
         .slice(0, maxElements)
         .map((event) => {
+          const userData = getProfile(event.pubkey);
+
+          console.log("User data:", userData);
+
           return (
             <div key={event.id}>
               <BlogPost
@@ -59,6 +71,7 @@ export default function BlogTimeline({
                 username={userData?.name}
                 timestamp={event}
                 content={event.content}
+                pubkey={event.pubkey}
               />
 
               <div className="h-px w-full bg-gray-200 dark:bg-gray-800 sm:h-0"></div>

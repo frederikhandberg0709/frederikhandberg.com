@@ -1,12 +1,17 @@
 "use client";
 
 import { convertTimestamp, NostrEvent } from "@/utils/convertTimestamp";
-import { processNostrContent } from "@/utils/processNostrContent";
+import {
+  extractNostrNoteIds,
+  processNostrContent,
+} from "@/utils/processNostrContent";
 import styleHashtags from "@/utils/styleHashtags";
 import { useImageOverlay } from "@/utils/useImageOverlay";
 import { User } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { QuotedPost } from "./QuotedPost";
+import { useProfileContext } from "@/context/ProfileContext";
 
 interface BlogPostProps {
   profilePicture?: string;
@@ -14,6 +19,7 @@ interface BlogPostProps {
   username?: string;
   content: string;
   timestamp: NostrEvent | { created_at: number };
+  pubkey?: string;
 }
 
 export default function BlogPost({
@@ -22,11 +28,35 @@ export default function BlogPost({
   username,
   content,
   timestamp,
+  pubkey,
 }: BlogPostProps) {
   const { setOverlayImage } = useImageOverlay();
   // const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [noteIds, setNoteIds] = useState<string[]>([]);
   const { mediaUrls, textContent } = processNostrContent(content);
+
+  const { loadProfile, getProfile, isLoadingProfile } = useProfileContext();
+
+  useEffect(() => {
+    if (pubkey) {
+      loadProfile(pubkey);
+    }
+  }, [pubkey, loadProfile]);
+
+  const profileData = pubkey ? getProfile(pubkey) : null;
+  const isLoadingProfileData = pubkey ? isLoadingProfile(pubkey) : false;
+
+  const actualProfilePicture = profilePicture || profileData?.picture;
+  const actualDisplayName = displayName || profileData?.display_name;
+  const actualUsername = username || profileData?.name;
+
+  useEffect(() => {
+    const extractedIds = extractNostrNoteIds(content);
+    setNoteIds(extractedIds);
+
+    console.log("Extracted note IDs:", extractedIds);
+  }, [content]);
 
   const renderMedia = ({
     images,
@@ -81,10 +111,10 @@ export default function BlogPost({
     <div className="flex flex-col gap-2.5 border-gray-200 p-4 transition duration-200 hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800 sm:w-[600px] sm:rounded-2xl sm:border">
       <div className="flex items-center justify-between">
         <div className="group flex gap-[10px]">
-          {profilePicture && !imageError ? (
+          {actualProfilePicture && !imageError ? (
             <Image
-              src={profilePicture || ""}
-              alt={`${displayName}'s profile picture`}
+              src={actualProfilePicture}
+              alt={`${actualDisplayName}'s profile picture`}
               width={40}
               height={40}
               onError={() => setImageError(true)}
@@ -97,9 +127,17 @@ export default function BlogPost({
           )}
           <div className="flex flex-col gap-px">
             <p className="text-sm font-bold group-hover:text-blue-500">
-              {displayName}
+              {isLoadingProfileData ? (
+                <span className="animate-pulse">Loading...</span>
+              ) : (
+                actualDisplayName || `${pubkey?.substring(0, 8)}...`
+              )}
             </p>
-            <p className="text-sm text-gray-500">@{username}</p>
+            <p className="text-sm text-gray-500">
+              @
+              {actualUsername ||
+                (pubkey ? pubkey.substring(0, 8) : "anonymous")}
+            </p>
           </div>
         </div>
         <div className="flex items-center gap-[15px] max-sm:gap-2.5">
@@ -112,6 +150,14 @@ export default function BlogPost({
       {hasTextContent && (
         <div className="hyphens-auto whitespace-pre-wrap leading-normal">
           {styleHashtags(textContent)}
+        </div>
+      )}
+
+      {noteIds.length > 0 && (
+        <div className="mt-4">
+          {noteIds.map((id) => (
+            <QuotedPost key={id} noteId={id} />
+          ))}
         </div>
       )}
 
