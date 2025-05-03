@@ -129,11 +129,11 @@ export default function AboutMe() {
                       and Scrum, to software development projects.
                     </li>
                     <li className="list-inside">
-                      Design and implemented software following SOLID principles
-                      and common design patterns.
+                      Designed and implemented software following SOLID
+                      principles and common design patterns.
                     </li>
                     <li className="list-inside">
-                      Focused on test-driven development and continuos
+                      Focused on test-driven development and continuous
                       integration to ensure code quality and maintainability.
                     </li>
                   </ul>
