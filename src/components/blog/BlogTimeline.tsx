@@ -60,9 +60,6 @@ export default function BlogTimeline({
         .slice(0, maxElements)
         .map((event) => {
           const userData = getProfile(event.pubkey);
-
-          console.log("User data:", userData);
-
           return (
             <div key={event.id}>
               <BlogPost

@@ -36,7 +36,7 @@ export default function Blog() {
         </nav>
 
         <div className="mt-24">
-          <NostrProvider relayUrls={relayUrls} debug={true}>
+          <NostrProvider relayUrls={relayUrls} debug={false}>
             <ProfileProvider>
               <BlogTimeline filterType="all" />
             </ProfileProvider>

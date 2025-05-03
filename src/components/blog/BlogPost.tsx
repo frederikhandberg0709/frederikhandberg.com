@@ -54,8 +54,6 @@ export default function BlogPost({
   useEffect(() => {
     const extractedIds = extractNostrNoteIds(content);
     setNoteIds(extractedIds);
-
-    console.log("Extracted note IDs:", extractedIds);
   }, [content]);
 
   const renderMedia = ({
@@ -127,10 +125,16 @@ export default function BlogPost({
           )}
           <div className="flex flex-col gap-px">
             <p className="text-sm font-bold group-hover:text-blue-500">
+              {/* {isLoadingProfileData ? (
+                <span className="animate-pulse">Loading...</span>
+              ) : ( */}
+              {/* actualDisplayName || `${pubkey?.substring(0, 8)}...` */}
+              {/* )} */}
               {isLoadingProfileData ? (
                 <span className="animate-pulse">Loading...</span>
               ) : (
-                actualDisplayName || `${pubkey?.substring(0, 8)}...`
+                actualDisplayName ||
+                (pubkey ? `${pubkey.substring(0, 8)}...` : "Unknown")
               )}
             </p>
             <p className="text-sm text-gray-500">

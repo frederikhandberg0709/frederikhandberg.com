@@ -40,7 +40,6 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
   const [loadingProfiles, setLoadingProfiles] = useState<Set<string>>(
     new Set(),
   );
-
   const [requestedProfiles, setRequestedProfiles] = useState<Set<string>>(
     new Set(),
   );
@@ -56,54 +55,54 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
 
   useEffect(() => {
     if (events.length > 0) {
-      const newProfiles = { ...profiles };
+      const processedPubkeys = new Set<string>();
 
-      events.forEach((event) => {
-        try {
-          const profile = JSON.parse(event.content);
+      setProfiles((prevProfiles) => {
+        const newProfiles = { ...prevProfiles };
+        let updatedProfiles = false;
 
-          newProfiles[event.pubkey] = profile;
+        events.forEach((event) => {
+          try {
+            processedPubkeys.add(event.pubkey);
 
-          setLoadingProfiles((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(event.pubkey);
-            return newSet;
-          });
-        } catch (error) {
-          console.error("Error parsing profile:", error);
-        }
+            if (!prevProfiles[event.pubkey]) {
+              const profile = JSON.parse(event.content);
+              newProfiles[event.pubkey] = profile;
+              updatedProfiles = true;
+            }
+          } catch (error) {
+            console.error("Error parsing profile:", error);
+          }
+        });
+
+        return updatedProfiles ? newProfiles : prevProfiles;
       });
 
-      setProfiles(newProfiles);
-    }
-  }, [events, profiles]);
+      setLoadingProfiles((prev) => {
+        if (processedPubkeys.size === 0) return prev;
 
-  useEffect(() => {
-    if (events.length > 0) {
-      const newProfiles = { ...profiles };
+        const newSet = new Set<string>();
+        prev.forEach((pubkey) => {
+          if (!processedPubkeys.has(pubkey)) {
+            newSet.add(pubkey);
+          }
+        });
 
-      events.forEach((event) => {
-        try {
-          const profile = JSON.parse(event.content);
-          newProfiles[event.pubkey] = profile;
-
-          setLoadingProfiles((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(event.pubkey);
-            return newSet;
-          });
-        } catch (error) {
-          console.error(
-            "Error parsing profile:",
-            error,
-            "for pubkey:",
-            event.pubkey,
-          );
-        }
+        return newSet;
       });
 
-      console.log("Updated profiles:", newProfiles);
-      setProfiles(newProfiles);
+      setRequestedProfiles((prev) => {
+        if (processedPubkeys.size === 0) return prev;
+
+        const newSet = new Set<string>();
+        prev.forEach((pubkey) => {
+          if (!processedPubkeys.has(pubkey)) {
+            newSet.add(pubkey);
+          }
+        });
+
+        return newSet;
+      });
     }
   }, [events]);
 
@@ -114,12 +113,11 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
   const loadProfile = (pubkey: string) => {
     if (!pubkey) return;
 
-    if (
-      profiles[pubkey] ||
-      loadingProfiles.has(pubkey) ||
-      requestedProfiles.has(pubkey)
-    ) {
-      console.log("Profile already loaded or loading:", pubkey);
+    if (profiles[pubkey]) {
+      return;
+    }
+
+    if (loadingProfiles.has(pubkey) || requestedProfiles.has(pubkey)) {
       return;
     }
 
@@ -137,7 +135,8 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
   };
 
   const isLoadingProfile = (pubkey: string): boolean => {
-    return loadingProfiles.has(pubkey);
+    const isLoading = loadingProfiles.has(pubkey);
+    return isLoading;
   };
 
   return (
