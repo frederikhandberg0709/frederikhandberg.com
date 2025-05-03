@@ -34,7 +34,6 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
 
   useEffect(() => {
     if (embeddedEvent?.pubkey) {
-      console.log("Loading profile for quoted post:", embeddedEvent.pubkey);
       loadProfile(embeddedEvent.pubkey);
     }
   }, [embeddedEvent?.pubkey, loadProfile]);

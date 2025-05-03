@@ -36,7 +36,7 @@ export default function BlogPost({
   const [noteIds, setNoteIds] = useState<string[]>([]);
   const { mediaUrls, textContent } = processNostrContent(content);
 
-  const { loadProfile, getProfile, isLoadingProfile } = useProfileContext();
+  const { loadProfile, getProfile } = useProfileContext();
 
   useEffect(() => {
     if (pubkey) {
@@ -45,7 +45,6 @@ export default function BlogPost({
   }, [pubkey, loadProfile]);
 
   const profileData = pubkey ? getProfile(pubkey) : null;
-  const isLoadingProfileData = pubkey ? isLoadingProfile(pubkey) : false;
 
   const actualProfilePicture = profilePicture || profileData?.picture;
   const actualDisplayName = displayName || profileData?.display_name;
@@ -125,16 +124,8 @@ export default function BlogPost({
           )}
           <div className="flex flex-col gap-px">
             <p className="text-sm font-bold group-hover:text-blue-500">
-              {/* {isLoadingProfileData ? (
+              {actualDisplayName || (
                 <span className="animate-pulse">Loading...</span>
-              ) : ( */}
-              {/* actualDisplayName || `${pubkey?.substring(0, 8)}...` */}
-              {/* )} */}
-              {isLoadingProfileData ? (
-                <span className="animate-pulse">Loading...</span>
-              ) : (
-                actualDisplayName ||
-                (pubkey ? `${pubkey.substring(0, 8)}...` : "Unknown")
               )}
             </p>
             <p className="text-sm text-gray-500">

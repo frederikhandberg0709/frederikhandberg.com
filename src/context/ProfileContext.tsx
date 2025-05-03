@@ -6,6 +6,7 @@ import {
   useState,
   useEffect,
   ReactNode,
+  useRef,
 } from "react";
 import { useNostrEvents } from "nostr-react";
 
@@ -44,6 +45,8 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     new Set(),
   );
 
+  const processedPubkeysRef = useRef<Set<string>>(new Set());
+
   const { events } = useNostrEvents({
     filter: {
       authors: Array.from(requestedProfiles),
@@ -55,7 +58,7 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
 
   useEffect(() => {
     if (events.length > 0) {
-      const processedPubkeys = new Set<string>();
+      const pubkeysToRemoveFromLoading = new Set<string>();
 
       setProfiles((prevProfiles) => {
         const newProfiles = { ...prevProfiles };
@@ -63,7 +66,7 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
 
         events.forEach((event) => {
           try {
-            processedPubkeys.add(event.pubkey);
+            pubkeysToRemoveFromLoading.add(event.pubkey);
 
             if (!prevProfiles[event.pubkey]) {
               const profile = JSON.parse(event.content);
@@ -78,31 +81,15 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
         return updatedProfiles ? newProfiles : prevProfiles;
       });
 
-      setLoadingProfiles((prev) => {
-        if (processedPubkeys.size === 0) return prev;
-
-        const newSet = new Set<string>();
-        prev.forEach((pubkey) => {
-          if (!processedPubkeys.has(pubkey)) {
-            newSet.add(pubkey);
-          }
+      if (pubkeysToRemoveFromLoading.size > 0) {
+        setLoadingProfiles((prev) => {
+          const newSet = new Set(prev);
+          pubkeysToRemoveFromLoading.forEach((pubkey) => {
+            newSet.delete(pubkey);
+          });
+          return newSet;
         });
-
-        return newSet;
-      });
-
-      setRequestedProfiles((prev) => {
-        if (processedPubkeys.size === 0) return prev;
-
-        const newSet = new Set<string>();
-        prev.forEach((pubkey) => {
-          if (!processedPubkeys.has(pubkey)) {
-            newSet.add(pubkey);
-          }
-        });
-
-        return newSet;
-      });
+      }
     }
   }, [events]);
 
@@ -114,6 +101,10 @@ export function ProfileProvider({ children }: ProfileProviderProps) {
     if (!pubkey) return;
 
     if (profiles[pubkey]) {
+      return;
+    }
+
+    if (processedPubkeysRef.current.has(pubkey)) {
       return;
     }
 
