@@ -110,7 +110,7 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
             alt="Embedded media"
             width={300}
             height={200}
-            className="max-h-[150px] w-auto rounded-md object-cover"
+            className="max-h-[500px] w-auto rounded-md object-cover"
           />
         </div>
       )}
