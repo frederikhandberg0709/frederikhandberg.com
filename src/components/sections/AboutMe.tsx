@@ -183,7 +183,8 @@ export default function AboutMe() {
                 </div>
 
                 <p>
-                  Danish A, Mathmatics A, Physics B, English B, and Chemistry C.
+                  Danish A, Mathematics A, Physics B, English B, and Chemistry
+                  C.
                 </p>
               </div>
             </div>
