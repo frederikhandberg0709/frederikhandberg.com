@@ -152,7 +152,7 @@ export default function Contact() {
           type="submit"
           variant="primary_glow"
           rounded="full"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !formData.user_email || !formData.message}
         >
           {isSubmitting ? "Sending..." : "Send"}
         </Button>

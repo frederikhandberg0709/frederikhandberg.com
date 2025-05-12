@@ -56,7 +56,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={isLoading || disabled}
         className={cn(
-          "linear scale-100 rounded-full font-bold shadow-none transition duration-200 hover:scale-105 active:scale-95",
+          "linear scale-100 rounded-full font-bold shadow-none transition duration-200 hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:hover:scale-100",
           variants[variant],
           sizes[size],
           roundedStyles[rounded],
