@@ -46,25 +46,23 @@ export default function AboutMe() {
 
         <p>
           Since a young age, I have always been interested in technology and
-          electronics. Naturally, I started gaining an interest in coding
-          (simple Hello World websites in HTML and CSS), which later evolved
-          into programming in JavaScript to make my little websites interactive.
+          electronics. Naturally, I began gaining an interest in coding. I
+          started with simple &quot;Hello, World!&quot; websites in HTML and CSS
+          after my mom bought me a book called <i>Introduction to HTML5</i>.
+          This later evolved into programming in JavaScript to make my little
+          websites interactive.
         </p>
 
         <p>
           In 2023, I began studying for a degree in Software Engineering at VIA
-          Horsens. I am now doing my 4th semester.
+          in Horsens. I am now doing my 4th semester.
         </p>
 
         <p>
-          In my spare time, I like to work on my own projects like my social
-          network. Of course, I don&apos;t code all the time. But when I
-          don&apos;t, I usually still do something related to technology.
-          Whether that&apos;s to build and fly drones, or make small diecast
-          models of police vehicles with emergency lighting. This usually
-          involves some programming of Arduino microcontrollers, to make the
-          flash patterns. And sometimes, I also like to play video games, mostly
-          Dirt Rally 2.0 and WRC 24 (I am a big rally-fan!)
+          I&apos;m a creative person who loves building things. I think part of
+          what has always drawn me to coding is the ability to create something
+          from start to finish using just my computer. That&apos;s the only tool
+          I need.
         </p>
 
         <div className="flex flex-col gap-2.5">
