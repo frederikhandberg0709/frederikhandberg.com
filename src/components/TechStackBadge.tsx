@@ -29,7 +29,7 @@ export default function TechStackBadge({
     <>
       <div
         onClick={() => hasDetails && setDialogOpen(true)}
-        className="card group relative rounded-[14px]"
+        className={`card group relative scale-100 rounded-[14px] ${hasDetails && "transition duration-200 ease-in-out hover:scale-[101%] active:scale-[99%]"}`}
       >
         <div className="absolute inset-0 rounded-[14px] bg-gradient-to-b from-[#339DFF] to-[#312FAD] opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100"></div>
         <div
