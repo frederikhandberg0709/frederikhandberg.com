@@ -17,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Frederik Handberg",
   description: "Personal website of Frederik Handberg",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
