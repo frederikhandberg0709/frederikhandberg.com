@@ -18,7 +18,7 @@ export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   return (
-    <main className="w-full">
+    <main className="w-full overflow-x-hidden">
       <NavbarMenu
         homeRef={homeRef}
         portfolioRef={portfolioRef}
