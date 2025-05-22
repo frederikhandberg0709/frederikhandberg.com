@@ -1,5 +1,5 @@
 1:"$Sreact.fragment"
-2:I[51362,["177","static/chunks/app/layout-84eb3b59b8297247.js"],"ThemeProvider"]
+2:I[51362,["177","static/chunks/app/layout-096eeec220dbbd3d.js"],"ThemeProvider"]
 3:I[87555,[],""]
 4:I[31295,[],""]
 6:I[59665,[],"MetadataBoundary"]
@@ -7,18 +7,16 @@
 b:I[74911,[],"AsyncMetadataOutlet"]
 d:I[59665,[],"ViewportBoundary"]
 f:I[26614,[],""]
-:HL["/_next/static/media/4473ecc91f70f139-s.p.woff","font",{"crossOrigin":"","type":"font/woff"}]
-:HL["/_next/static/media/463dafcda517f24f-s.p.woff","font",{"crossOrigin":"","type":"font/woff"}]
 :HL["/_next/static/css/d652d39bd12fe4be.css","style"]
-0:{"P":null,"b":"NERkbXJ14tb2d3wyYYONT","p":"","c":["","portfolio","semester-project-3"],"i":false,"f":[[["",{"children":["portfolio",{"children":[["slug","semester-project-3","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d652d39bd12fe4be.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_1e4310 __variable_c3aa02 bg-white text-black antialiased dark:bg-black dark:text-white","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","semester-project-3","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","71HsqOQuZj_K8paUoaOPd",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
+0:{"P":null,"b":"qmPLnLN5_HMS4WXs9OXEi","p":"","c":["","portfolio","semester-project-3"],"i":false,"f":[[["",{"children":["portfolio",{"children":[["slug","semester-project-3","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d652d39bd12fe4be.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_1e4310 __variable_c3aa02 bg-white text-black antialiased dark:bg-black dark:text-white","children":["$","$L2",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","semester-project-3","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","twFovZ1sCaVmeCSos_u04",{"children":[["$","$Ld",null,{"children":"$Le"}],null]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
 10:"$Sreact.suspense"
 11:I[74911,[],"AsyncMetadata"]
 7:["$","$10",null,{"fallback":null,"children":["$","$L11",null,{"promise":"$@12"}]}]
 a:null
-13:I[61870,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-ef3bf54963845d2f.js"],"default"]
-14:I[69788,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-ef3bf54963845d2f.js"],"default"]
-15:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-ef3bf54963845d2f.js"],"default",1]
-16:T4e37,"use strict";
+13:I[61870,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-1904875dae6988bf.js"],"default"]
+14:I[69788,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-1904875dae6988bf.js"],"default"]
+15:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","303","static/chunks/app/portfolio/%5Bslug%5D/page-1904875dae6988bf.js"],"default",1]
+16:T4e3f,"use strict";
 const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
 const {useMDXComponents: _provideComponents} = arguments[0];
 function _createMdxContent(props) {
@@ -292,7 +290,7 @@ function _createMdxContent(props) {
     }), "\n", _jsxs(_components.p, {
       children: [_jsx(_components.strong, {
         children: "API endpoint security"
-      }), _jsx(_components.br, {}), "\n", "Access control is enforced by our Java REST API, which uses Spring Security to handle authentication and authorization.\nEndpoint security is achieved by using ", _jsx(_components.code, {
+      }), _jsx(_components.br, {}), "\n", "Access control is enforced by our Java REST API, which uses Spring Security to handle authentication and authorization.\r\nEndpoint security is achieved by using ", _jsx(_components.code, {
         children: "@PreAuthorize(\"hasRole('ADMIN')\")"
       }), " on endpoints that only administrators are allowed to access."]
     }), "\n", _jsx(_components.h3, {
@@ -326,7 +324,7 @@ function _createMdxContent(props) {
     }), "\n", _jsx(_components.h3, {
       children: "Bookmark property listings"
     }), "\n", _jsxs(_components.p, {
-      children: ["Users can save properties as bookmarks to easily view them later.\nBookmarked properties are displayed on the ", _jsx(_components.code, {
+      children: ["Users can save properties as bookmarks to easily view them later.\r\nBookmarked properties are displayed on the ", _jsx(_components.code, {
         children: "Account"
       }), " page, where users can also remove bookmarks for listings they are no longer interested in."]
     }), "\n", _jsx(_components.p, {
@@ -335,7 +333,7 @@ function _createMdxContent(props) {
         alt: "Account page of the Blazor web application"
       })
     }), "\n", _jsx(_components.p, {
-      children: "When changes happen to bookmarked properties, the user will receive a notification.\nFor example, if the price is updated. In this case, the user will receive a notification about the new price of the property."
+      children: "When changes happen to bookmarked properties, the user will receive a notification.\r\nFor example, if the price is updated. In this case, the user will receive a notification about the new price of the property."
     }), "\n", _jsx(_components.h3, {
       children: "Manage agents"
     }), "\n", _jsx(_components.p, {
@@ -389,7 +387,7 @@ function _createMdxContent(props) {
     }), "\n", _jsx(_components.h3, {
       children: "Real-time notifications"
     }), "\n", _jsx(_components.p, {
-      children: "A SignalR server was implemented to handle real-time notifications.\nWhen a price change occurs, the Java REST server notifies the SignalR server, which then sends the real-time notification to the Blazor web application. This approach allows instant updates without requiring the user to refresh the page. SignalR was chosen for its speed and efficiency in delivering real-time notifications."
+      children: "A SignalR server was implemented to handle real-time notifications.\r\nWhen a price change occurs, the Java REST server notifies the SignalR server, which then sends the real-time notification to the Blazor web application. This approach allows instant updates without requiring the user to refresh the page. SignalR was chosen for its speed and efficiency in delivering real-time notifications."
     })]
   });
 }
