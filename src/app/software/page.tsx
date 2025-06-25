@@ -34,7 +34,7 @@ export default function Home() {
       >
         <Header />
 
-        <ThemeToggle />
+        <ThemeToggle alwaysDisplayLabel={true} />
       </header>
 
       <section

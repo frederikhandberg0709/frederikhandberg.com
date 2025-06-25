@@ -5,6 +5,7 @@ import NavbarLink from "./NavbarLink";
 import { useEffect, useState } from "react";
 import ButtonLink from "./buttons/ButtonLink";
 import MobileNavMenu from "./MobileNavMenu";
+import NavbarLogo from "./NavbarLogo";
 
 interface NavbarMenuProps {
   homeRef: React.RefObject<HTMLElement | null>;
@@ -72,20 +73,7 @@ export default function NavbarMenu({
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
       <div className="mx-20 my-3 hidden w-full items-center justify-between max-[900px]:mx-12 min-[810px]:flex">
-        <div className="flex w-[105px] justify-start">
-          <Link
-            href="#home"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavLinkClick("home");
-            }}
-            className="flex flex-col items-start text-start font-bold leading-snug opacity-50 transition hover:opacity-100"
-          >
-            Frederik
-            <br />
-            Handberg
-          </Link>
-        </div>
+        <NavbarLogo />
 
         <div className="rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
           <div className="m-2 flex gap-2.5">
