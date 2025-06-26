@@ -71,8 +71,8 @@ export default function NavbarMenu({
     }`;
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-between">
-      <div className="mx-20 my-3 hidden w-full items-center justify-between max-[900px]:mx-12 min-[810px]:flex">
+    <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-center">
+      <div className="mx-20 my-3 hidden w-full items-center justify-between min-[810px]:container max-[900px]:mx-12 min-[810px]:flex">
         <NavbarLogo />
 
         <div className="rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">

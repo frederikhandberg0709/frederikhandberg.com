@@ -68,7 +68,7 @@ const ThemeToggle = ({ alwaysDisplayLabel = false }) => {
       </button>
 
       {!alwaysDisplayLabel && isHovering && (
-        <div className="pointer-events-none absolute top-full mt-2 w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded bg-black/50 px-2.5 py-1.5 text-center text-white backdrop-blur-md">
+        <div className="pointer-events-none absolute top-full mt-2 w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded bg-black/50 px-2.5 py-1.5 text-center text-sm text-white backdrop-blur-md">
           Current theme: {isDarkMode ? "Dark" : "Light"}
         </div>
       )}

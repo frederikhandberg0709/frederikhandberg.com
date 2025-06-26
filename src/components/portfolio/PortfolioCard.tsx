@@ -11,7 +11,7 @@ interface PortfolioCardProps {
 const PortfolioCard: React.FC<PortfolioCardProps> = ({ project }) => {
   return (
     <Link
-      href={`/portfolio/${project.slug}`}
+      href={`/software/portfolio/${project.slug}`}
       className="group block scale-100 overflow-hidden rounded-2xl border border-gray-200 transition-all hover:shadow-lg active:scale-[0.98] dark:border-gray-800"
     >
       {project.coverImage && (

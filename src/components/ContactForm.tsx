@@ -1,9 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Button from "../buttons/Button";
-import Link from "next/link";
-import FloatingInput from "../inputs/FloatingInput";
-import FloatingTextArea from "../inputs/FloatingTextArea";
+import Button from "./buttons/Button";
+import FloatingInput from "./inputs/FloatingInput";
+import FloatingTextArea from "./inputs/FloatingTextArea";
 
 interface FormData {
   user_name: string;
@@ -12,7 +11,7 @@ interface FormData {
   message: string;
 }
 
-export default function Contact() {
+export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     user_name: "",
     user_email: "",
@@ -83,20 +82,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex h-fit w-[450px] flex-col items-center gap-8">
-      <h2 className="text-center text-lg font-bold tracking-wider">CONTACT</h2>
-      <p className="text-center">
-        Please use the form below to send me a message, or reach out directly
-        via email at{" "}
-        <Link
-          href="mailto:hello@frederikhandberg.com"
-          aria-label="Email hello@frederikhandberg.com"
-          className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
-        >
-          hello@frederikhandberg.com
-        </Link>
-      </p>
-
+    <div className="flex h-fit flex-col items-center gap-8">
       {submitStatus && (
         <div
           className={`rounded-xl p-4 text-center ${submitStatus.success ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"}`}

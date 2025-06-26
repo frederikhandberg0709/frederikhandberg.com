@@ -6,9 +6,9 @@ import Header from "@/components/sections/Header";
 import Portfolio from "@/components/sections/Portfolio";
 import TechStack from "@/components/sections/TechStack";
 import AboutMe from "@/components/sections/AboutMe";
-import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -66,7 +66,7 @@ export default function Home() {
         id="contact"
         className="flex min-h-screen items-center justify-center"
       >
-        <Contact />
+        <ContactSection />
       </section>
 
       <section className="relative">

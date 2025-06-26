@@ -83,7 +83,7 @@ export default function NavbarLogo() {
         >
           <Link
             href="/"
-            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold hover:bg-black/10 dark:hover:bg-white/10"
+            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold transition hover:bg-black/10 active:bg-black/15 dark:hover:bg-white/10 dark:active:bg-white/15"
           >
             <span className="text-sm font-normal opacity-50">
               frederikhandberg.com
@@ -92,19 +92,19 @@ export default function NavbarLogo() {
           </Link>
           <Link
             href="/software"
-            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold hover:bg-black/10 dark:hover:bg-white/10"
+            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold transition hover:bg-black/10 active:bg-black/15 dark:hover:bg-white/10 dark:active:bg-white/15"
           >
             <span className="text-sm font-normal opacity-50">
-              software.frederikhandberg.com
+              frederikhandberg.com/software
             </span>
             Software
           </Link>
           <Link
             href="/fashion"
-            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold hover:bg-black/10 dark:hover:bg-white/10"
+            className="flex flex-col rounded-xl px-2.5 py-1.5 text-xl font-bold transition hover:bg-black/10 active:bg-black/15 dark:hover:bg-white/10 dark:active:bg-white/15"
           >
             <span className="text-sm font-normal opacity-50">
-              fashion.frederikhandberg.com
+              frederikhandberg.com/fashion
             </span>
             Fashion
           </Link>

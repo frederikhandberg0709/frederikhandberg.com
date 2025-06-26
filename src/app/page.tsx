@@ -8,6 +8,9 @@ import BlogTimeline from "@/components/blog/BlogTimeline";
 import { NostrProvider } from "nostr-react";
 import { ProfileProvider } from "@/context/ProfileContext";
 import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
+import ContactForm from "@/components/ContactForm";
+import NameWithHoverImage from "@/components/NameWithHoverImage";
+import ButtonLink from "@/components/buttons/ButtonLink";
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
@@ -15,8 +18,8 @@ export default function HomePage() {
 
   return (
     <>
-      <nav className="pointer-events-none fixed z-30 flex w-full justify-center">
-        <div className="mx-20 my-1.5 flex w-full items-center justify-between max-[900px]:mx-12">
+      <nav className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex w-full justify-center">
+        <div className="mx-20 my-3 hidden w-full items-center justify-between min-[810px]:container min-[810px]:flex">
           <NavbarLogo />
 
           <div className="flex gap-0.5">
@@ -39,6 +42,8 @@ export default function HomePage() {
             <ThemeToggle />
           </div>
         </div>
+
+        <div className="w-full min-[810px]:hidden">Mobile nav menu...</div>
       </nav>
 
       {isHovering && (
@@ -63,8 +68,14 @@ export default function HomePage() {
                 Hello and welcome to my personal website!
               </h1>
               <p className="leading-relaxed">
-                My name is <span className="font-bold">Frederik Handberg</span>.
-                I’m 22 years old and currently studying{" "}
+                My name is 
+                <NameWithHoverImage
+                  imageSrc="/photo-of-me.JPG"
+                  className="hidden sm:inline-block"
+                >
+                  Frederik Handberg
+                </NameWithHoverImage>
+                . I’m 22 years old and currently studying{" "}
                 <span className="font-bold">Software Engineering</span> in
                 Horsens, Denmark.
                 <br />
@@ -74,7 +85,10 @@ export default function HomePage() {
                 beautiful, thoughtful user interfaces and working on scalable
                 server architectures.
                 <br />
-                <Link href="/software" className="font-semibold text-blue-500">
+                <Link
+                  href="/software"
+                  className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+                >
                   Read more about my software development projects
                 </Link>
                 <br />
@@ -83,7 +97,8 @@ export default function HomePage() {
                 fashion design. However, this is purely for fun and just a
                 personal hobby. I suppose there are two reasons why I enjoy
                 fashion design. Firsly, finding clothes that fit my body, has
-                always been a challenge for me. Secondly, I&apos;m a creative
+                always been a challenge for me. So being able to design and sew
+                my own garments is rewarding. Secondly, I&apos;m a creative
                 person who loves good style, so I often get an idea about a nice
                 design of a jacket or similar. I create garment concepts in 3D,
                 draft patterns, and bring my designs to life through sewing.
@@ -91,22 +106,43 @@ export default function HomePage() {
             </div>
           </div>
 
-          <section className="flex flex-col gap-5 items-center">
-            <h1 className="text-center text-xl">CONTACT</h1>
-            <p>🚧 UNDER CONSTRUCTION 🚧</p>
+          <section className="flex w-[450px] flex-col items-center gap-5">
+            <h2 className="text-center text-xl font-bold tracking-wider">
+              CONTACT
+            </h2>
+
+            <p className="text-center">
+              Please use the form below to send me a message, or reach out
+              directly via email at{" "}
+              <Link
+                href="mailto:hello@frederikhandberg.com"
+                aria-label="Email hello@frederikhandberg.com"
+                className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+              >
+                hello@frederikhandberg.com
+              </Link>
+            </p>
+
+            <ContactForm />
           </section>
 
           <section className="flex flex-col items-center gap-5">
-            <h1 className="text-center text-xl">BLOG</h1>
+            <h2 className="text-center text-xl font-bold tracking-wider">
+              BLOG
+            </h2>
 
-            <div>
+            <div className="mb-10 flex flex-col items-center gap-8">
               <NostrProvider relayUrls={relayUrls} debug={false}>
                 <ProfileProvider>
                   <BlogTimeline filterType="all" maxElements={10} />
                 </ProfileProvider>
               </NostrProvider>
+
+              <ButtonLink href="/blog" variant="primary_glow" rounded="full">
+                Show all
+              </ButtonLink>
             </div>
-          </section>>
+          </section>
         </div>
       </ImageOverlayProvider>
     </>
