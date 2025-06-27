@@ -53,7 +53,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
     return (
       <div
         className={cn(
-          "floating-input relative w-full px-4 sm:px-0",
+          "floating-input relative w-full sm:px-0",
           containerClassName,
         )}
       >
@@ -68,7 +68,7 @@ const FloatingInput = React.forwardRef<HTMLInputElement, FloatingInputProps>(
           onBlur={handleBlur}
           required={required}
           className={cn(
-            "h-[52px] w-full rounded-xl bg-black/10 px-[20px] py-5 text-black outline-none transition duration-200 ease-in-out hover:bg-black/15 focus:bg-black/15 active:bg-black/20 min-[415px]:w-[400px] dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/15",
+            "h-[52px] w-full rounded-xl bg-black/10 px-[20px] py-5 text-black outline-none transition duration-200 ease-in-out hover:bg-black/15 focus:bg-black/15 active:bg-black/20 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/15 min-[415px]:w-[400px]",
             inputClassName,
             className,
           )}

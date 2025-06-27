@@ -25,6 +25,7 @@ export default function Home() {
         techStackRef={techStackRef}
         aboutMeRef={aboutMeRef}
         contactRef={contactRef}
+        menuType="software"
       />
 
       <header

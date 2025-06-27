@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import NavbarLink from "./NavbarLink";
 import { useEffect, useState } from "react";
 import ButtonLink from "./buttons/ButtonLink";
@@ -13,6 +12,7 @@ interface NavbarMenuProps {
   techStackRef: React.RefObject<HTMLElement | null>;
   aboutMeRef: React.RefObject<HTMLElement | null>;
   contactRef: React.RefObject<HTMLElement | null>;
+  menuType: "homepage" | "software" | "fashion";
 }
 
 export default function NavbarMenu({
@@ -21,6 +21,7 @@ export default function NavbarMenu({
   techStackRef,
   aboutMeRef,
   contactRef,
+  menuType,
 }: NavbarMenuProps) {
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -71,48 +72,58 @@ export default function NavbarMenu({
     }`;
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-center">
+    <nav className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-center">
       <div className="mx-20 my-3 hidden w-full items-center justify-between min-[810px]:container max-[900px]:mx-12 min-[810px]:flex">
         <NavbarLogo />
 
-        <div className="rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
+        <div className="pointer-events-auto rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
           <div className="m-2 flex gap-2.5">
-            <NavbarLink
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("home");
-              }}
-              className={linkClass("home")}
-              text="Home"
-            />
-            <NavbarLink
-              href="#portfolio"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("portfolio");
-              }}
-              className={linkClass("portfolio")}
-              text="Portfolio"
-            />
-            <NavbarLink
-              href="#tech-stack"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("tech-stack");
-              }}
-              text="Tech Stack"
-              className={linkClass("techstack")}
-            />
-            <NavbarLink
-              href="#about-me"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("about-me");
-              }}
-              className={linkClass("aboutme")}
-              text="About Me"
-            />
+            {menuType === "homepage" && (
+              <>
+                <NavbarLink href="/software" text="Software" />
+                <NavbarLink href="/fashion" text="Fashion" />
+              </>
+            )}
+            {menuType === "software" && (
+              <>
+                <NavbarLink
+                  href="#home"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("home");
+                  }}
+                  className={linkClass("home")}
+                  text="Home"
+                />
+                <NavbarLink
+                  href="#portfolio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("portfolio");
+                  }}
+                  className={linkClass("portfolio")}
+                  text="Portfolio"
+                />
+                <NavbarLink
+                  href="#tech-stack"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("tech-stack");
+                  }}
+                  text="Tech Stack"
+                  className={linkClass("techstack")}
+                />
+                <NavbarLink
+                  href="#about-me"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("about-me");
+                  }}
+                  className={linkClass("aboutme")}
+                  text="About Me"
+                />
+              </>
+            )}
           </div>
         </div>
 
@@ -125,14 +136,15 @@ export default function NavbarMenu({
             }}
             variant="primary_glow"
             rounded="full"
+            className="pointer-events-auto"
           >
             Contact
           </ButtonLink>
         </div>
       </div>
 
-      <div className="w-full min-[810px]:hidden">
-        <MobileNavMenu />
+      <div className="pointer-events-auto w-full min-[810px]:hidden">
+        <MobileNavMenu menuType={menuType} />
       </div>
     </nav>
   );

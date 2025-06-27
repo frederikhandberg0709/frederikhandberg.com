@@ -3,7 +3,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-export default function MobileNavMenu() {
+export default function MobileNavMenu({
+  menuType,
+}: {
+  menuType: "homepage" | "software" | "fashion";
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -69,7 +73,7 @@ export default function MobileNavMenu() {
     }
   };
 
-  const linkStyles = (section: string) => {
+  const linkStyles = (section?: string) => {
     return twMerge(
       "w-full text-center py-2.5 text-3xl font-bold transition duration-200 ease-in-out active:bg-white/10",
       activeSection === section
@@ -121,60 +125,75 @@ export default function MobileNavMenu() {
           </button>
 
           <div className="flex w-full flex-col items-center justify-center gap-5">
-            <Link
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("home");
-              }}
-              className={linkStyles("home")}
-            >
-              Home
-            </Link>
+            {menuType === "homepage" && (
+              <>
+                <Link href="/software" className={linkStyles()}>
+                  Software
+                </Link>
+                <Link href="/fashion" className={linkStyles()}>
+                  Fashion
+                </Link>
+              </>
+            )}
 
-            <Link
-              href="#portfolio"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("portfolio");
-              }}
-              className={linkStyles("portfolio")}
-            >
-              Portfolio
-            </Link>
+            {menuType === "software" && (
+              <>
+                <Link
+                  href="#home"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("home");
+                  }}
+                  className={linkStyles("home")}
+                >
+                  Home
+                </Link>
 
-            <Link
-              href="#tech-stack"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("techstack");
-              }}
-              className={linkStyles("techstack")}
-            >
-              Tech Stack
-            </Link>
+                <Link
+                  href="#portfolio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("portfolio");
+                  }}
+                  className={linkStyles("portfolio")}
+                >
+                  Portfolio
+                </Link>
 
-            <Link
-              href="#about-me"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("aboutme");
-              }}
-              className={linkStyles("aboutme")}
-            >
-              About Me
-            </Link>
+                <Link
+                  href="#tech-stack"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("techstack");
+                  }}
+                  className={linkStyles("techstack")}
+                >
+                  Tech Stack
+                </Link>
 
-            <Link
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavLinkClick("contact");
-              }}
-              className={linkStyles("contact")}
-            >
-              Contact
-            </Link>
+                <Link
+                  href="#about-me"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("aboutme");
+                  }}
+                  className={linkStyles("aboutme")}
+                >
+                  About Me
+                </Link>
+
+                <Link
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavLinkClick("contact");
+                  }}
+                  className={linkStyles("contact")}
+                >
+                  Contact
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

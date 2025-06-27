@@ -3,7 +3,7 @@ import ContactForm from "../ContactForm";
 
 export default function ContactSection() {
   return (
-    <section className="flex w-[450px] flex-col items-center gap-8">
+    <section className="flex flex-col items-center gap-8 max-lg:mx-4 md:w-[450px]">
       <h2 className="text-center text-lg font-bold tracking-wider">CONTACT</h2>
       <p className="text-center">
         Please use the form below to send me a message, or reach out directly

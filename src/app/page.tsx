@@ -11,6 +11,7 @@ import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
 import ContactForm from "@/components/ContactForm";
 import NameWithHoverImage from "@/components/NameWithHoverImage";
 import ButtonLink from "@/components/buttons/ButtonLink";
+import MobileNavMenu from "@/components/MobileNavMenu";
 
 export default function HomePage() {
   const [isHovering, setIsHovering] = useState(false);
@@ -43,7 +44,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="w-full min-[810px]:hidden">Mobile nav menu...</div>
+        <div className="pointer-events-auto w-full min-[810px]:hidden">
+          <MobileNavMenu menuType={"homepage"} />
+        </div>
       </nav>
 
       {isHovering && (
@@ -58,30 +61,30 @@ export default function HomePage() {
 
       <ImageOverlayProvider>
         <div
-          className="flex min-h-screen flex-col items-center"
+          className="flex min-h-screen flex-col items-center overflow-x-hidden"
           style={{ gap: "4rem" }}
         >
-          <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black"></div>
-          <div className="mt-52 max-w-3xl">
+          <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black max-[809px]:hidden"></div>
+          <div className="mt-24 max-w-3xl max-lg:mx-4 md:mt-52">
             <div className="flex flex-col items-start justify-center gap-2.5">
               <h1 className="text-2xl font-medium">
                 Hello and welcome to my personal website!
               </h1>
               <p className="leading-relaxed">
-                My name is 
+                My name is{" "}
                 <NameWithHoverImage
                   imageSrc="/photo-of-me.JPG"
                   className="hidden sm:inline-block"
                 >
                   Frederik Handberg
                 </NameWithHoverImage>
-                . I’m 22 years old and currently studying{" "}
+                . I&apos;m 22 years old and currently studying{" "}
                 <span className="font-bold">Software Engineering</span> in
                 Horsens, Denmark.
                 <br />
                 <br />
-                I’m passionate about developing full-stack web applications and
-                native apps mainly for the Apple platforms. I enjoy building
+                I&apos;m passionate about developing full-stack web applications
+                and native apps mainly for the Apple platforms. I enjoy building
                 beautiful, thoughtful user interfaces and working on scalable
                 server architectures.
                 <br />
@@ -93,12 +96,12 @@ export default function HomePage() {
                 </Link>
                 <br />
                 <br />
-                In addition to doing software development, I’m also exploring
-                fashion design. However, this is purely for fun and just a
-                personal hobby. I suppose there are two reasons why I enjoy
-                fashion design. Firsly, finding clothes that fit my body, has
-                always been a challenge for me. So being able to design and sew
-                my own garments is rewarding. Secondly, I&apos;m a creative
+                In addition to doing software development, I&apos;m also
+                exploring fashion design. However, this is purely for fun and
+                just a personal hobby. I suppose there are two reasons why I
+                enjoy fashion design. Firstly, finding clothes that fit my body,
+                has always been a challenge for me. So being able to design and
+                sew my own garments is rewarding. Secondly, I&apos;m a creative
                 person who loves good style, so I often get an idea about a nice
                 design of a jacket or similar. I create garment concepts in 3D,
                 draft patterns, and bring my designs to life through sewing.
@@ -106,7 +109,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <section className="flex w-[450px] flex-col items-center gap-5">
+          <section className="flex flex-col items-center gap-5 max-lg:mx-4 md:w-[450px]">
             <h2 className="text-center text-xl font-bold tracking-wider">
               CONTACT
             </h2>

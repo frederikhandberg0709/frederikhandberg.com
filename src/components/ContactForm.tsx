@@ -82,7 +82,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="flex h-fit flex-col items-center gap-8">
+    <div className="flex h-fit w-full flex-col items-center gap-8">
       {submitStatus && (
         <div
           className={`rounded-xl p-4 text-center ${submitStatus.success ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"}`}
