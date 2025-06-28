@@ -28,13 +28,13 @@ export default function HomePage() {
               href="/software"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
+              className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black tracking-wide text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
             >
               SOFTWARE
             </Link>
             <Link
               href="/fashion"
-              className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
+              className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black tracking-wide text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
             >
               FASHION
             </Link>
@@ -105,6 +105,13 @@ export default function HomePage() {
                 person who loves good style, so I often get an idea about a nice
                 design of a jacket or similar. I create garment concepts in 3D,
                 draft patterns, and bring my designs to life through sewing.
+                <br />
+                <Link
+                  href="/fashion"
+                  className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+                >
+                  Read more about my fashion design hobby
+                </Link>
               </p>
             </div>
           </div>
