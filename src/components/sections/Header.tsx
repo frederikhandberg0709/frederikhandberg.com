@@ -94,27 +94,6 @@ export default function Header() {
         </div>
         .
       </h1>
-
-      <style jsx>{`
-        .emoji-hover::after {
-          content: attr(data-emoji);
-          position: absolute;
-          left: 50%;
-          top: 0;
-          transform: translate(-50%, -120%);
-          font-size: larger;
-          white-space: nowrap;
-          opacity: 0;
-          transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-          pointer-events: none;
-        }
-        .emoji-hover:hover::after {
-          opacity: 1;
-          transform: translate(-50%, -100%);
-        }
-      `}</style>
     </div>
   );
 }

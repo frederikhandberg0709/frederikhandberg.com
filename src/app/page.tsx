@@ -12,9 +12,11 @@ import ContactForm from "@/components/ContactForm";
 import NameWithHoverImage from "@/components/NameWithHoverImage";
 import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/MobileNavMenu";
+import { HomeScrollIndicator } from "@/components/HomeScrollIndicator";
 
 export default function HomePage() {
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
+  const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
 
   return (
@@ -26,14 +28,16 @@ export default function HomePage() {
           <div className="flex gap-0.5">
             <Link
               href="/software"
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
+              onMouseEnter={() => setIsHoveringSoftware(true)}
+              onMouseLeave={() => setIsHoveringSoftware(false)}
               className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black tracking-wide text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
             >
               SOFTWARE
             </Link>
             <Link
               href="/fashion"
+              onMouseEnter={() => setIsHoveringFashion(true)}
+              onMouseLeave={() => setIsHoveringFashion(false)}
               className="pointer-events-auto scale-100 rounded-lg px-5 py-3 text-base font-black tracking-wide text-neutral-500 transition hover:bg-black/10 hover:text-black active:scale-95 dark:hover:bg-white/10 dark:hover:text-white"
             >
               FASHION
@@ -49,7 +53,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {isHovering && (
+      {isHoveringSoftware && (
         <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
           <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
             Building fun software projects while studying
@@ -59,16 +63,33 @@ export default function HomePage() {
         </div>
       )}
 
+      {isHoveringFashion && (
+        <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
+          <h1 className="max-w-3xl text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
+            Bringing my ideas to life through fashion design, pattern drafting,
+            and sewing
+          </h1>
+        </div>
+      )}
+
       <ImageOverlayProvider>
         <div
-          className="flex min-h-screen flex-col items-center overflow-x-hidden"
+          className="relative flex min-h-screen flex-col items-center overflow-x-hidden"
           style={{ gap: "4rem" }}
         >
           <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black max-[809px]:hidden"></div>
-          <div className="mt-24 max-w-3xl max-lg:mx-4 md:mt-52">
+
+          <div className="hidden lg:block">
+            <HomeScrollIndicator />
+          </div>
+
+          <section
+            id="introduction"
+            className="mt-24 max-w-3xl max-lg:mx-4 md:pt-24"
+          >
             <div className="flex flex-col items-start justify-center gap-2.5">
               <h1 className="text-2xl font-medium">
-                Hello and welcome to my personal website!
+                Hello and welcome to my personal website! 👋
               </h1>
               <p className="leading-relaxed">
                 My name is{" "}
@@ -79,8 +100,12 @@ export default function HomePage() {
                   Frederik Handberg
                 </NameWithHoverImage>
                 . I&apos;m 22 years old and currently studying{" "}
-                <span className="font-bold">Software Engineering</span> in
-                Horsens, Denmark.
+                <div className="relative inline-block">
+                  <span className="emoji-hover font-bold" data-emoji="💻 🚀">
+                    Software Engineering
+                  </span>
+                </div>{" "}
+                in Horsens, Denmark 🇩🇰
                 <br />
                 <br />
                 I&apos;m passionate about developing full-stack web applications
@@ -97,14 +122,20 @@ export default function HomePage() {
                 <br />
                 <br />
                 In addition to doing software development, I&apos;m also
-                exploring fashion design. However, this is purely for fun and
-                just a personal hobby. I suppose there are two reasons why I
-                enjoy fashion design. Firstly, finding clothes that fit my body,
-                has always been a challenge for me. So being able to design and
-                sew my own garments is rewarding. Secondly, I&apos;m a creative
-                person who loves good style, so I often get an idea about a nice
-                design of a jacket or similar. I create garment concepts in 3D,
-                draft patterns, and bring my designs to life through sewing.
+                exploring{" "}
+                <div className="relative inline-block">
+                  <span className="emoji-hover font-bold" data-emoji="🪡 🧵">
+                    Fashion Design
+                  </span>
+                </div>
+                . However, this is purely for fun and just a personal hobby. I
+                suppose there are two reasons why I enjoy fashion design.
+                Firstly, finding clothes that fit my body, has always been a
+                challenge for me. So being able to design and sew my own
+                garments is rewarding. Secondly, I&apos;m a creative person who
+                loves good style, so I often get an idea about a nice design of
+                a jacket or similar. I create garment concepts in 3D, draft
+                patterns, and bring my designs to life through sewing.
                 <br />
                 <Link
                   href="/fashion"
@@ -114,9 +145,12 @@ export default function HomePage() {
                 </Link>
               </p>
             </div>
-          </div>
+          </section>
 
-          <section className="flex flex-col items-center gap-5 max-lg:mx-4 md:w-[450px]">
+          <section
+            id="contact"
+            className="flex flex-col items-center gap-5 max-lg:mx-4 sm:pt-24 md:w-[450px]"
+          >
             <h2 className="text-center text-xl font-bold tracking-wider">
               CONTACT
             </h2>
@@ -136,7 +170,10 @@ export default function HomePage() {
             <ContactForm />
           </section>
 
-          <section className="flex flex-col items-center gap-5">
+          <section
+            id="blog"
+            className="flex flex-col items-center gap-5 sm:pt-24"
+          >
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG
             </h2>

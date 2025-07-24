@@ -45,7 +45,7 @@ export function processNostrContent(content: string) {
 
   let processedContent = content;
 
-  const mediaRegex = /https:\/\/.*\.(jpg|png|mp4|avi|mov|webp)/gi;
+  const mediaRegex = /https:\/\/.*\.(jpeg|jpg|png|mp4|avi|mov|webp)/gi;
   processedContent = processedContent.replace(mediaRegex, "");
 
   const nostrBech32NoteRegex = /(nostr:note[a-zA-Z0-9]{59,65})/g;
