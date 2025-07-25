@@ -1,0 +1,277 @@
+1:"$Sreact.fragment"
+3:I[87555,[],""]
+4:I[31295,[],""]
+6:I[59665,[],"MetadataBoundary"]
+8:I[59665,[],"OutletBoundary"]
+b:I[74911,[],"AsyncMetadataOutlet"]
+d:I[59665,[],"ViewportBoundary"]
+f:I[26614,[],""]
+:HL["/_next/static/media/4f05ba3a6752a328-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/b201a41e6d7e90e7.css","style"]
+0:{"P":null,"b":"5ullFcflmE8UEiYXekqL3","p":"","c":["","software","portfolio","social-network"],"i":false,"f":[[["",{"children":["software",{"children":["portfolio",{"children":[["slug","social-network","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b201a41e6d7e90e7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":["software",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","social-network","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","3HSi4Zco4HwPun8ocwT6B",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
+10:I[51362,["177","static/chunks/app/layout-2528eadc4b6d8d16.js"],"ThemeProvider"]
+11:"$Sreact.suspense"
+12:I[74911,[],"AsyncMetadata"]
+2:["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"__variable_e8ce0c __variable_4bc053 bg-white font-sans text-black antialiased dark:bg-black dark:text-white","children":["$","$L10",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]
+7:["$","$11",null,{"fallback":null,"children":["$","$L12",null,{"promise":"$@13"}]}]
+a:null
+14:I[80731,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default"]
+15:I[69788,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default"]
+16:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default",1]
+17:T4117,"use strict";
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+function _createMdxContent(props) {
+  const _components = {
+    a: "a",
+    br: "br",
+    code: "code",
+    h2: "h2",
+    h3: "h3",
+    img: "img",
+    li: "li",
+    ol: "ol",
+    p: "p",
+    strong: "strong",
+    ul: "ul",
+    ..._provideComponents(),
+    ...props.components
+  };
+  return _jsxs(_Fragment, {
+    children: [_jsxs(_components.p, {
+      children: ["GitHub repository: ", _jsx(_components.a, {
+        href: "https://github.com/frederikhandberg0709/blop-social-media",
+        children: "https://github.com/frederikhandberg0709/blop-social-media"
+      })]
+    }), "\n", _jsx(_components.h2, {
+      children: "Project Structure"
+    }), "\n", _jsxs(_components.p, {
+      children: ["This project is twofold, as it includes a ", _jsx(_components.strong, {
+        children: "Next.js"
+      }), " project and an ", _jsx(_components.strong, {
+        children: "Express.js"
+      }), " server."]
+    }), "\n", _jsx(_components.h3, {
+      children: "Frontend & API (Next.js)"
+    }), "\n", _jsx(_components.p, {
+      children: "The frontend was built using Next.js. There are two main reasons for why I chose Next.js. First of all, it's a fullstack framework that makes it easy for a small team (in my case, just me), to work quickly and efficiently since it comes with most of the necessary tools out of the box. Secondly, the React documentations specifically recommend using Next.js."
+    }), "\n", _jsx(_components.p, {
+      children: "Instead of setting up a separate server (such as Express or Spring Boot), Next.js lets me build a REST server directly in the same project by using API routes."
+    }), "\n", _jsx(_components.h3, {
+      children: "Notification Service (Express.js)"
+    }), "\n", _jsx(_components.p, {
+      children: "I mentioned earlier that one of the advantages of Next.js is that you might not need a separate server since it provides API routes. I did use API routes for all my HTTP calls."
+    }), "\n", _jsx(_components.p, {
+      children: "However, I wanted a notification service using Socket.IO. Technically, I could have built it directly in Next.js, but that would mean I couldn't use the default Next.js server – I would have to set up my own custom server in Next.js instead. Because of this, I decided it was better to have a separate Express.js server for the notification service."
+    }), "\n", _jsx(_components.p, {
+      children: "I chose Socket.IO mainly because I already have experience with SignalR from my third-semester project, and since Socket.IO is very similar to SignalR, it seemed like the obvious choice."
+    }), "\n", _jsx(_components.h2, {
+      children: "Project Features"
+    }), "\n", _jsx(_components.p, {
+      children: "I have tried implementing the features that people expect from a modern social network. This includes the basic features such as being able to like and comment on posts, but also more advanced features, such as being able to switch accounts."
+    }), "\n", _jsx(_components.h3, {
+      children: "User Authentication"
+    }), "\n", _jsx(_components.p, {
+      children: "I used NextAuth to build the authentication system, allowing users to log in with either their email or username and a password. For security, passwords are hashed using Argon2 before being stored in the database."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/login.jpeg",
+        alt: "Login page"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "Reset Password"
+    }), "\n", _jsx(_components.p, {
+      children: "The reset password functionality ensures that users can update their passwords if they forget it. Before submitting, the form performs validation checks:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "If the new password meets security requirements"
+      }), "\n", _jsx(_components.li, {
+        children: "If the confirmation password matches the new password"
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "If the validation passes, the request is sent to the API with the identifier (email or username) and the new password."
+    }), "\n", _jsx(_components.p, {
+      children: "On the backend, in the API route, it searches for a user matching the provided identifier. If no user is found, it will return a \"User not found\" error."
+    }), "\n", _jsx(_components.p, {
+      children: "If the user exists:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "The new password is securely hashed using Argon2."
+      }), "\n", _jsx(_components.li, {
+        children: "The hashed password is stored in the database, replacing the old one."
+      }), "\n", _jsx(_components.li, {
+        children: "A success response is sent back."
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "In a real-world application, password resets should be handled more securely. Instead of allowing users to reset their password directly by providing their email or username, the system should send a reset link to the user's email with a token."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/reset-password.jpeg",
+        alt: "Reset password page"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "Bookmarks"
+    }), "\n", _jsx(_components.p, {
+      children: "Users can bookmark posts and comments they want to save for later. Bookmarks are stored in the database with a reference to the user who bookmarked it, so that the user can view their bookmarks on any device."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/my-bookmarks.jpeg",
+        alt: "My bookmarks page"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "Link Accounts"
+    }), "\n", _jsx(_components.p, {
+      children: "Users can link multiple accounts together. This allows switching between accounts without having to log in and out."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/link-new-account.jpeg",
+        alt: "Link new account page"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "Users can easily switch between their linked accounts by clicking on their profile menu and selecting the 'Switch Account' option, which will then display a list of all linked accounts."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/profile-menu_switch-account.png",
+        alt: "Switch account widget in profile menu"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "User Profile"
+    }), "\n", _jsxs(_components.p, {
+      children: ["The profile page includes a profile picture, banner, name, username, and a biography.", _jsx(_components.br, {}), "\n", "This page also includes a timeline of the user's posts and counters for the number of followers, how many people the user is following, and the total number of posts from the user."]
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/profile_follower.jpeg",
+        alt: "Profile page viewed by follower"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "The user interface will slightly change depending on whether the user is the author of the profile or a follower. For example, if the user is the author, they will not see the 'Follow' button or notifications button. Instead, they will see an 'Edit Profile' button."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/profile_author.jpeg",
+        alt: "Profile page views by author"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "Quote Posts"
+    }), "\n", _jsx(_components.p, {
+      children: "Users can quote posts, which is similar to retweeting on Twitter. The original post is embedded in the new post."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/quoted-post.jpeg",
+        alt: "Quoted post"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "Notification System"
+    }), "\n", _jsx(_components.p, {
+      children: "Clicking the bell icon on a user profile, will show the notification settings to enable notifications whenever a user publishes a new post."
+    }), "\n", _jsx(_components.p, {
+      children: "Clicking the 'Specific notifications' option, should allow the user to select which notifications they want to receive. Currently, only the 'New post' notification is working, but in the future, more options should be added."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/profile-notification-settings.png",
+        alt: "Notification settings for profile"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "Socket.IO is only for sending notifications in real-time. This means, that the notifications would be lost if the user is not on the site. Therefore, notifications are also stored in the database, so that the user can see them when they return to the site."
+    }), "\n", _jsx(_components.p, {
+      children: "Initially, notifications are shown as unread. The user can then click on the notification to mark it as read."
+    }), "\n", _jsx(_components.p, {
+      children: "I should implement a dropdown menu to mark the notifications as read or delete them. Then clicking on the notification, should redirect the user to the post."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/notification-panel.png",
+        alt: "Notification panel"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "The notification panel could use some design improvements, particularly regarding timestamp formatting. Currently, timestamps display in a verbose format (e.g. \"9 seconds ago\"), which uses too much space in the compact panel. These should be converted to abbreviated formats (e.g. \"9s\") to take up less space."
+    }), "\n", _jsxs(_components.p, {
+      children: ["The current implementation uses the same ", _jsx(_components.code, {
+        children: "formatDate"
+      }), " function that I developed for posts and comments. However, since the notification panel has more limited space than the posts, it requires a more concise timestamp format specifically made for the notification panel."]
+    }), "\n", _jsx(_components.h2, {
+      children: "Future Development"
+    }), "\n", _jsx(_components.p, {
+      children: "There are some features and general improvements I would like to implement in the future."
+    }), "\n", _jsx(_components.h3, {
+      children: "Search functionality"
+    }), "\n", _jsx(_components.p, {
+      children: "There is currently a search input on the web application, but this is not functional. Users should be able to search for posts by keywords and hashtags, and to search for other users either by their profile name or username."
+    }), "\n", _jsx(_components.p, {
+      children: "It should not be too difficult to implement this feature. I think one approach to implement this feature is by using URL params with the user's search input, then querying the database for posts or users that match the search input."
+    }), "\n", _jsx(_components.p, {
+      children: "However, the way I have set up the search input as of now, I would like the search results to update live as the user types. For this, the URL params approach would not be ideal."
+    }), "\n", _jsx(_components.p, {
+      children: "The search functionality could be implemented client-side where the search results update in real-time as the user types, rather than using URL parameters."
+    }), "\n", _jsxs(_components.p, {
+      children: ["First of all, I should make sure to prevent excessive API calls as the user types. A small delay of about 300ms after the user has stopped typing could be made before sending the request to the API.", _jsx(_components.br, {}), "\n", "I already use React Query for data fetching, so I should just continue using that for the search functionality as well. It gives me caching and state management capabilities to handle search requests. This provides automatic loading states, error handling, and data caching."]
+    }), "\n", _jsx(_components.p, {
+      children: "Lastly, I will need to create a dedicated API route for searching posts and users, with filtering logic based on the search term."
+    }), "\n", _jsx(_components.h3, {
+      children: "Media upload"
+    }), "\n", _jsx(_components.p, {
+      children: "Users can add media (images and videos) to their posts."
+    }), "\n", _jsx(_components.p, {
+      children: "However, they must do this by linking to the media they want to include in their post or comment."
+    }), "\n", _jsx(_components.p, {
+      children: "This is because it is not currently possible to upload media directly from the platform."
+    }), "\n", _jsx(_components.p, {
+      children: "The media must be hosted elsewhere."
+    }), "\n", _jsx(_components.p, {
+      children: "It would be much more ideal to allow users to upload their media directly on the platform."
+    }), "\n", _jsx(_components.p, {
+      children: "How could this be implemented?\nInstead of storing the media files directly in the database, it’s best to store only metadata and file URLs."
+    }), "\n", _jsx(_components.p, {
+      children: "So, we need a database table for the metadata and file URLs.\nAnd, it’s very important that the database table is storing a foreign key to the users table (who uploaded it) and a foreign key to the posts table (if attached to a post) or a foreign key to the comments table (if attached to a comment)."
+    }), "\n", _jsx(_components.p, {
+      children: "We need these foreign keys because otherwise, the system has no idea who uploaded the media or which post or comment it should be included in."
+    }), "\n", _jsx(_components.p, {
+      children: "As stated earlier, storing media directly in a database table is less than ideal.\nThis means, the system needs a storage solution. In a real-world application, this could be done using AWS S3 as the storage solution."
+    }), "\n", _jsx(_components.p, {
+      children: "The steps to upload media would be something like:"
+    }), "\n", _jsxs(_components.ol, {
+      children: ["\n", _jsxs(_components.li, {
+        children: ["The user uploads a file (this file is sent via ", _jsx(_components.code, {
+          children: "multipart/form-data"
+        }), ")."]
+      }), "\n", _jsx(_components.li, {
+        children: "Server should then process the file.\nThe server would need to make sure the file follows some guidelines.\nFor instance, there might be implemented a limit on how large the files are allowed to be, e.g. 5GB."
+      }), "\n"]
+    }), "\n", _jsxs(_components.p, {
+      children: ["The server would also need to make sure the file type is allowed. Since this is for media uploads, it does not make sense to allow users to upload a ", _jsx(_components.code, {
+        children: ".txt"
+      }), " file."]
+    }), "\n", _jsx(_components.p, {
+      children: "Lastly, the server should make sure to save the metadata in the database table."
+    }), "\n", _jsx(_components.h3, {
+      children: "User interface improvements"
+    }), "\n", _jsx(_components.p, {
+      children: "When I started working on this project, my goal was not to build a beautiful user interface. Instead, I wanted to focus on learning the technical aspects of building a modern and complex web application."
+    }), "\n", _jsx(_components.p, {
+      children: "I focused on understanding how to implement user authentication, efficiently fetch and mutate data, how to structure a large project, and leverage the features provided by React (e.g. hooks) and Next.js (e.g. API routes and the App Router)."
+    }), "\n", _jsx(_components.p, {
+      children: "However, if I were to improve the visual design of the application, I would focus on implementing a light mode and ensuring that the UI looks good on all screen sizes."
+    }), "\n", _jsx(_components.p, {
+      children: "Currently, the UI is optimized for desktop screens."
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = {
+    ..._provideComponents(),
+    ...props.components
+  };
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+return {
+  default: MDXContent
+};
+5:["$","$L14",null,{"meta":{"title":"Social Network","date":"2025-03-22","excerpt":"**BLOP** is a social network I created as a portfolio project, designed to closely mirror the functionality of modern social media platforms. My goal was to make it as realistic and feature-rich as possible, providing users with an experience they would expect from today's social networks.","author":"Frederik Handberg","coverImage":"/home.jpeg","tags":["Next.js","TypeScript","Prisma ORM","Express","Socket.IO"],"readingTime":"9 min read","slug":"social-network"},"tableOfContents":["$","$L15",null,{"items":[{"level":2,"text":"Project Structure","id":"project-structure"},{"level":3,"text":"Frontend & API (Next.js)","id":"frontend-api-nextjs"},{"level":3,"text":"Notification Service (Express.js)","id":"notification-service-expressjs"},{"level":2,"text":"Project Features","id":"project-features"},{"level":3,"text":"User Authentication","id":"user-authentication"},{"level":3,"text":"Reset Password","id":"reset-password"},{"level":3,"text":"Bookmarks","id":"bookmarks"},{"level":3,"text":"Link Accounts","id":"link-accounts"},{"level":3,"text":"User Profile","id":"user-profile"},{"level":3,"text":"Quote Posts","id":"quote-posts"},{"level":3,"text":"Notification System","id":"notification-system"},{"level":2,"text":"Future Development","id":"future-development"},{"level":3,"text":"Search functionality","id":"search-functionality"},{"level":3,"text":"Media upload","id":"media-upload"},{"level":3,"text":"User interface improvements","id":"user-interface-improvements"}]}],"children":["$","$L16",null,{"source":{"compiledSource":"$17","frontmatter":{},"scope":{}}}]}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+13:{"metadata":[["$","title","0",{"children":"Social Network | Frederik Handberg"}],["$","meta","1",{"name":"description","content":"**BLOP** is a social network I created as a portfolio project, designed to closely mirror the functionality of modern social media platforms. My goal was to make it as realistic and feature-rich as possible, providing users with an experience they would expect from today's social networks."}],["$","meta","2",{"property":"og:title","content":"Social Network | Frederik Handberg"}],["$","meta","3",{"property":"og:description","content":"**BLOP** is a social network I created as a portfolio project, designed to closely mirror the functionality of modern social media platforms. My goal was to make it as realistic and feature-rich as possible, providing users with an experience they would expect from today's social networks."}],["$","meta","4",{"property":"og:image","content":"https://frederikhandberg.com/home.jpeg"}],["$","meta","5",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","6",{"name":"twitter:title","content":"Social Network | Frederik Handberg"}],["$","meta","7",{"name":"twitter:description","content":"**BLOP** is a social network I created as a portfolio project, designed to closely mirror the functionality of modern social media platforms. My goal was to make it as realistic and feature-rich as possible, providing users with an experience they would expect from today's social networks."}],["$","meta","8",{"name":"twitter:image","content":"https://frederikhandberg.com/home.jpeg"}],["$","link","9",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+c:{"metadata":"$13:metadata","error":null,"digest":"$undefined"}

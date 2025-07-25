@@ -1,0 +1,416 @@
+1:"$Sreact.fragment"
+3:I[87555,[],""]
+4:I[31295,[],""]
+6:I[59665,[],"MetadataBoundary"]
+8:I[59665,[],"OutletBoundary"]
+b:I[74911,[],"AsyncMetadataOutlet"]
+d:I[59665,[],"ViewportBoundary"]
+f:I[26614,[],""]
+:HL["/_next/static/media/4f05ba3a6752a328-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/css/b201a41e6d7e90e7.css","style"]
+0:{"P":null,"b":"5ullFcflmE8UEiYXekqL3","p":"","c":["","software","portfolio","semester-project-3"],"i":false,"f":[[["",{"children":["software",{"children":["portfolio",{"children":[["slug","semester-project-3","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/b201a41e6d7e90e7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":["software",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","semester-project-3","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","O8Yaoll9DTpYVQ4egm_9I",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
+10:I[51362,["177","static/chunks/app/layout-2528eadc4b6d8d16.js"],"ThemeProvider"]
+11:"$Sreact.suspense"
+12:I[74911,[],"AsyncMetadata"]
+2:["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"__variable_e8ce0c __variable_4bc053 bg-white font-sans text-black antialiased dark:bg-black dark:text-white","children":["$","$L10",null,{"attribute":"class","defaultTheme":"system","enableSystem":true,"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]}]
+7:["$","$11",null,{"fallback":null,"children":["$","$L12",null,{"promise":"$@13"}]}]
+a:null
+14:I[80731,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default"]
+15:I[69788,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default"]
+16:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","319","static/chunks/319-62db3c202eb4185a.js","581","static/chunks/581-812fa5d9aea0bd78.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-de1a16dc1c9aac40.js"],"default",1]
+17:T4e37,"use strict";
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+function _createMdxContent(props) {
+  const _components = {
+    a: "a",
+    br: "br",
+    code: "code",
+    h2: "h2",
+    h3: "h3",
+    img: "img",
+    li: "li",
+    p: "p",
+    strong: "strong",
+    ul: "ul",
+    ..._provideComponents(),
+    ...props.components
+  };
+  return _jsxs(_Fragment, {
+    children: [_jsxs(_components.p, {
+      children: ["The goal of the semester project was to design and implement a distributed system consisting of at least two servers. Our team chose to build a system for a fictional real estate agency called ", _jsx(_components.strong, {
+        children: "Real Estate Plus"
+      }), "."]
+    }), "\n", _jsxs(_components.p, {
+      children: ["GitHub repository: ", _jsx(_components.a, {
+        href: "https://github.com/frederikhandberg0709/SEP3",
+        children: "https://github.com/frederikhandberg0709/SEP3"
+      })]
+    }), "\n", _jsx(_components.h2, {
+      children: "Project Structure"
+    }), "\n", _jsx(_components.p, {
+      children: "The project is structured as follows:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "/Blazor"
+        }), ": A Blazor web application for customers."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "/GUI"
+        }), ": A JavaFX desktop application designed for administrative users."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "/restful-server"
+        }), ": A Java Spring Boot REST server that handles backend operations and API requests."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "/signalr-server"
+        }), ": A SignalR server that delivers real-time notifications to the Blazor web application."]
+      }), "\n"]
+    }), "\n", _jsx(_components.h2, {
+      children: "Functional Requirements"
+    }), "\n", _jsx(_components.p, {
+      children: "The system was designed to meet the following functional requirements defined through user stories. Each user story represents a specific feature written to reflect the user's goals and interactions with the system."
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Create user account:"
+      }), " As a customer, I want to have the ability to create an account, so that I can access extra features like save bookmarks and book an agent."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Create administrator account:"
+      }), " As an administrator, I want to have the ability to create an account, so that I can manage properties, bookings, and agents."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Update user information:"
+      }), " As a customer, I want to be able to update my user account details, so that the agency can still contact me if my information changes."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Property filters:"
+      }), " As a customer, I want to have the ability to use filters such as, property type, so that I can find a property that matches my needs."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Book agent:"
+      }), " As a customer, I want to be able to book an appointment with an agent, so that I can receive further information and ask questions about a specific property."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Bookmark property listings:"
+      }), " As a customer, I want to be able to bookmark listings, so that I can easily revisit and review them later."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Real-time notifications:"
+      }), " As a customer, I want to receive notifications about my bookmarked properties, so that I can stay updated on any changes to them."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Search in admin dashboard:"
+      }), " As an administrator, I want to be able to search for property listings, so that I can quickly find the specific property I'm looking for."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Create property listing:"
+      }), " As an administrator, I want to be able to create new property listings, so that they can be added to the website."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Upload property images:"
+      }), " As an administrator, I want to be able to upload images of properties, so that customers can visually assess whether they are interested in a property."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Update property details:"
+      }), " As an administrator, I want to be able to update the details of property listings, so that I can ensure all information remains accurate and up to date."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Delete property listing:"
+      }), " As an administrator, I want to be able to delete property listings, so that outdated or irrelevant listings no longer appear to customers."]
+    }), "\n", _jsx(_components.h2, {
+      children: "System Architecture"
+    }), "\n", _jsx(_components.p, {
+      children: "This project consists of five subsystems:"
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/High_level_system_architecture.png",
+        alt: "High-level system architecture diagram"
+      })
+    }), "\n", _jsx(_components.h3, {
+      children: "PostgreSQL database"
+    }), "\n", _jsx(_components.p, {
+      children: "The PostgreSQL database is he data store for the entire system. It sores all the domain data such as:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "User accounts."
+      }), "\n", _jsx(_components.li, {
+        children: "Property listings."
+      }), "\n", _jsx(_components.li, {
+        children: "Bookmarks."
+      }), "\n", _jsx(_components.li, {
+        children: "Bookings."
+      }), "\n", _jsx(_components.li, {
+        children: "Agents."
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "The database is exclusively accessed by the Spring Boot REST server."
+    }), "\n", _jsx(_components.h3, {
+      children: "Spring Boot REST server"
+    }), "\n", _jsx(_components.p, {
+      children: "The REST server built with Java Spring Boot is the backend of the system."
+    }), "\n", _jsx(_components.p, {
+      children: "It acts as the middleman and is responsible for:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "Handling HTTP requests from the Blazor web app and the JavaFX desktop app."
+      }), "\n", _jsx(_components.li, {
+        children: "Performs authentication and authorization using Spring Security."
+      }), "\n", _jsx(_components.li, {
+        children: "Writing and fetching data from the database."
+      }), "\n", _jsx(_components.li, {
+        children: "Notifies the SignalR server when prices of a property changes."
+      }), "\n"]
+    }), "\n", _jsx(_components.h3, {
+      children: "SignalR notification server"
+    }), "\n", _jsx(_components.p, {
+      children: "The SignalR server is responsible for handling real-time communication with the Blazor web application."
+    }), "\n", _jsx(_components.h3, {
+      children: "JavaFX desktop application"
+    }), "\n", _jsx(_components.p, {
+      children: "The JavaFX desktop application is made for administrators of the real estate agency who manage the backend data."
+    }), "\n", _jsx(_components.p, {
+      children: "The app provides a GUI to:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "Create new accounts for admins."
+      }), "\n", _jsx(_components.li, {
+        children: "Create, update, and delete property listings."
+      }), "\n", _jsx(_components.li, {
+        children: "Manage agents."
+      }), "\n", _jsx(_components.li, {
+        children: "View booking appointments."
+      }), "\n"]
+    }), "\n", _jsxs(_components.p, {
+      children: ["The JavaFX desktop app is communicating with the REST API for all HTTP requests. Administrator accounts are assigned the ", _jsx(_components.code, {
+        children: "ADMIN"
+      }), " role."]
+    }), "\n", _jsx(_components.h3, {
+      children: "Blazor web application"
+    }), "\n", _jsx(_components.p, {
+      children: "The Blazor web application is the frontend for customers."
+    }), "\n", _jsx(_components.p, {
+      children: "It allows users to:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "Register a new customer account."
+      }), "\n", _jsx(_components.li, {
+        children: "Browse and bookmark property listings."
+      }), "\n", _jsx(_components.li, {
+        children: "Book appointments with agents."
+      }), "\n", _jsx(_components.li, {
+        children: "Receive real-time notifications when the price changes for a bookmarked property."
+      }), "\n", _jsx(_components.li, {
+        children: "Update personal profile information."
+      }), "\n"]
+    }), "\n", _jsxs(_components.p, {
+      children: ["The web application communicated with the REST API for all the data operations and connects to the SignalR server to receive notifications instantly. Customers who register through the web app are assigned the ", _jsx(_components.code, {
+        children: "USER"
+      }), " role by default."]
+    }), "\n", _jsx(_components.h2, {
+      children: "System Implementation"
+    }), "\n", _jsx(_components.h3, {
+      children: "Tech Stack"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "Frontend (Web)"
+        }), ": Blazor"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "Frontend (Desktop)"
+        }), ": JavaFX"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "Backend (REST API)"
+        }), ": Java Spring Boot"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "Real-time notifications"
+        }), ": SignalR"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.code, {
+          children: "Database"
+        }), ": PostgreSQL"]
+      }), "\n"]
+    }), "\n", _jsx(_components.h2, {
+      children: "Project Features"
+    }), "\n", _jsx(_components.h3, {
+      children: "User authentication"
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.strong, {
+        children: "Blazor web application for customers:"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/Blazor_Login.jpeg",
+        alt: "Login page of the Blazor web application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/Blazor_Register.jpeg",
+        alt: "Registration page of the Blazor web application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.strong, {
+        children: "JavaFX desktop application for administrators:"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/JavaFX_Login.png",
+        alt: "Login window of the JavaFX desktop application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/JavaFX_Register.png",
+        alt: "Registration window of the JavaFX desktop application"
+      })
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Role-based authentication"
+      }), _jsx(_components.br, {}), "\n", "The system uses role-based authentication to manage access and permissions."]
+    }), "\n", _jsxs(_components.p, {
+      children: ["There are two distinct user roles: ", _jsx(_components.code, {
+        children: "USER"
+      }), " and ", _jsx(_components.code, {
+        children: "ADMIN"
+      }), ":"]
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: ["Customers who register for an account through the Blazor web application are automatically assigned the ", _jsx(_components.code, {
+          children: "USER"
+        }), " role."]
+      }), "\n", _jsxs(_components.li, {
+        children: ["Administrators who register through the JavaFX desktop application are automatically assigned the ", _jsx(_components.code, {
+          children: "ADMIN"
+        }), " role."]
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "Administrators have additional privileges, such as managing property listings. Therefore, it is important to distinguish between administrators and customers. This ensures that customers cannot access API endpoints they are not authorized to use."
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "API endpoint security"
+      }), _jsx(_components.br, {}), "\n", "Access control is enforced by our Java REST API, which uses Spring Security to handle authentication and authorization.\nEndpoint security is achieved by using ", _jsx(_components.code, {
+        children: "@PreAuthorize(\"hasRole('ADMIN')\")"
+      }), " on endpoints that only administrators are allowed to access."]
+    }), "\n", _jsx(_components.h3, {
+      children: "Manage property listings"
+    }), "\n", _jsx(_components.p, {
+      children: "Administrators can manage property listings through the JavaFX desktop application."
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Create property"
+      }), _jsx(_components.br, {}), "\n", "Administrators can add new property listings by filling in the details such as price, address, property type, and upload images."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Update property information"
+      }), _jsx(_components.br, {}), "\n", "Details for existing property listings can be updated, such as changing the price."]
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/JavaFX_Edit_Property.png",
+        alt: "Edit property window of the JavaFX desktop application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "Uploading additional images is also supported, as well as deleting existing images."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/JavaFX_Edit_Property_Images.png",
+        alt: "Image upload window of the JavaFX desktop application"
+      })
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Delete property"
+      }), _jsx(_components.br, {}), "\n", "Administrators can remove properties that are no longer available or relevant from the system entirely."]
+    }), "\n", _jsx(_components.h3, {
+      children: "Bookmark property listings"
+    }), "\n", _jsxs(_components.p, {
+      children: ["Users can save properties as bookmarks to easily view them later.\nBookmarked properties are displayed on the ", _jsx(_components.code, {
+        children: "Account"
+      }), " page, where users can also remove bookmarks for listings they are no longer interested in."]
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/Blazor_Account.jpeg",
+        alt: "Account page of the Blazor web application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "When changes happen to bookmarked properties, the user will receive a notification.\nFor example, if the price is updated. In this case, the user will receive a notification about the new price of the property."
+    }), "\n", _jsx(_components.h3, {
+      children: "Manage agents"
+    }), "\n", _jsx(_components.p, {
+      children: "Administrators can manage real estate agents through the JavaFX desktop application. These agents are displayed in the Blazor web application, where customers can book them for property viewings and appointments."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/JavaFX_Agent_List.png",
+        alt: "Agent management window of the JavaFX desktop application"
+      })
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Add new agent"
+      }), _jsx(_components.br, {}), "\n", "Administrators can register new agents by providing the name and contact information. Once an agent has been added, they become available for booking on the web application."]
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.strong, {
+        children: "Remove agent"
+      }), _jsx(_components.br, {}), "\n", "Agents can be removed from the system if they are no longer active. This prevents customers from booking inactive agents."]
+    }), "\n", _jsx(_components.h3, {
+      children: "Book an agent"
+    }), "\n", _jsx(_components.h3, {
+      children: "Update user information"
+    }), "\n", _jsxs(_components.p, {
+      children: ["Users can update their information inside the Blazor web application by going to the ", _jsx(_components.code, {
+        children: "Account"
+      }), " page and then clicking on ", _jsx(_components.code, {
+        children: "Update Profile"
+      }), " button."]
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/Blazor_Update_Profile.jpeg",
+        alt: "Update profile page of Blazor web application"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "From this view, users can change:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsx(_components.li, {
+        children: "Username"
+      }), "\n", _jsx(_components.li, {
+        children: "Full name"
+      }), "\n", _jsx(_components.li, {
+        children: "Email address"
+      }), "\n", _jsx(_components.li, {
+        children: "Phone number"
+      }), "\n", _jsx(_components.li, {
+        children: "Address"
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "Form fields are pre-filled with the user's current information, making it easy to edit."
+    }), "\n", _jsx(_components.p, {
+      children: "As a security measure, updating sensitive data such as the username or email address requires the user to enter their password. This is to prevent unauthorized changes in case the JWT session token is compromised."
+    }), "\n", _jsx(_components.h3, {
+      children: "Real-time notifications"
+    }), "\n", _jsx(_components.p, {
+      children: "A SignalR server was implemented to handle real-time notifications.\nWhen a price change occurs, the Java REST server notifies the SignalR server, which then sends the real-time notification to the Blazor web application. This approach allows instant updates without requiring the user to refresh the page. SignalR was chosen for its speed and efficiency in delivering real-time notifications."
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = {
+    ..._provideComponents(),
+    ...props.components
+  };
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+return {
+  default: MDXContent
+};
+5:["$","$L14",null,{"meta":{"title":"Semester Project 3","date":"2025-04-17","excerpt":"This project was developed as part of our third semester project (SEP3) for my **Software Engineering** degree.","author":"Frederik Handberg","coverImage":"/Blazor_Properties.jpeg","tags":["Java Spring Boot","SignalR","Blazor","JavaFX","PostgreSQL"],"readingTime":"7 min read","slug":"semester-project-3"},"tableOfContents":["$","$L15",null,{"items":[{"level":2,"text":"Project Structure","id":"project-structure"},{"level":2,"text":"Functional Requirements","id":"functional-requirements"},{"level":2,"text":"System Architecture","id":"system-architecture"},{"level":3,"text":"PostgreSQL database","id":"postgresql-database"},{"level":3,"text":"Spring Boot REST server","id":"spring-boot-rest-server"},{"level":3,"text":"SignalR notification server","id":"signalr-notification-server"},{"level":3,"text":"JavaFX desktop application","id":"javafx-desktop-application"},{"level":3,"text":"Blazor web application","id":"blazor-web-application"},{"level":2,"text":"System Implementation","id":"system-implementation"},{"level":3,"text":"Tech Stack","id":"tech-stack"},{"level":2,"text":"Project Features","id":"project-features"},{"level":3,"text":"User authentication","id":"user-authentication"},{"level":3,"text":"Manage property listings","id":"manage-property-listings"},{"level":3,"text":"Bookmark property listings","id":"bookmark-property-listings"},{"level":3,"text":"Manage agents","id":"manage-agents"},{"level":3,"text":"Book an agent","id":"book-an-agent"},{"level":3,"text":"Update user information","id":"update-user-information"},{"level":3,"text":"Real-time notifications","id":"real-time-notifications"}]}],"children":["$","$L16",null,{"source":{"compiledSource":"$17","frontmatter":{},"scope":{}}}]}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+13:{"metadata":[["$","title","0",{"children":"Semester Project 3 | Frederik Handberg"}],["$","meta","1",{"name":"description","content":"This project was developed as part of our third semester project (SEP3) for my **Software Engineering** degree."}],["$","meta","2",{"property":"og:title","content":"Semester Project 3 | Frederik Handberg"}],["$","meta","3",{"property":"og:description","content":"This project was developed as part of our third semester project (SEP3) for my **Software Engineering** degree."}],["$","meta","4",{"property":"og:image","content":"https://frederikhandberg.com/Blazor_Properties.jpeg"}],["$","meta","5",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","6",{"name":"twitter:title","content":"Semester Project 3 | Frederik Handberg"}],["$","meta","7",{"name":"twitter:description","content":"This project was developed as part of our third semester project (SEP3) for my **Software Engineering** degree."}],["$","meta","8",{"name":"twitter:image","content":"https://frederikhandberg.com/Blazor_Properties.jpeg"}],["$","link","9",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
+c:{"metadata":"$13:metadata","error":null,"digest":"$undefined"}
