@@ -10,7 +10,7 @@ import Footer from "@/components/sections/Footer";
 import ThemeToggle from "@/components/ThemeToggle";
 import ContactSection from "@/components/sections/ContactSection";
 
-export default function Home() {
+export default function Software() {
   const homeRef = useRef<HTMLDivElement>(null);
   const portfolioRef = useRef<HTMLDivElement>(null);
   const techStackRef = useRef<HTMLDivElement>(null);

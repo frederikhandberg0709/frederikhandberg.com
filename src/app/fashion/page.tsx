@@ -1,6 +1,6 @@
 import ProcessStep from "./ProcessSteps";
 
-export default function FashionPage() {
+export default function Fashion() {
   return (
     <div>
       <h1 className="text-2xl">Fashion</h1>

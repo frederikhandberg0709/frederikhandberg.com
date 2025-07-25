@@ -14,7 +14,7 @@ import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/MobileNavMenu";
 import { HomeScrollIndicator } from "@/components/HomeScrollIndicator";
 
-export default function HomePage() {
+export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
