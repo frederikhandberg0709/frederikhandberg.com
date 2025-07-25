@@ -2,6 +2,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import ThemeToggle from "./ThemeToggle";
 
 export default function MobileNavMenu({
   menuType,
@@ -133,6 +134,7 @@ export default function MobileNavMenu({
                 <Link href="/fashion" className={linkStyles()}>
                   Fashion
                 </Link>
+                <ThemeToggle />
               </>
             )}
 

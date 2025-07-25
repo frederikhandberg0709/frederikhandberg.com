@@ -85,9 +85,9 @@ export default function HomePage() {
 
           <section
             id="introduction"
-            className="mt-24 max-w-3xl max-lg:mx-4 md:pt-24"
+            className="flex min-h-[calc(100vh-400px)] max-w-3xl items-center justify-center max-lg:mx-4"
           >
-            <div className="flex flex-col items-start justify-center gap-2.5">
+            <div className="flex flex-col items-start justify-center gap-2.5 pt-24 md:pt-52">
               <h1 className="text-2xl font-medium">
                 Hello and welcome to my personal website! 👋
               </h1>
@@ -149,7 +149,7 @@ export default function HomePage() {
 
           <section
             id="contact"
-            className="flex flex-col items-center gap-5 max-lg:mx-4 sm:pt-24 md:w-[450px]"
+            className="flex min-h-[calc(100vh-400px)] flex-col items-center gap-5 pt-24 max-lg:mx-4 sm:pt-52 md:w-[450px]"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               CONTACT
