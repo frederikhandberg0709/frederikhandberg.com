@@ -27,7 +27,7 @@ body {
 
 @custom-variant light (html:not(.dark) &);
 
-.emoji-hover::after {
+.emoji-tooltip::after {
   content: attr(data-emoji);
   position: absolute;
   left: 50%;
@@ -41,7 +41,15 @@ body {
     transform 0.3s ease;
   pointer-events: none;
 }
-.emoji-hover:hover::after {
+
+@media (hover: hover) and (pointer: fine) {
+  .emoji-tooltip:hover::after {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+.emoji-tooltip:active::after {
   opacity: 1;
   transform: translate(-50%, -100%);
 }

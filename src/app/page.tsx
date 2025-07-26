@@ -13,6 +13,7 @@ import NameWithHoverImage from "@/components/NameWithHoverImage";
 import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/MobileNavMenu";
 import { HomeScrollIndicator } from "@/components/HomeScrollIndicator";
+import Image from "next/image";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -99,15 +100,28 @@ export default function Home() {
                 >
                   Frederik Handberg
                 </NameWithHoverImage>
+                <span className="inline-block sm:hidden">
+                  Frederik Handberg
+                </span>
                 . I&apos;m 22 years old and currently studying{" "}
                 <div className="relative inline-block">
-                  <span className="emoji-hover font-bold" data-emoji="💻 🚀">
+                  <span
+                    className="emoji-tooltip sm:emoji-hover font-bold"
+                    data-emoji="💻 🚀"
+                  >
                     Software Engineering
                   </span>
                 </div>{" "}
                 in Horsens, Denmark 🇩🇰
-                <br />
-                <br />
+              </p>
+              <Image
+                src="/photo-of-me.JPG"
+                alt="Image of me"
+                width={0}
+                height={0}
+                className="h-auto w-full rounded-lg sm:hidden"
+              />
+              <p>
                 I&apos;m passionate about developing full-stack web applications
                 and native apps mainly for the Apple platforms. I enjoy building
                 beautiful, thoughtful user interfaces and working on scalable
@@ -124,7 +138,7 @@ export default function Home() {
                 In addition to doing software development, I&apos;m also
                 exploring{" "}
                 <div className="relative inline-block">
-                  <span className="emoji-hover font-bold" data-emoji="🪡 🧵">
+                  <span className="emoji-tooltip font-bold" data-emoji="🪡 🧵">
                     Fashion Design
                   </span>
                 </div>

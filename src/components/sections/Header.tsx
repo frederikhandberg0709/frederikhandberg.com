@@ -63,7 +63,7 @@ export default function Header() {
         Building fun{" "}
         <div className="relative inline-block">
           <span
-            className="transition-color emoji-hover font-bold duration-300"
+            className="transition-color emoji-tooltip font-bold duration-300"
             style={{
               color:
                 hovered === "projects" ? hoveredTextColor() : getTextColor(),
@@ -80,7 +80,7 @@ export default function Header() {
         for a degree in{" "}
         <div className="relative inline-block">
           <span
-            className="transition-color emoji-hover font-bold duration-300"
+            className="transition-color emoji-tooltip font-bold duration-300"
             style={{
               color:
                 hovered === "engineering" ? hoveredTextColor() : getTextColor(),
