@@ -35,7 +35,24 @@ export default function Blog() {
           </div>
         </nav>
 
-        <div className="mt-24">
+        <div className="mt-24 flex flex-col items-center gap-8">
+          <div className="max-w-lg space-y-3">
+            <h2 className="text-center text-lg font-bold tracking-wider">
+              Welcome to my Blog 🚀
+            </h2>
+            <p className="text-sm text-neutral-600">
+              On my short-form blog, I write about the software projects
+              I&apos;m working on. I share the progress I make and the struggles
+              I face along the way.
+              <br />
+              <br />
+              Besides that, I also share whatever I&apos;m passionate about like
+              sewing garments as part of my fashion design hobby, and technology
+              including AI, large language models, privacy, and decentralized
+              open protocols.
+            </p>
+          </div>
+
           <NostrProvider relayUrls={relayUrls} debug={false}>
             <ProfileProvider>
               <BlogTimeline filterType="all" />

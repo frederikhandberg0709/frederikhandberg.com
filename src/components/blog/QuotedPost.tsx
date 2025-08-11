@@ -65,7 +65,7 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
   const hasTextContent = textContent.trim().length > 0;
 
   return (
-    <div className="rounded-lg border border-gray-200 p-4 transition hover:border-gray-300">
+    <div className="rounded-lg border border-gray-200 p-4 transition hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800">
       <div className="mb-2 flex items-center">
         <div className="group flex items-center gap-2">
           {authorData?.picture && !imageError ? (
