@@ -35,7 +35,7 @@ export default function Blog() {
           </div>
         </nav>
 
-        <div className="mt-24 flex flex-col items-center gap-8">
+        <div className="mb-10 mt-24 flex flex-col items-center gap-8">
           <div className="max-w-lg space-y-3">
             <h2 className="text-center text-lg font-bold tracking-wider">
               Welcome to my Blog 🚀
@@ -47,9 +47,9 @@ export default function Blog() {
               <br />
               <br />
               Besides that, I also share whatever I&apos;m passionate about like
-              sewing garments as part of my fashion design hobby, and technology
-              including AI, large language models, privacy, and decentralized
-              open protocols.
+              sewing garments as part of my fashion design hobby, nature, and
+              technology including AI, large language models, privacy, and
+              decentralized open protocols.
             </p>
           </div>
 
