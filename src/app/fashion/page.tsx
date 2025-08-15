@@ -5,13 +5,21 @@ export default function Fashion() {
     <div>
       <h1 className="text-2xl">Fashion</h1>
       <p className="mt-3">🚧 UNDER CONSTRUCTION 🚧</p>
+
+      <header className="flex h-screen flex-col items-center justify-center">
+        <h1 className="max-w-3xl text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
+          Bringing my ideas to life through fashion design, pattern drafting,
+          and sewing.
+        </h1>
+      </header>
+
       <section>
-        <h1 className="text-center text-5xl font-light">DESIGNS</h1>
+        <h2 className="text-center text-5xl font-light">SEWING MACHINES</h2>
       </section>
 
       <section>
         <div className="m-auto max-w-2xl">
-          <h1 className="text-center text-5xl font-light">PROCESS</h1>
+          <h2 className="text-center text-5xl font-light">PROCESS</h2>
           <p className="mt-4 text-center text-stone-500">
             How I go from idea to a finished garment.
           </p>
@@ -77,7 +85,7 @@ export default function Fashion() {
       </section>
 
       <section>
-        <h1 className="text-center text-5xl font-light">SEWING MACHINES</h1>
+        <h2 className="text-center text-5xl font-light">DESIGNS</h2>
       </section>
     </div>
   );

@@ -7,7 +7,7 @@ import {
 } from "@/utils/processNostrContent";
 import styleHashtags from "@/utils/styleHashtags";
 import { useImageOverlay } from "@/utils/useImageOverlay";
-import { User } from "lucide-react";
+import { MessageCircle, User } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { QuotedPost } from "./QuotedPost";
@@ -18,6 +18,9 @@ interface BlogPostProps {
   displayName?: string;
   username?: string;
   content: string;
+  showReplies?: boolean;
+  replies?: NostrEvent[];
+  onToggleReplies?: () => void;
   timestamp: NostrEvent | { created_at: number };
   pubkey?: string;
 }
@@ -27,6 +30,9 @@ export default function BlogPost({
   displayName,
   username,
   content,
+  showReplies = false,
+  replies = [],
+  onToggleReplies,
   timestamp,
   pubkey,
 }: BlogPostProps) {
@@ -102,7 +108,58 @@ export default function BlogPost({
     );
   };
 
+  const renderReply = (reply: NostrEvent) => {
+    const replyUserData = getProfile(reply.pubkey);
+    const { mediaUrls: replyMediaUrls, textContent: replyTextContent } =
+      processNostrContent(reply.content);
+
+    return (
+      <div
+        key={reply.id}
+        className="ml-4 border-l-2 border-gray-300 py-2 pl-4 dark:border-gray-600"
+      >
+        <div className="flex items-start gap-3">
+          {replyUserData?.picture ? (
+            <Image
+              src={replyUserData.picture}
+              alt={`${replyUserData.display_name}'s profile picture`}
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-full object-cover"
+            />
+          ) : (
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800">
+              <User size={16} className="text-gray-400" />
+            </div>
+          )}
+
+          <div className="flex-1">
+            <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+              <span className="font-medium">
+                {replyUserData?.display_name ||
+                  `@${replyUserData?.name}` ||
+                  reply.pubkey.substring(0, 8)}
+              </span>
+              <span>•</span>
+              <span>{convertTimestamp(reply)}</span>
+            </div>
+
+            <div className="mt-1 text-sm">
+              {styleHashtags(replyTextContent)}
+            </div>
+
+            {(replyMediaUrls.images.length > 0 ||
+              replyMediaUrls.videos.length > 0) && (
+              <div className="mt-2">{renderMedia(replyMediaUrls)}</div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const hasTextContent = textContent.trim().length > 0;
+  const hasReplies = replies.length > 0;
 
   return (
     <div className="flex flex-col gap-2.5 border-gray-200 p-4 transition duration-200 hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800 sm:w-[600px] sm:rounded-2xl sm:border">
@@ -157,6 +214,41 @@ export default function BlogPost({
       )}
 
       {renderMedia(mediaUrls)}
+
+      {hasReplies && onToggleReplies && (
+        <div className="mt-4 flex items-center justify-start">
+          <button
+            onClick={onToggleReplies}
+            className="flex items-center gap-2 rounded-full bg-gray-100 px-3 py-1.5 text-sm text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+          >
+            <MessageCircle size={16} />
+            <span>{replies.length}</span>
+            <span>{replies.length === 1 ? "reply" : "replies"}</span>
+            <svg
+              className={`h-4 w-4 transition-transform ${showReplies ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+      )}
+
+      {showReplies && hasReplies && (
+        <div className="mt-4 space-y-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-900/50">
+          <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+            {replies.length} {replies.length === 1 ? "reply" : "replies"}:
+          </div>
+          {replies.map(renderReply)}
+        </div>
+      )}
     </div>
   );
 }

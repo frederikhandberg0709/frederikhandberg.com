@@ -59,7 +59,7 @@ export default function Home() {
           <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
             Building fun software projects while studying
             <br />
-            for a degree in Software Engineering
+            for a degree in Software Engineering.
           </h1>
         </div>
       )}
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
           <h1 className="max-w-3xl text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
             Bringing my ideas to life through fashion design, pattern drafting,
-            and sewing
+            and sewing.
           </h1>
         </div>
       )}
