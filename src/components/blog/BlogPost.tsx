@@ -201,7 +201,7 @@ export default function BlogPost({
   const hasReplies = replies.length > 0;
 
   return (
-    <div className="flex flex-col gap-2.5 border-gray-200 p-4 transition duration-200 hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800 sm:w-[600px] sm:rounded-2xl sm:border">
+    <div className="flex flex-col gap-2.5 border-gray-200 px-4 py-4 transition duration-200 hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800 max-sm:py-5 sm:w-[600px] sm:rounded-2xl sm:border">
       <div className="flex items-center justify-between">
         <div className="group flex gap-[10px]">
           {actualProfilePicture && !imageError ? (

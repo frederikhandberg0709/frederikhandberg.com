@@ -154,13 +154,15 @@ export default function BlogTimeline({
             pubkey={event.pubkey}
             onToggleReplies={() => toggleReplies(event.id)}
           />
+
+          <div className="h-px w-full bg-gray-200 dark:bg-gray-800 sm:h-0"></div>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="flex flex-col items-center gap-[20px] overflow-x-hidden sm:gap-[10px]">
+    <div className="flex flex-col items-center overflow-x-hidden sm:gap-5">
       {filterEvents(originalPosts).slice(0, maxElements).map(renderPost)}
     </div>
   );
