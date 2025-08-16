@@ -108,52 +108,91 @@ export default function BlogPost({
     );
   };
 
-  const renderReply = (reply: NostrEvent) => {
+  const buildReplyTree = (
+    replies: NostrEvent[],
+    parentId?: string,
+  ): NostrEvent[] => {
+    return replies
+      .filter((reply) => {
+        const eTags = reply.tags.filter((tag) => tag[0] === "e");
+
+        if (eTags.length === 0) return false;
+
+        const directParentTag = eTags[eTags.length - 1];
+
+        return directParentTag && directParentTag[1] === parentId;
+      })
+      .sort((a, b) => a.created_at - b.created_at);
+  };
+
+  const renderReply = (reply: NostrEvent, depth: number = 0) => {
     const replyUserData = getProfile(reply.pubkey);
     const { mediaUrls: replyMediaUrls, textContent: replyTextContent } =
       processNostrContent(reply.content);
 
+    const maxDepth = 6;
+    const actualDepth = Math.min(depth, maxDepth);
+
+    const nestedReplies = buildReplyTree(replies, reply.id);
+
     return (
-      <div
-        key={reply.id}
-        className="ml-4 border-l-2 border-gray-300 py-2 pl-4 dark:border-gray-600"
-      >
-        <div className="flex items-start gap-3">
-          {replyUserData?.picture ? (
-            <Image
-              src={replyUserData.picture}
-              alt={`${replyUserData.display_name}'s profile picture`}
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-full object-cover"
-            />
-          ) : (
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800">
-              <User size={16} className="text-gray-400" />
-            </div>
-          )}
-
-          <div className="flex-1">
-            <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
-              <span className="font-medium">
-                {replyUserData?.display_name ||
-                  `@${replyUserData?.name}` ||
-                  reply.pubkey.substring(0, 8)}
-              </span>
-              <span>•</span>
-              <span>{convertTimestamp(reply)}</span>
-            </div>
-
-            <div className="mt-1 text-sm">
-              {styleHashtags(replyTextContent)}
-            </div>
-
-            {(replyMediaUrls.images.length > 0 ||
-              replyMediaUrls.videos.length > 0) && (
-              <div className="mt-2">{renderMedia(replyMediaUrls)}</div>
+      <div key={reply.id}>
+        <div
+          style={{ marginLeft: `${actualDepth * 16}px` }}
+          className={`border-l-2 border-gray-300 py-3 pl-3 dark:border-gray-600`}
+        >
+          <div className="flex items-start gap-3">
+            {replyUserData?.picture ? (
+              <Image
+                src={replyUserData.picture}
+                alt={`${replyUserData.display_name}'s profile picture`}
+                width={32}
+                height={32}
+                className="h-8 w-8 rounded-full object-cover"
+              />
+            ) : (
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800">
+                <User size={16} className="text-gray-400" />
+              </div>
             )}
+
+            <div className="flex-1">
+              <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
+                <span className="font-semibold">
+                  {replyUserData?.display_name ||
+                    `@${replyUserData?.name}` ||
+                    reply.pubkey.substring(0, 8)}
+                </span>
+                <span>•</span>
+                <span>{convertTimestamp(reply)}</span>
+              </div>
+
+              <div className="mt-1 whitespace-pre-wrap text-sm leading-normal">
+                {styleHashtags(replyTextContent)}
+              </div>
+
+              {(replyMediaUrls.images.length > 0 ||
+                replyMediaUrls.videos.length > 0) && (
+                <div className="mt-2">{renderMedia(replyMediaUrls)}</div>
+              )}
+            </div>
           </div>
         </div>
+
+        {nestedReplies.length > 0 && (
+          <div className="relative">
+            <div
+              className="absolute bottom-0 top-0 w-0.5 bg-gray-300 dark:bg-gray-600"
+              style={{ left: `${actualDepth * 16}px` }}
+            />
+
+            <div>
+              {nestedReplies.map((nestedReply) =>
+                renderReply(nestedReply, depth + 1),
+              )}
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -200,10 +239,12 @@ export default function BlogPost({
       </div>
 
       {hasTextContent && (
-        <div className="hyphens-auto whitespace-pre-wrap leading-normal">
+        <div className="whitespace-pre-wrap leading-normal">
           {styleHashtags(textContent)}
         </div>
       )}
+
+      {renderMedia(mediaUrls)}
 
       {noteIds.length > 0 && (
         <div className="mt-4">
@@ -212,8 +253,6 @@ export default function BlogPost({
           ))}
         </div>
       )}
-
-      {renderMedia(mediaUrls)}
 
       {hasReplies && onToggleReplies && (
         <div className="mt-4 flex items-center justify-start">
@@ -242,11 +281,13 @@ export default function BlogPost({
       )}
 
       {showReplies && hasReplies && (
-        <div className="mt-4 space-y-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-900/50">
+        <div className="mt-4 space-y-3 rounded-lg">
           <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
             {replies.length} {replies.length === 1 ? "reply" : "replies"}:
           </div>
-          {replies.map(renderReply)}
+          {buildReplyTree(replies, (timestamp as NostrEvent).id).map((reply) =>
+            renderReply(reply, 0),
+          )}
         </div>
       )}
     </div>

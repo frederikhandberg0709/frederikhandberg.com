@@ -71,11 +71,28 @@ export default function BlogTimeline({
       });
     }
 
-    console.log("Events: ", allEvents);
+    console.log("events: ", allEvents);
   }, [originalPosts, replies, mentions, loadProfile]);
 
   const filterEvents = (events: NostrEvent[]) => {
     return events.filter((event) => {
+      const isReply = event.tags.some((tag) => {
+        if (tag[0] === "e" && originalPostIds.includes(tag[1])) {
+          return true;
+        }
+        if (
+          tag[0] === "p" &&
+          tag[1] ===
+            "9c9f81ed795f0f5efa558932824687d84fc7e6a4cfa6db5d6d3b50fcb7ffaec2"
+        ) {
+          const hasEventTags = event.tags.some((t) => t[0] === "e");
+          return hasEventTags;
+        }
+        return false;
+      });
+
+      if (isReply) return false;
+
       const { images, videos } = extractMediaUrls(event.content);
 
       if (filterType === "image" && images.length > 0) return true;
