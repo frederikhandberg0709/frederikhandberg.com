@@ -125,10 +125,6 @@ export default function Home() {
 
                 <div>
                   <p className="leading-relaxed">
-                    {/*I&apos;m passionate about developing full-stack web
-                    applications and native apps mainly for the Apple platforms.
-                    I enjoy building beautiful, thoughtful user interfaces and
-                    working on scalable server architectures.*/}
                     I&apos;m passionate about developing full-stack web
                     applications and native apps, mainly for Apple platforms
                     with Swift, but also for Android with Kotlin. I enjoy
@@ -213,6 +209,16 @@ export default function Home() {
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG
             </h2>
+
+            <p>
+              You can find all my blog posts at{" "}
+              <Link
+                href="/blog"
+                className="max-w-lg font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+              >
+                frederikhandberg.com/blog
+              </Link>
+            </p>
 
             <div className="mb-10 flex flex-col items-center gap-8">
               <NostrProvider relayUrls={relayUrls} debug={false}>
