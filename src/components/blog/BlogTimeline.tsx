@@ -70,8 +70,6 @@ export default function BlogTimeline({
         loadProfile(pubkey);
       });
     }
-
-    console.log("events: ", allEvents);
   }, [originalPosts, replies, mentions, loadProfile]);
 
   const filterEvents = (events: NostrEvent[]) => {

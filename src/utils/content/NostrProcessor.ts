@@ -70,36 +70,6 @@ export class NostrProcessor {
     return [...new Set(noteIds)];
   }
 
-  //   static truncateNostrReferences(content: string): string {
-  //     let processed = content;
-
-  //     processed = processed.replace(this.NOSTR_BECH32_NOTE_REGEX, (match) => {
-  //       const prefix = match.substring(0, 10);
-  //       const suffix = match.substring(match.length - 6);
-  //       return `${prefix}...${suffix}`;
-  //     });
-
-  //     processed = processed.replace(this.BECH32_NOTE_REGEX, (match) => {
-  //       const prefix = match.substring(0, 5);
-  //       const suffix = match.substring(match.length - 6);
-  //       return `${prefix}...${suffix}`;
-  //     });
-
-  //     processed = processed.replace(this.NEVENT_REGEX, (match) => {
-  //       const prefix = match.substring(0, 7);
-  //       const suffix = match.substring(match.length - 6);
-  //       return `${prefix}...${suffix}`;
-  //     });
-
-  //     processed = processed.replace(this.NOSTR_PROFILE_REGEX, (match) => {
-  //       const prefix = match.substring(0, 10);
-  //       const suffix = match.substring(match.length - 6);
-  //       return `${prefix}...${suffix}`;
-  //     });
-
-  //     return processed;
-  //   }
-
   static removeNostrReferences(content: string): string {
     let processed = content;
 

@@ -10,8 +10,9 @@ import { useImageOverlay } from "@/utils/useImageOverlay";
 import { MessageCircle, User } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { QuotedPost } from "./QuotedPost";
 import { useProfileContext } from "@/context/ProfileContext";
+import { ContentRenderer } from "./ContentRenderer";
+import { useContentAnalysis } from "@/hooks/useContentAnalysis";
 
 interface BlogPostProps {
   profilePicture?: string;
@@ -43,6 +44,8 @@ export default function BlogPost({
   const { mediaUrls, textContent } = processNostrContent(content);
 
   const { loadProfile, getProfile } = useProfileContext();
+
+  const contentAnalysis = useContentAnalysis(content);
 
   useEffect(() => {
     if (pubkey) {
@@ -238,21 +241,7 @@ export default function BlogPost({
         </div>
       </div>
 
-      {hasTextContent && (
-        <div className="whitespace-pre-wrap leading-normal">
-          {styleHashtags(textContent)}
-        </div>
-      )}
-
-      {renderMedia(mediaUrls)}
-
-      {noteIds.length > 0 && (
-        <div className="mt-4">
-          {noteIds.map((id) => (
-            <QuotedPost key={id} noteId={id} />
-          ))}
-        </div>
-      )}
+      {hasTextContent && <ContentRenderer content={content} />}
 
       {hasReplies && onToggleReplies && (
         <div className="mt-4 flex items-center justify-start">
