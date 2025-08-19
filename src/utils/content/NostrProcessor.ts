@@ -79,7 +79,7 @@ export class NostrProcessor {
     processed = processed.replace(this.BECH32_NOTE_REGEX, "");
     processed = processed.replace(this.NEVENT_REGEX, "");
 
-    processed = processed.replace(/\s+/g, " ").trim();
+    processed = processed.replace(/[ \t]+/g, " ");
 
     return processed;
   }

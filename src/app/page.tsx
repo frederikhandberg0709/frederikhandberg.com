@@ -88,11 +88,11 @@ export default function Home() {
             id="introduction"
             className="flex min-h-[calc(100vh-400px)] max-w-3xl items-center justify-center max-lg:mx-4"
           >
-            <div className="flex flex-col items-start justify-center gap-5 pt-24 md:pt-52">
+            <div className="flex flex-col items-start justify-center gap-5 pt-24 md:pt-36">
               <h1 className="text-2xl font-medium">
                 Hello and welcome to my personal website! 👋
               </h1>
-              <div className="space-y-5">
+              <div className="space-y-7">
                 <p className="leading-relaxed">
                   My name is{" "}
                   <NameWithHoverImage
@@ -125,10 +125,23 @@ export default function Home() {
 
                 <div>
                   <p className="leading-relaxed">
-                    I&apos;m passionate about developing full-stack web
+                    {/*I&apos;m passionate about developing full-stack web
                     applications and native apps mainly for the Apple platforms.
                     I enjoy building beautiful, thoughtful user interfaces and
-                    working on scalable server architectures.
+                    working on scalable server architectures.*/}
+                    I&apos;m passionate about developing full-stack web
+                    applications and native apps, mainly for Apple platforms
+                    with Swift, but also for Android with Kotlin. I enjoy
+                    designing and crafting beautiful, thoughtful user interfaces
+                    using tools like Next.js and TailwindCSS, and building
+                    scalable server architectures with Java Spring Boot and C#
+                    .NET. I’m also interested in exploring how Artificial
+                    Intelligence and LLMs can enhance user experiences, for
+                    example through smarter recommendation algorithms and
+                    personalized interactions. Besides that, I’m experimenting
+                    with developing decentralized applications built upon open
+                    protocols like Nostr, with a focus on freedom,
+                    interoperability, and user ownership.
                   </p>
                   <Link
                     href="/software"

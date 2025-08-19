@@ -1,18 +1,13 @@
 "use client";
 
 import { convertTimestamp, NostrEvent } from "@/utils/convertTimestamp";
-import {
-  extractNostrNoteIds,
-  processNostrContent,
-} from "@/utils/processNostrContent";
-import styleHashtags from "@/utils/styleHashtags";
-import { useImageOverlay } from "@/utils/useImageOverlay";
+import { extractNostrNoteIds } from "@/utils/processNostrContent";
 import { MessageCircle, User } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useProfileContext } from "@/context/ProfileContext";
 import { ContentRenderer } from "./ContentRenderer";
-import { useContentAnalysis } from "@/hooks/useContentAnalysis";
+import { ReplyContentRenderer } from "./ReplyContentRenderer";
 
 interface BlogPostProps {
   profilePicture?: string;
@@ -37,15 +32,10 @@ export default function BlogPost({
   timestamp,
   pubkey,
 }: BlogPostProps) {
-  const { setOverlayImage } = useImageOverlay();
-  // const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   const [noteIds, setNoteIds] = useState<string[]>([]);
-  const { mediaUrls, textContent } = processNostrContent(content);
 
   const { loadProfile, getProfile } = useProfileContext();
-
-  const contentAnalysis = useContentAnalysis(content);
 
   useEffect(() => {
     if (pubkey) {
@@ -63,53 +53,6 @@ export default function BlogPost({
     const extractedIds = extractNostrNoteIds(content);
     setNoteIds(extractedIds);
   }, [content]);
-
-  const renderMedia = ({
-    images,
-    videos,
-  }: {
-    images: string[];
-    videos: string[];
-  }) => {
-    if (!images?.length && !videos?.length) {
-      return null;
-    }
-
-    return (
-      <div className="flex flex-col gap-4">
-        {images.map((imgUrl, index) => (
-          <div key={`img-${index}`} className="relative">
-            {/* {!imageLoaded && (
-              <div className="flex h-40 w-full items-center justify-center rounded-xl bg-gray-200 dark:bg-gray-900">
-                <span className="animate-pulse">Loading image...</span>
-              </div>
-            )} */}
-            <Image
-              src={imgUrl}
-              alt={`Media content ${index + 1}`}
-              onClick={() => setOverlayImage(imgUrl)}
-              width={1000}
-              height={1000}
-              className={`w-full scale-100 cursor-pointer rounded-xl transition hover:opacity-90 active:scale-[0.98]`}
-              // className={`w-full scale-100 cursor-pointer rounded-xl transition hover:opacity-90 active:scale-[0.98] ${imageLoaded ? "block" : "hidden"}`}
-              // onLoad={() => setImageLoaded(true)}
-              onError={() => setImageError(true)}
-            />
-          </div>
-        ))}
-        {videos.map((videoUrl, index) => (
-          <video
-            key={`video-${index}`}
-            src={videoUrl}
-            className="w-full rounded-[10px]"
-            controls
-            autoPlay
-            muted
-          />
-        ))}
-      </div>
-    );
-  };
 
   const buildReplyTree = (
     replies: NostrEvent[],
@@ -130,8 +73,6 @@ export default function BlogPost({
 
   const renderReply = (reply: NostrEvent, depth: number = 0) => {
     const replyUserData = getProfile(reply.pubkey);
-    const { mediaUrls: replyMediaUrls, textContent: replyTextContent } =
-      processNostrContent(reply.content);
 
     const maxDepth = 6;
     const actualDepth = Math.min(depth, maxDepth);
@@ -170,14 +111,9 @@ export default function BlogPost({
                 <span>{convertTimestamp(reply)}</span>
               </div>
 
-              <div className="mt-1 whitespace-pre-wrap text-sm leading-normal">
-                {styleHashtags(replyTextContent)}
+              <div className="mt-1">
+                {<ReplyContentRenderer content={reply.content} />}
               </div>
-
-              {(replyMediaUrls.images.length > 0 ||
-                replyMediaUrls.videos.length > 0) && (
-                <div className="mt-2">{renderMedia(replyMediaUrls)}</div>
-              )}
             </div>
           </div>
         </div>
@@ -200,7 +136,7 @@ export default function BlogPost({
     );
   };
 
-  const hasTextContent = textContent.trim().length > 0;
+  const hasTextContent = content.trim().length > 0;
   const hasReplies = replies.length > 0;
 
   return (
