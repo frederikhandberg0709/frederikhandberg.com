@@ -1,7 +1,6 @@
 "use client";
 
 import { convertTimestamp, NostrEvent } from "@/utils/convertTimestamp";
-import { extractNostrNoteIds } from "@/utils/processNostrContent";
 import { MessageCircle, User } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -33,7 +32,6 @@ export default function BlogPost({
   pubkey,
 }: BlogPostProps) {
   const [imageError, setImageError] = useState(false);
-  const [noteIds, setNoteIds] = useState<string[]>([]);
 
   const { loadProfile, getProfile } = useProfileContext();
 
@@ -48,11 +46,6 @@ export default function BlogPost({
   const actualProfilePicture = profilePicture || profileData?.picture;
   const actualDisplayName = displayName || profileData?.display_name;
   const actualUsername = username || profileData?.name;
-
-  useEffect(() => {
-    const extractedIds = extractNostrNoteIds(content);
-    setNoteIds(extractedIds);
-  }, [content]);
 
   const buildReplyTree = (
     replies: NostrEvent[],
