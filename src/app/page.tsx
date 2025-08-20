@@ -210,7 +210,7 @@ export default function Home() {
               BLOG
             </h2>
 
-            <p className="text-center">
+            <p className="mx-5 text-center">
               You can find all my blog posts at{" "}
               <Link
                 href="/blog"

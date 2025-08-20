@@ -36,7 +36,7 @@ export default function Blog() {
         </nav>
 
         <div className="mb-10 mt-24 flex flex-col items-center gap-8">
-          <div className="max-w-lg space-y-3">
+          <div className="mx-5 max-w-lg space-y-3">
             <h2 className="text-center text-lg font-bold tracking-wider">
               Welcome to my Blog 🚀
             </h2>
