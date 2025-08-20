@@ -128,7 +128,7 @@ export default function TechStack() {
         <TechStackBadge
           logo={SpringLogo}
           name="Spring"
-          description="Java framework."
+          description="Java/Kotlin framework."
           hasDetails={true}
           detailedInfo={{
             title: "Spring Framework",
