@@ -11,25 +11,29 @@ import { ContentBlock } from "@/types/content";
 interface ContentRendererProps {
   content: string;
   className?: string;
-  showQuotedPosts?: boolean;
 }
 
 export function ContentRenderer({
   content,
   className = "",
-  showQuotedPosts = true,
 }: ContentRendererProps) {
   const { setOverlayImage } = useImageOverlay();
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   const processedContent = SequentialContentProcessor.process(content);
-  const { blocks, noteIds } = processedContent;
+  const { blocks } = processedContent;
 
   const handleImageError = (url: string) => {
     setImageErrors((prev) => new Set(prev).add(url));
   };
 
-  const renderBlock = (block: ContentBlock) => {
+  const renderBlock = (
+    block: ContentBlock,
+    index: number,
+    totalBlocks: number,
+  ) => {
+    const isLastBlock = index === totalBlocks - 1;
+
     switch (block.type) {
       case "text":
         return (
@@ -42,7 +46,10 @@ export function ContentRenderer({
         if (imageErrors.has(block.content)) return null;
 
         return (
-          <div key={block.index} className="relative my-3">
+          <div
+            key={block.index}
+            className={`relative ${isLastBlock ? "mt-3" : "my-3"}`}
+          >
             <Image
               src={block.content}
               alt="Media content"
@@ -60,7 +67,7 @@ export function ContentRenderer({
           <video
             key={block.index}
             src={block.content}
-            className="my-3 w-full rounded-[10px]"
+            className={`w-full rounded-[10px] ${isLastBlock ? "mt-3" : "my-3"}`}
             controls
             autoPlay
             muted
@@ -69,7 +76,7 @@ export function ContentRenderer({
 
       case "link":
         return (
-          <div key={block.index} className="my-3">
+          <div key={block.index} className={isLastBlock ? "mt-3" : "my-3"}>
             <LinkPreview
               url={block.content}
               fallback={
@@ -86,6 +93,13 @@ export function ContentRenderer({
           </div>
         );
 
+      case "nostr_note":
+        return (
+          <div key={block.index} className={isLastBlock ? "mt-3" : "my-3"}>
+            <QuotedPost noteId={block.content} />
+          </div>
+        );
+
       default:
         return null;
     }
@@ -93,15 +107,7 @@ export function ContentRenderer({
 
   return (
     <div className={`flex flex-col ${className}`}>
-      {blocks.map(renderBlock)}
-
-      {showQuotedPosts && noteIds.length > 0 && (
-        <div className="mt-4 space-y-3">
-          {noteIds.map((id: string) => (
-            <QuotedPost key={id} noteId={id} />
-          ))}
-        </div>
-      )}
+      {blocks.map((block, index) => renderBlock(block, index, blocks.length))}
     </div>
   );
 }

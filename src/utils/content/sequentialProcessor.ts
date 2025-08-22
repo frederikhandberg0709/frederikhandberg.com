@@ -10,12 +10,38 @@ export class SequentialContentProcessor {
 
     const noteIds = NostrProcessor.extractNoteIds(content);
 
-    const parts = content.split(/(\s+)/);
+    const combinedRegex = NostrProcessor.createCombinedRegex();
+
+    const parts: string[] = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = combinedRegex.exec(content)) !== null) {
+      if (match.index > lastIndex) {
+        const textPart = content.substring(lastIndex, match.index);
+        if (textPart) parts.push(textPart);
+      }
+
+      parts.push(match[0]);
+      lastIndex = match.index + match[0].length;
+    }
+
+    if (lastIndex < content.length) {
+      const remainingText = content.substring(lastIndex);
+      if (remainingText) parts.push(remainingText);
+    }
+
     let textBuffer = "";
 
     const flushTextBuffer = () => {
       if (textBuffer.trim()) {
         let processedText = NostrProcessor.removeNostrReferences(textBuffer);
+
+        processedText = processedText.replace(
+          /(nostr:)?(note1[a-zA-Z0-9]{20,}|nevent1[a-zA-Z0-9]{20,})/g,
+          "",
+        );
+
         processedText = TextProcessor.truncateUrls(processedText);
         processedText = TextProcessor.cleanText(processedText);
 
@@ -31,10 +57,7 @@ export class SequentialContentProcessor {
     };
 
     parts.forEach((part) => {
-      if (/^\s+$/.test(part)) {
-        if (textBuffer) textBuffer += part;
-        return;
-      }
+      const trimmedPart = part.trim();
 
       if (/^https?:\/\/[^\s]+$/.test(part)) {
         const cleanUrl = UrlDetector.cleanUrl(part);
@@ -61,6 +84,17 @@ export class SequentialContentProcessor {
         } else {
           textBuffer += part;
         }
+      } else if (NostrProcessor.isNostrReference(trimmedPart)) {
+        flushTextBuffer();
+
+        const noteId = NostrProcessor.extractNoteIdFromReference(trimmedPart);
+
+        blocks.push({
+          type: "nostr_note",
+          content: noteId,
+          index: currentIndex++,
+          metadata: { originalUrl: trimmedPart },
+        });
       } else {
         textBuffer += part;
       }

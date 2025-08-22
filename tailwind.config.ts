@@ -17,6 +17,15 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        scrollhint: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(8px)" },
+        },
+      },
+      animation: {
+        scrollhint: "scrollhint 1.5s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

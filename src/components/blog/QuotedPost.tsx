@@ -7,8 +7,8 @@ import { User } from "lucide-react";
 import Image from "next/image";
 import { useNostrEvents } from "nostr-react";
 import { useEffect, useState } from "react";
-import { nip19 } from "nostr-tools";
 import { useProfileContext } from "@/context/ProfileContext";
+import { NostrProcessor } from "@/utils/content/NostrProcessor";
 
 interface QuotedPostProps {
   noteId: string;
@@ -16,7 +16,8 @@ interface QuotedPostProps {
 
 export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
   const [imageError, setImageError] = useState(false);
-  const hexNoteId = convertBech32ToHex(noteId);
+
+  const hexNoteId = NostrProcessor.convertToHex(noteId);
 
   const { loadProfile, getProfile } = useProfileContext();
 
@@ -116,28 +117,3 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
     </div>
   );
 };
-
-function convertBech32ToHex(noteId: string): string {
-  try {
-    if (noteId.startsWith("note1")) {
-      const { data } = nip19.decode(noteId);
-      if (typeof data === "string" && /^[a-f0-9]{64}$/.test(data)) {
-        return data;
-      } else {
-        console.error(
-          "Decoded note ID is not in the expected hex format:",
-          data,
-        );
-        return "";
-      }
-    }
-    if (/^[a-f0-9]{64}$/.test(noteId)) {
-      return noteId;
-    }
-    console.error("Note ID is not in a recognized format:", noteId);
-    return "";
-  } catch (error) {
-    console.error("Error decoding note ID:", error);
-    return "";
-  }
-}

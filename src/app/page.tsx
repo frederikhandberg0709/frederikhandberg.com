@@ -130,12 +130,12 @@ export default function Home() {
                     with Swift, but also for Android with Kotlin. I enjoy
                     designing and crafting beautiful, thoughtful user interfaces
                     using tools like Next.js and TailwindCSS, and building
-                    scalable server architectures with Java Spring Boot and C#
-                    .NET. I’m also interested in exploring how Artificial
-                    Intelligence and LLMs can enhance user experiences, for
-                    example through smarter recommendation algorithms and
-                    personalized interactions. Besides that, I’m experimenting
-                    with developing decentralized applications built upon open
+                    scalable server architectures with Spring Boot and .NET. I’m
+                    also interested in exploring how Artificial Intelligence and
+                    LLMs can enhance user experiences, for example through
+                    smarter recommendation algorithms and personalized
+                    interactions. Besides that, I’m experimenting with
+                    developing decentralized applications built upon open
                     protocols like Nostr, with a focus on freedom,
                     interoperability, and user ownership.
                   </p>

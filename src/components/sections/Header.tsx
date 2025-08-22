@@ -1,5 +1,6 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 
 export default function Header() {
   const { theme } = useTheme();
@@ -55,7 +56,7 @@ export default function Header() {
   }
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-[15px]">
+    <div className="relative flex h-screen flex-col items-center justify-center gap-[15px]">
       <h1
         style={{ color: getTextColor() }}
         className="text-center text-4xl font-bold leading-normal transition-colors duration-300 max-[810px]:text-2xl"
@@ -94,6 +95,14 @@ export default function Header() {
         </div>
         .
       </h1>
+
+      <div className="animate-scrollhint group absolute bottom-10 flex flex-col items-center">
+        <IoIosArrowDown className="size-7 cursor-pointer" />
+
+        <span className="pointer-events-none absolute -top-8 whitespace-nowrap rounded-lg bg-black px-2 py-1 text-sm text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          Scroll down 👇
+        </span>
+      </div>
     </div>
   );
 }

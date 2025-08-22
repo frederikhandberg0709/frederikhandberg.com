@@ -10,10 +10,6 @@ export function ReplyContentRenderer({
   className = "",
 }: ReplyContentRendererProps) {
   return (
-    <ContentRenderer
-      content={content}
-      className={`text-sm ${className}`}
-      showQuotedPosts={false}
-    />
+    <ContentRenderer content={content} className={`text-sm ${className}`} />
   );
 }
