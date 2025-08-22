@@ -1,14 +1,13 @@
 "use client";
 
 import { convertTimestamp } from "@/utils/convertTimestamp";
-import { processNostrContent } from "@/utils/processNostrContent";
-import styleHashtags from "@/utils/styleHashtags";
 import { User } from "lucide-react";
 import Image from "next/image";
 import { useNostrEvents } from "nostr-react";
 import { useEffect, useState } from "react";
 import { useProfileContext } from "@/context/ProfileContext";
 import { NostrProcessor } from "@/utils/content/NostrProcessor";
+import { ContentRenderer } from "./ContentRenderer";
 
 interface QuotedPostProps {
   noteId: string;
@@ -62,8 +61,7 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
 
   if (!embeddedEvent) return null;
 
-  const { mediaUrls, textContent } = processNostrContent(embeddedEvent.content);
-  const hasTextContent = textContent.trim().length > 0;
+  const hasContent = embeddedEvent.content.trim().length > 0;
 
   return (
     <div className="rounded-lg border border-gray-200 p-4 transition hover:border-gray-300 dark:border-gray-900 dark:bg-black dark:hover:border-gray-800">
@@ -97,23 +95,7 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
         </div>
       </div>
 
-      {hasTextContent && (
-        <div className="hyphens-auto whitespace-pre-wrap text-sm leading-normal">
-          {styleHashtags(textContent)}
-        </div>
-      )}
-
-      {mediaUrls.images && mediaUrls.images.length > 0 && (
-        <div className="mt-2">
-          <Image
-            src={mediaUrls.images[0]}
-            alt="Embedded media"
-            width={300}
-            height={200}
-            className="max-h-[500px] w-auto rounded-md object-cover"
-          />
-        </div>
-      )}
+      {hasContent && <ContentRenderer content={embeddedEvent.content} />}
     </div>
   );
 };
