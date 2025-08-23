@@ -160,7 +160,12 @@ export class NostrProcessor {
 
     processed = processed.replace(this.NOSTR_PROFILE_REGEX, "");
 
-    processed = processed.replace(/[ \t]+/g, " ");
+    processed = processed
+      .split("\n")
+      .map((line) => {
+        return line.replace(/(\S)[ \t]{2,}/g, "$1 ");
+      })
+      .join("\n");
 
     return processed;
   }

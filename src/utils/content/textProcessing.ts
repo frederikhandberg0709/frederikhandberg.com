@@ -2,14 +2,17 @@ export class TextProcessor {
   static cleanText(content: string): string {
     let processed = content;
 
-    processed = processed.replace(/\n{5,}/g, "\n\n\n\n");
-
     processed = processed
       .split("\n")
       .map((line) => (line.trim() === "" ? "" : line))
       .join("\n");
 
-    processed = processed.replace(/[ ]{2,}/g, " ");
+    processed = processed
+      .split("\n")
+      .map((line) => {
+        return line.replace(/(\S)[ ]{2,}/g, "$1 ");
+      })
+      .join("\n");
 
     return processed.trim();
   }
