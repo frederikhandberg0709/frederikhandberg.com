@@ -65,7 +65,42 @@ export function ContentRenderer({
       }
     }
 
+    const hasMarkdown =
+      /(\*\*.*?\*\*|__.*?__|(?<!\*)\*(?!\*).*?\*(?!\*)|(?<!_)_(?!_).*?_(?!_)|`.*?`|\[.*?\]\(.*?\))/.test(
+        line,
+      );
+    if (hasMarkdown) {
+      return true;
+    }
+
     return false;
+  };
+
+  const processChildrenWithHashtags = (
+    children: React.ReactNode,
+  ): React.ReactNode => {
+    if (typeof children === "string") {
+      return styleHashtags(children);
+    }
+
+    if (React.isValidElement(children)) {
+      const childProps = children.props as { children?: React.ReactNode };
+      return React.cloneElement(
+        children,
+        childProps,
+        processChildrenWithHashtags(childProps.children),
+      );
+    }
+
+    if (Array.isArray(children)) {
+      return children.map((child, index) => (
+        <React.Fragment key={index}>
+          {processChildrenWithHashtags(child)}
+        </React.Fragment>
+      ));
+    }
+
+    return children;
   };
 
   const renderBlock = (
@@ -129,6 +164,9 @@ export function ContentRenderer({
                       remarkPlugins={[remarkGfm]}
                       components={{
                         p: ({ children }) => <>{children}</>,
+                        li: ({ children }) => (
+                          <li>{processChildrenWithHashtags(children)}</li>
+                        ),
                         code({ className, children, ...props }) {
                           const match = /language-(\w+)/.exec(className || "");
                           const language = match ? match[1] : "";
