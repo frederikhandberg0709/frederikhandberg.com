@@ -198,11 +198,11 @@ export default function LinkPreview({ url, fallback }: LinkPreviewProps) {
   if (loading) {
     return (
       <div className="w-full animate-pulse">
-        <div className="h-48 rounded-t-lg bg-gray-200"></div>
-        <div className="space-y-3 rounded-b-lg border border-gray-200 p-4">
-          <div className="h-4 w-3/4 rounded bg-gray-200"></div>
-          <div className="h-3 rounded bg-gray-200"></div>
-          <div className="h-3 w-5/6 rounded bg-gray-200"></div>
+        <div className="h-48 rounded-t-lg bg-gray-200 dark:bg-gray-500"></div>
+        <div className="space-y-3 rounded-b-lg border border-gray-200 p-4 dark:border-gray-500">
+          <div className="h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-500"></div>
+          <div className="h-3 rounded bg-gray-200 dark:bg-gray-500"></div>
+          <div className="h-3 w-5/6 rounded bg-gray-200 dark:bg-gray-500"></div>
         </div>
       </div>
     );
@@ -228,7 +228,7 @@ export default function LinkPreview({ url, fallback }: LinkPreviewProps) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group block w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+      className="group block w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md dark:border-gray-900 dark:bg-gray-900"
     >
       {preview.image && (
         <div className="aspect-video overflow-hidden">
@@ -245,17 +245,17 @@ export default function LinkPreview({ url, fallback }: LinkPreviewProps) {
       )}
 
       <div className="p-4">
-        <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-blue-600">
+        <h3 className="mb-2 line-clamp-2 font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-500">
           {preview.title}
         </h3>
 
         {preview.description && (
-          <p className="mb-3 line-clamp-3 text-sm text-gray-600">
+          <p className="mb-3 line-clamp-3 text-sm text-gray-600 dark:text-gray-400">
             {preview.description}
           </p>
         )}
 
-        <div className="flex items-center text-xs text-gray-500">
+        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
           {preview.siteName && (
             <span className="font-medium">{preview.siteName}</span>
           )}

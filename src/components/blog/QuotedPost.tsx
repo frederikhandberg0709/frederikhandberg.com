@@ -44,7 +44,7 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
 
   if (isLoading) {
     return (
-      <div className="animate-pulse rounded-md border bg-gray-50 p-3 dark:bg-gray-800">
+      <div className="animate-pulse rounded-md border bg-gray-50 p-3 dark:border-gray-800 dark:bg-gray-800">
         <div className="mb-2 h-4 w-3/4 rounded bg-gray-200 dark:bg-gray-700"></div>
         <div className="h-4 w-1/2 rounded bg-gray-200 dark:bg-gray-700"></div>
       </div>

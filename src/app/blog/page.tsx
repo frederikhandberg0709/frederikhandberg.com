@@ -40,7 +40,7 @@ export default function Blog() {
             <h2 className="text-center text-lg font-bold tracking-wider">
               Welcome to my Blog 🚀
             </h2>
-            <p className="text-sm text-neutral-600">
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
               On my short-form blog, I write about the software projects
               I&apos;m working on. I share the progress I make and the struggles
               I face along the way.
