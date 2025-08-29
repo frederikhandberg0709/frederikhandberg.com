@@ -9,6 +9,8 @@ export class NostrProcessor {
     /(nostr:nevent1[a-zA-Z0-9]{20,})/g;
   private static readonly NOSTR_PROFILE_REGEX =
     /(nostr:npub[a-zA-Z0-9]{59,65})/g;
+  private static readonly NOSTR_NPROFILE_REGEX =
+    /nostr:nprofile1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]+/;
 
   static createCombinedRegex(): RegExp {
     const urlPattern = "https?:\\/\\/[^\\s\\n]+";
@@ -159,6 +161,7 @@ export class NostrProcessor {
     let processed = content;
 
     processed = processed.replace(this.NOSTR_PROFILE_REGEX, "");
+    processed = processed.replace(this.NOSTR_NPROFILE_REGEX, "");
 
     processed = processed
       .split("\n")
