@@ -223,7 +223,7 @@ export default function Home() {
             <div className="mb-10 flex flex-col items-center gap-8">
               <NostrProvider relayUrls={relayUrls} debug={false}>
                 <ProfileProvider>
-                  <BlogTimeline filterType="all" maxElements={10} />
+                  <BlogTimeline filterType="all" />
                 </ProfileProvider>
               </NostrProvider>
 

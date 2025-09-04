@@ -249,6 +249,7 @@ export function ContentRenderer({
             controls
             autoPlay
             muted
+            playsInline
           />
         );
 
