@@ -71,17 +71,17 @@ export const QuotedPost: React.FC<QuotedPostProps> = ({ noteId }) => {
             <Image
               src={authorData.picture}
               alt={`${authorData.display_name}'s profile`}
-              width={30}
-              height={30}
+              width={35}
+              height={35}
               onError={() => setImageError(true)}
-              className="h-[30px] w-[30px] rounded-full object-cover"
+              className="h-[35px] w-[35px] rounded-full object-cover"
             />
           ) : (
             <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700">
               <User size={16} className="text-gray-400" />
             </div>
           )}
-          <div className="flex items-center gap-2.5">
+          <div className="flex flex-col gap-px">
             <div className="text-sm font-semibold text-black group-hover:text-blue-500 dark:text-white">
               {authorData?.display_name ||
                 authorData?.name ||

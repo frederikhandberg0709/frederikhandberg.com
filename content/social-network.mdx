@@ -27,6 +27,20 @@ However, I wanted a notification service using Socket.IO. Technically, I could h
 
 I chose Socket.IO mainly because I already have experience with SignalR from my third-semester project, and since Socket.IO is very similar to SignalR, it seemed like the obvious choice.
 
+## Technologies
+
+**Next.js:** I decided to use a full-stack framework called Next.js. I utilized the App Router and API routes so I could keep both the frontend and backend in the same project. This allowed me to develop much faster than if I had built them as two separate projects. But this can also be a disadvantage in terms of scalability, since you can't scale the frontend and backend independently. For example, deploying more backend servers without touching the frontend.
+
+**Prisma ORM:** To create my database, I used Prisma ORM. I enjoy using it, as it makes my database queries fully type-safe and easy to work with in TypeScript.
+
+**Next Auth:** To implement user authentication, I used Next Auth. This turned out to be a mistake, since Next Auth intentionally makes it difficult to use credentials (username and password). They do this to encourage developers to use OAuth providers instead, such as Google. But I wanted to use credentials for my authentication... Looking back, I should have chosen a different authentication framework.
+
+**React Query:** I used React Query to handle data fetching in my frontend.
+
+**Argon2:** I used Argon2 to perform hashing of passwords before saving to the database. This avoids storing passwords in plaintext, which would be a massive security vulnerability.
+
+**Express.js**: I used Express.js to develop an independent server dedicated to handling Socket.io, which I use to send notifications in real time.
+
 ## Project Features
 
 I have tried implementing the features that people expect from a modern social network. This includes the basic features such as being able to like and comment on posts, but also more advanced features, such as being able to switch accounts.
@@ -76,7 +90,7 @@ Users can easily switch between their linked accounts by clicking on their profi
 
 ### User Profile
 
-The profile page includes a profile picture, banner, name, username, and a biography.  
+The profile page includes a profile picture, banner, name, username, and a biography.
 This page also includes a timeline of the user's posts and counters for the number of followers, how many people the user is following, and the total number of posts from the user.
 
 ![Profile page viewed by follower](/profile_follower.jpeg)
@@ -125,7 +139,7 @@ However, the way I have set up the search input as of now, I would like the sear
 
 The search functionality could be implemented client-side where the search results update in real-time as the user types, rather than using URL parameters.
 
-First of all, I should make sure to prevent excessive API calls as the user types. A small delay of about 300ms after the user has stopped typing could be made before sending the request to the API.  
+First of all, I should make sure to prevent excessive API calls as the user types. A small delay of about 300ms after the user has stopped typing could be made before sending the request to the API.
 I already use React Query for data fetching, so I should just continue using that for the search functionality as well. It gives me caching and state management capabilities to handle search requests. This provides automatic loading states, error handling, and data caching.
 
 Lastly, I will need to create a dedicated API route for searching posts and users, with filtering logic based on the search term.
