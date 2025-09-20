@@ -134,6 +134,9 @@ export default function MobileNavMenu({
                 <Link href="/fashion" className={linkStyles()}>
                   Fashion
                 </Link>
+                <Link href="/blog" className={linkStyles()}>
+                  Blog
+                </Link>
                 <ThemeToggle />
               </>
             )}
