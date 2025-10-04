@@ -104,7 +104,7 @@ export default function Home() {
                   <span className="inline-block sm:hidden">
                     Frederik Handberg
                   </span>
-                  . I&apos;m 22 years old and currently studying{" "}
+                  . I&apos;m 23 years old and currently studying{" "}
                   <div className="relative inline-block">
                     <span
                       className="emoji-tooltip sm:emoji-hover font-bold"
