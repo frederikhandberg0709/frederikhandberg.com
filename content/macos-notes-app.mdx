@@ -1,6 +1,6 @@
 ---
 title: "macOS Notes App"
-date: "2025-10-04"
+date: "2025-11-04"
 excerpt: "Building a native macOS notes app. This project is still under active development."
 author: "Frederik Handberg"
 coverImage: "/notes_app.png"
@@ -41,3 +41,13 @@ I see the visual canvas as the perfect place to brainstorm. It’s a space where
 Having excellent editing capabilities is essential - it’s a notes app, after all.
 
 Note documents are stored locally on the user’s device as JSON files. They use a custom-made structure designed to support all the essential formatting features.
+
+### Why not Markdown?
+
+Markdown is a great open standard supported by many apps, but I find it severely lacking in basic formatting. I get it - it’s meant to be simple. But sometimes, simplicity can also be too limiting for certain use cases…
+
+Building a good Markdown editing experience is quite difficult. Obsidian is the only app with a Markdown editor I would want to use. Their live preview functionality is excellent, showing and hiding Markdown syntax depending on whether the caret is positioned between the start and closing tags.
+
+I'm not a fan of using two separate panels side by side - one for editor and the other for preview.
+
+So, my reasoning for not implementing Markdown support in the first version comes down to the lack of formatting options and the difficulty of building an excellent Markdown editing experience that meets my own expectations.
