@@ -9,7 +9,7 @@ f:I[26614,[],""]
 :HL["/_next/static/media/904be59b21bd51cb-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/css/8dffaffbdad813d7.css","style"]
-0:{"P":null,"b":"94UZknApkxoi55L_plF7f","p":"","c":["","software","portfolio","macos-notes-app"],"i":false,"f":[[["",{"children":["software",{"children":["portfolio",{"children":[["slug","macos-notes-app","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8dffaffbdad813d7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":["software",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","macos-notes-app","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","6hW8i76TSnHtSeU93ptB4",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
+0:{"P":null,"b":"1aMaQ6ubPVI1raQerf_CE","p":"","c":["","software","portfolio","macos-notes-app"],"i":false,"f":[[["",{"children":["software",{"children":["portfolio",{"children":[["slug","macos-notes-app","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/8dffaffbdad813d7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],"$L2"]}],{"children":["software",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["portfolio",["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["slug","macos-notes-app","d"],["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L5",["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false]},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","TNCytuS2W-GX64ejujm8-",{"children":[["$","$Ld",null,{"children":"$Le"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
 10:I[51362,["177","static/chunks/app/layout-461de9f9a9e11b35.js"],"ThemeProvider"]
 11:I[69243,["177","static/chunks/app/layout-461de9f9a9e11b35.js"],""]
 12:"$Sreact.suspense"
@@ -18,8 +18,95 @@ f:I[26614,[],""]
 7:["$","$12",null,{"fallback":null,"children":["$","$L13",null,{"promise":"$@14"}]}]
 a:null
 15:I[80731,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","472","static/chunks/472-5102a3b3e61de9ad.js","522","static/chunks/522-1e1579d82e0cb4c8.js","261","static/chunks/261-7164fb3aed78863f.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-d0879d07d92a2162.js"],"default"]
-16:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","472","static/chunks/472-5102a3b3e61de9ad.js","522","static/chunks/522-1e1579d82e0cb4c8.js","261","static/chunks/261-7164fb3aed78863f.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-d0879d07d92a2162.js"],"default",1]
-5:["$","$L15",null,{"meta":{"title":"macOS Notes App","date":"2025-10-04","excerpt":"Building a native macOS notes app. This project is still under active development.","author":"Frederik Handberg","coverImage":"/notes-app.png","tags":["Swift","AppKit","SwiftUI"],"readingTime":"1 min read","slug":"macos-notes-app"},"tableOfContents":"$undefined","children":["$","$L16",null,{"source":{"compiledSource":"\"use strict\";\nconst {jsx: _jsx} = arguments[0];\nconst {useMDXComponents: _provideComponents} = arguments[0];\nfunction _createMdxContent(props) {\n  const _components = {\n    p: \"p\",\n    ..._provideComponents(),\n    ...props.components\n  };\n  return _jsx(_components.p, {\n    children: \"I'm working on a notes app for macOS. It's built using Swift, AppKit, and SwiftUI.\"\n  });\n}\nfunction MDXContent(props = {}) {\n  const {wrapper: MDXLayout} = {\n    ..._provideComponents(),\n    ...props.components\n  };\n  return MDXLayout ? _jsx(MDXLayout, {\n    ...props,\n    children: _jsx(_createMdxContent, {\n      ...props\n    })\n  }) : _createMdxContent(props);\n}\nreturn {\n  default: MDXContent\n};\n","frontmatter":{},"scope":{}}}]}]
+16:I[69788,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","472","static/chunks/472-5102a3b3e61de9ad.js","522","static/chunks/522-1e1579d82e0cb4c8.js","261","static/chunks/261-7164fb3aed78863f.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-d0879d07d92a2162.js"],"default"]
+17:I[52205,["844","static/chunks/ee560e2c-1d239bc1df2aa23e.js","672","static/chunks/672-703f3702084c92df.js","472","static/chunks/472-5102a3b3e61de9ad.js","522","static/chunks/522-1e1579d82e0cb4c8.js","261","static/chunks/261-7164fb3aed78863f.js","159","static/chunks/app/software/portfolio/%5Bslug%5D/page-d0879d07d92a2162.js"],"default",1]
+18:Tf88,"use strict";
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+function _createMdxContent(props) {
+  const _components = {
+    em: "em",
+    h2: "h2",
+    h3: "h3",
+    li: "li",
+    p: "p",
+    strong: "strong",
+    ul: "ul",
+    ..._provideComponents(),
+    ...props.components
+  };
+  return _jsxs(_Fragment, {
+    children: [_jsx(_components.p, {
+      children: "I'm working on a notes app for macOS, built using Swift, AppKit, and SwiftUI."
+    }), "\n", _jsx(_components.p, {
+      children: "This is my first app written in Swift. I had never used the language before starting this project. Because of that, I also hadn’t used SwiftUI or AppKit. I really like the Swift language, and SwiftUI feels familiar since I've used other declarative frameworks before, such as Flutter. AppKit, however, is a different story - it's hardcore 😅\nThere are so few resources online, and it’s very clear that it’s old."
+    }), "\n", _jsx(_components.p, {
+      children: "Building a complex notes app while learning to use an entirely new tech stack is definitely not easy, but I find it to be much more fun, enjoyable, and rewarding to build something real - an app that's actually meant to be used by people."
+    }), "\n", _jsx(_components.h2, {
+      children: "The Mission"
+    }), "\n", _jsxs(_components.p, {
+      children: ["I want to build the best notes app for ", _jsx(_components.strong, {
+        children: "thinking"
+      }), "."]
+    }), "\n", _jsx(_components.h3, {
+      children: "How will this be achieved?"
+    }), "\n", _jsxs(_components.p, {
+      children: ["A ", _jsx(_components.em, {
+        children: "thinking app"
+      }), " shouldn’t just mimic text editors. It should work in a similar way to how we think as humans."]
+    }), "\n", _jsx(_components.p, {
+      children: "There are two main modes in the app:"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: ["Note documents", "\n", _jsxs(_components.ul, {
+          children: ["\n", _jsx(_components.li, {
+            children: "Structured"
+          }), "\n", _jsx(_components.li, {
+            children: "Textual"
+          }), "\n", _jsx(_components.li, {
+            children: "Detailed"
+          }), "\n"]
+        }), "\n"]
+      }), "\n", _jsxs(_components.li, {
+        children: ["Visual canvases", "\n", _jsxs(_components.ul, {
+          children: ["\n", _jsx(_components.li, {
+            children: "Spatial"
+          }), "\n", _jsx(_components.li, {
+            children: "Visual"
+          }), "\n", _jsx(_components.li, {
+            children: "Nonlinear"
+          }), "\n"]
+        }), "\n"]
+      }), "\n"]
+    }), "\n", _jsx(_components.p, {
+      children: "These two modes are interoperable. For example, drop a note document into a canvas and it becomes a live object with a preview."
+    }), "\n", _jsx(_components.p, {
+      children: "I see the visual canvas as the perfect place to brainstorm. It’s a space where you can get ideas out of your head and onto something tangible. Drop images, notes, links, and sketches, then move them around until patterns start to emerge."
+    }), "\n", _jsx(_components.h2, {
+      children: "Note Documents"
+    }), "\n", _jsx(_components.p, {
+      children: "Having excellent editing capabilities is essential - it’s a notes app, after all."
+    }), "\n", _jsx(_components.p, {
+      children: "Note documents are stored locally on the user’s device as JSON files. They use a custom-made structure designed to support all the essential formatting features."
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = {
+    ..._provideComponents(),
+    ...props.components
+  };
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+return {
+  default: MDXContent
+};
+5:["$","$L15",null,{"meta":{"title":"macOS Notes App","date":"2025-10-04","excerpt":"Building a native macOS notes app. This project is still under active development.","author":"Frederik Handberg","coverImage":"/notes-app.png","tags":["Swift","AppKit","SwiftUI"],"readingTime":"2 min read","slug":"macos-notes-app"},"tableOfContents":["$","$L16",null,{"items":[{"level":2,"text":"The Mission","id":"the-mission"},{"level":3,"text":"How will this be achieved?","id":"how-will-this-be-achieved"},{"level":2,"text":"Note Documents","id":"note-documents"}]}],"children":["$","$L17",null,{"source":{"compiledSource":"$18","frontmatter":{},"scope":{}}}]}]
 e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 9:null
 14:{"metadata":[["$","title","0",{"children":"macOS Notes App | Frederik Handberg"}],["$","meta","1",{"name":"description","content":"Building a native macOS notes app. This project is still under active development."}],["$","meta","2",{"property":"og:title","content":"macOS Notes App | Frederik Handberg"}],["$","meta","3",{"property":"og:description","content":"Building a native macOS notes app. This project is still under active development."}],["$","meta","4",{"property":"og:image","content":"https://frederikhandberg.com/notes-app.png"}],["$","meta","5",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","6",{"name":"twitter:title","content":"macOS Notes App | Frederik Handberg"}],["$","meta","7",{"name":"twitter:description","content":"Building a native macOS notes app. This project is still under active development."}],["$","meta","8",{"name":"twitter:image","content":"https://frederikhandberg.com/notes-app.png"}],["$","link","9",{"rel":"icon","href":"/favicon.ico"}]],"error":null,"digest":"$undefined"}
