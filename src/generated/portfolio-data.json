@@ -5,14 +5,14 @@
     "date": "2025-10-04",
     "excerpt": "Building a native macOS notes app. This project is still under active development.",
     "author": "Frederik Handberg",
-    "coverImage": "/notes-app.png",
+    "coverImage": "/notes_app.png",
     "tags": [
       "Swift",
       "AppKit",
       "SwiftUI"
     ],
-    "readingTime": "1 min read",
-    "content": "\nI'm working on a notes app for macOS. It's built using Swift, AppKit, and SwiftUI.\n"
+    "readingTime": "2 min read",
+    "content": "\nI'm working on a notes app for macOS, built using Swift, AppKit, and SwiftUI.\n\nThis is my first app written in Swift. I had never used the language before starting this project. Because of that, I also hadn’t used SwiftUI or AppKit. I really like the Swift language, and SwiftUI feels familiar since I've used other declarative frameworks before, such as Flutter. AppKit, however, is a different story - it's hardcore 😅\nThere are so few resources online, and it’s very clear that it’s old.\n\nBuilding a complex notes app while learning to use an entirely new tech stack is definitely not easy, but I find it to be much more fun, enjoyable, and rewarding to build something real - an app that's actually meant to be used by people.\n\n## The Mission\n\nI want to build the best notes app for **thinking**.\n\n### How will this be achieved?\n\nA *thinking app* shouldn’t just mimic text editors. It should work in a similar way to how we think as humans.\n\nThere are two main modes in the app:\n- Note documents\n\t- Structured\n\t- Textual\n\t- Detailed\n- Visual canvases\n\t- Spatial\n\t- Visual\n\t- Nonlinear\n\nThese two modes are interoperable. For example, drop a note document into a canvas and it becomes a live object with a preview.\n\nI see the visual canvas as the perfect place to brainstorm. It’s a space where you can get ideas out of your head and onto something tangible. Drop images, notes, links, and sketches, then move them around until patterns start to emerge.\n\n## Note Documents\n\nHaving excellent editing capabilities is essential - it’s a notes app, after all.\n\nNote documents are stored locally on the user’s device as JSON files. They use a custom-made structure designed to support all the essential formatting features.\n"
   },
   {
     "slug": "semester-project-3",
