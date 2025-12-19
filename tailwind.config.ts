@@ -22,9 +22,43 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(8px)" },
         },
+        "scale-down": {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "100%": {
+            transform: "scale(0.5)",
+          },
+        },
+        "move-to-top": {
+          "0%": {
+            top: "50%",
+            transform: "translateY(-50%)",
+          },
+          "100%": {
+            top: "150px",
+            transform: "translateY(0)",
+          },
+        },
+        "char-reveal": {
+          "0%": {
+            transform: "scale(0.3) translateY(-30px)",
+            opacity: "0",
+            filter: "blur(8px)",
+          },
+          "100%": {
+            transform: "scale(1) translateY(0)",
+            opacity: "1",
+            filter: "blur(0)",
+          },
+        },
       },
       animation: {
         scrollhint: "scrollhint 1.5s ease-in-out infinite",
+        "scale-down": "scale-down 1.5s ease-in-out 400ms forwards",
+        "move-to-top": "move-to-top 1.5s ease-in-out 400ms forwards",
+        "scale-and-rise": "scale-and-rise 1.5s ease-in-out forwards",
+        "char-reveal": "char-reveal 300ms ease-out forwards",
       },
     },
   },

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import NavbarLogo from "@/components/NavbarLogo";
@@ -19,6 +19,59 @@ export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
+
+  const [showSecondText, setShowSecondText] = useState(false);
+
+  const secondText =
+    "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰\n\nI love building cool and useful apps.\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSecondText(true);
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const renderAnimatedText = () => {
+    const lines = secondText.split("\n");
+    let charIndex = 0;
+
+    return lines.map((line, lineIndex) => (
+      <span key={lineIndex}>
+        {line.split(" ").map((word, wordIndex) => {
+          const segmenter = new Intl.Segmenter("en", {
+            granularity: "grapheme",
+          });
+          const chars = Array.from(segmenter.segment(word), (s) => s.segment);
+
+          const wordChars = chars.map((char, i) => {
+            const currentIndex = charIndex++;
+            return (
+              <span
+                key={i}
+                className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                style={{
+                  animationDelay: `${currentIndex * 30}ms`,
+                }}
+              >
+                {char}
+              </span>
+            );
+          });
+
+          charIndex++;
+
+          return (
+            <span key={wordIndex} className="inline-block">
+              {wordChars}
+              {wordIndex < line.split(" ").length - 1 && "\u00A0"}
+            </span>
+          );
+        })}
+        {lineIndex < lines.length - 1 && "\n"}
+      </span>
+    ));
+  };
 
   return (
     <>
@@ -53,6 +106,22 @@ export default function Home() {
           <MobileNavMenu menuType={"homepage"} />
         </div>
       </nav>
+
+      {/* TODO: Allow bold text */}
+      {/* TODO: Show picture of me somehow, perhaps when hovering my name */}
+      <div className="relative flex min-h-screen flex-col items-center justify-center px-4">
+        <div className="animate-move-to-top absolute flex flex-col items-center gap-[30px]">
+          <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
+            Hello and welcome to my personal website! 👋
+          </h1>
+
+          {showSecondText && (
+            <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+              {renderAnimatedText()}
+            </div>
+          )}
+        </div>
+      </div>
 
       {isHoveringSoftware && (
         <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
