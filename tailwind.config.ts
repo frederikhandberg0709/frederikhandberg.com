@@ -17,6 +17,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      transitionDuration: {
+        "400": "400ms",
+      },
       keyframes: {
         scrollhint: {
           "0%, 100%": { transform: "translateY(0)" },
@@ -36,7 +39,7 @@ const config: Config = {
             transform: "translateY(-50%)",
           },
           "100%": {
-            top: "150px",
+            top: "200px",
             transform: "translateY(0)",
           },
         },
@@ -52,6 +55,16 @@ const config: Config = {
             filter: "blur(0)",
           },
         },
+        "image-reveal": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+          },
+        },
       },
       animation: {
         scrollhint: "scrollhint 1.5s ease-in-out infinite",
@@ -59,6 +72,7 @@ const config: Config = {
         "move-to-top": "move-to-top 1.5s ease-in-out 400ms forwards",
         "scale-and-rise": "scale-and-rise 1.5s ease-in-out forwards",
         "char-reveal": "char-reveal 300ms ease-out forwards",
+        "image-reveal": "image-reveal 800ms ease-out forwards",
       },
     },
   },

@@ -8,11 +8,15 @@ export default function NameWithHoverImage({
   imageSrc,
   imageAlt = "Profile Image",
   className,
+  onMouseEnter,
+  onMouseLeave,
 }: {
   children: React.ReactNode;
   imageSrc: string;
   imageAlt?: string;
   className?: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -51,11 +55,17 @@ export default function NameWithHoverImage({
       <span
         ref={containerRef}
         className={cn(
-          "relative z-10 inline-block cursor-pointer font-bold transition-colors duration-300 hover:text-blue-500",
+          "duration-400 relative z-10 inline-block cursor-pointer font-bold transition-colors hover:text-blue-500",
           className,
         )}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          onMouseEnter?.();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          onMouseLeave?.();
+        }}
       >
         {children}
       </span>
@@ -64,7 +74,7 @@ export default function NameWithHoverImage({
         createPortal(
           <div
             ref={imageRef}
-            className={`pointer-events-none fixed z-50 transition-all duration-300 ease-out ${
+            className={`duration-400 pointer-events-none fixed z-50 transition-all ease-out ${
               isHovered ? "scale-100 opacity-100" : "scale-80 opacity-0"
             }`}
             style={{

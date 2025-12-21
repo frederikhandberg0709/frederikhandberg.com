@@ -20,57 +20,194 @@ export default function Home() {
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
 
+  // When H1 is finished animation
   const [showSecondText, setShowSecondText] = useState(false);
+  // When H1 and second text is done animating
+  const [textAnimationComplete, setTextAnimationComplete] = useState(false);
+  const [isNameHovered, setIsNameHovered] = useState(false);
 
   const secondText =
-    "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰\n\nI love building cool and useful apps.\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
+    "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰\n\nI'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSecondText(true);
-    }, 1800);
+    }, 1900);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    if (!showSecondText) return;
+
+    // Calculate total animation duration
+    const charCount = secondText.length;
+    const animationDuration = charCount * 15; // 15ms per char
+
+    const timer = setTimeout(() => {
+      setTextAnimationComplete(true);
+    }, animationDuration + 500); // Add 500ms buffer
+
+    return () => clearTimeout(timer);
+  }, [showSecondText]);
 
   const renderAnimatedText = () => {
     const lines = secondText.split("\n");
     let charIndex = 0;
 
-    return lines.map((line, lineIndex) => (
-      <span key={lineIndex}>
-        {line.split(" ").map((word, wordIndex) => {
-          const segmenter = new Intl.Segmenter("en", {
-            granularity: "grapheme",
-          });
-          const chars = Array.from(segmenter.segment(word), (s) => s.segment);
+    const dimmingClass = `transition-all duration-400 ease-in-out ${
+      isNameHovered ? "opacity-30 blur-[1px]" : "opacity-100"
+    }`;
 
-          const wordChars = chars.map((char, i) => {
-            const currentIndex = charIndex++;
+    return lines.map((line, lineIndex) => {
+      // Check if this line contains "Frederik Handberg"
+      if (line.includes("Frederik Handberg")) {
+        const parts = line.split("Frederik Handberg");
+
+        return (
+          <span key={lineIndex}>
+            {/* Render text before name */}
+            {parts[0].split(" ").map((word, wordIndex) => {
+              if (!word) return null;
+              const segmenter = new Intl.Segmenter("en", {
+                granularity: "grapheme",
+              });
+              const chars = Array.from(
+                segmenter.segment(word),
+                (s) => s.segment,
+              );
+
+              const wordChars = chars.map((char, i) => {
+                const currentIndex = charIndex++;
+                return (
+                  <span
+                    key={i}
+                    className={`animate-char-reveal inline-block leading-relaxed opacity-0`}
+                    style={{
+                      animationDelay: `${currentIndex * 15}ms`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              });
+
+              charIndex++;
+
+              return (
+                <span
+                  key={wordIndex}
+                  className={`inline-block ${dimmingClass}`}
+                >
+                  {wordChars}
+                  {"\u00A0"}
+                </span>
+              );
+            })}
+
+            {/* Render animated name component */}
+            <NameWithHoverImage
+              imageSrc="/photo-of-me.JPG"
+              className="hidden sm:inline-block"
+            >
+              {"Frederik Handberg".split("").map((char, i) => {
+                const currentIndex = charIndex++;
+                return (
+                  <span
+                    key={i}
+                    className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                    style={{
+                      animationDelay: `${currentIndex * 15}ms`,
+                    }}
+                    onMouseEnter={() => setIsNameHovered(true)}
+                    onMouseLeave={() => setIsNameHovered(false)}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                );
+              })}
+            </NameWithHoverImage>
+
+            {/* Render text after name */}
+            {parts[1] &&
+              parts[1].split(" ").map((word, wordIndex) => {
+                if (!word) return null;
+                const segmenter = new Intl.Segmenter("en", {
+                  granularity: "grapheme",
+                });
+                const chars = Array.from(
+                  segmenter.segment(word),
+                  (s) => s.segment,
+                );
+
+                const wordChars = chars.map((char, i) => {
+                  const currentIndex = charIndex++;
+                  return (
+                    <span
+                      key={i}
+                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      style={{
+                        animationDelay: `${currentIndex * 15}ms`,
+                      }}
+                    >
+                      {char}
+                    </span>
+                  );
+                });
+
+                charIndex++;
+
+                return (
+                  <span
+                    key={`after-${wordIndex}`}
+                    className={`inline-block ${dimmingClass}`}
+                  >
+                    {wordIndex > 0 && "\u00A0"}
+                    {wordChars}
+                  </span>
+                );
+              })}
+
+            {lineIndex < lines.length - 1 && "\n"}
+          </span>
+        );
+      }
+
+      return (
+        <span key={lineIndex}>
+          {line.split(" ").map((word, wordIndex) => {
+            const segmenter = new Intl.Segmenter("en", {
+              granularity: "grapheme",
+            });
+            const chars = Array.from(segmenter.segment(word), (s) => s.segment);
+
+            const wordChars = chars.map((char, i) => {
+              const currentIndex = charIndex++;
+              return (
+                <span
+                  key={i}
+                  className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                  style={{
+                    animationDelay: `${currentIndex * 15}ms`,
+                  }}
+                >
+                  {char}
+                </span>
+              );
+            });
+
+            charIndex++;
+
             return (
-              <span
-                key={i}
-                className="animate-char-reveal inline-block leading-relaxed opacity-0"
-                style={{
-                  animationDelay: `${currentIndex * 30}ms`,
-                }}
-              >
-                {char}
+              <span key={wordIndex} className={`inline-block ${dimmingClass}`}>
+                {wordChars}
+                {wordIndex < line.split(" ").length - 1 && "\u00A0"}
               </span>
             );
-          });
-
-          charIndex++;
-
-          return (
-            <span key={wordIndex} className="inline-block">
-              {wordChars}
-              {wordIndex < line.split(" ").length - 1 && "\u00A0"}
-            </span>
-          );
-        })}
-        {lineIndex < lines.length - 1 && "\n"}
-      </span>
-    ));
+          })}
+          {lineIndex < lines.length - 1 && "\n"}
+        </span>
+      );
+    });
   };
 
   return (
@@ -108,18 +245,46 @@ export default function Home() {
       </nav>
 
       {/* TODO: Allow bold text */}
-      {/* TODO: Show picture of me somehow, perhaps when hovering my name */}
-      <div className="relative flex min-h-screen flex-col items-center justify-center px-4">
-        <div className="animate-move-to-top absolute flex flex-col items-center gap-[30px]">
+      <div
+        className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
+      >
+        <div
+          className={`${!textAnimationComplete ? "animate-move-to-top" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[200px]" : "absolute"}`}
+        >
           <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
             Hello and welcome to my personal website! 👋
           </h1>
+          <div
+            className={`flex flex-col items-center ${showSecondText ? "max-w-4xl" : "max-w-auto"}`}
+          >
+            {showSecondText && (
+              <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                {renderAnimatedText()}
+              </div>
+            )}
 
-          {showSecondText && (
-            <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-              {renderAnimatedText()}
-            </div>
-          )}
+            {textAnimationComplete && (
+              <a
+                href="#"
+                className="animate-image-reveal duration-400 before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-[linear-gradient(to_right,theme(colors.black)_50%,theme(colors.gray.600)_50%)] bg-[length:200%_100%] bg-clip-text bg-right text-center text-lg font-medium text-transparent transition-[background-position] ease-out before:absolute before:-bottom-1 before:left-0 before:h-[2px] before:w-full before:origin-left before:scale-x-0 before:bg-blue-500 before:transition-transform before:ease-out hover:bg-left hover:before:scale-x-100 dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                style={{
+                  animationFillMode: "forwards",
+                }}
+              >
+                Read more about my notes app and my choice for going native
+              </a>
+            )}
+
+            {textAnimationComplete && (
+              <Image
+                src="/notes_app.png"
+                alt="Image of notes app for macOS"
+                width={0}
+                height={0}
+                className="animate-image-reveal mt-[50px] h-auto w-full rounded-3xl"
+              />
+            )}
+          </div>
         </div>
       </div>
 
