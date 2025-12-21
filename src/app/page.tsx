@@ -265,8 +265,28 @@ export default function Home() {
         </div>
       </nav>
 
+      {isHoveringSoftware && (
+        <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
+          <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
+            Building fun software projects while studying
+            <br />
+            for a degree in Software Engineering.
+          </h1>
+        </div>
+      )}
+
+      {isHoveringFashion && (
+        <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
+          <h1 className="max-w-3xl text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
+            Bringing my ideas to life through fashion design, pattern drafting,
+            and sewing.
+          </h1>
+        </div>
+      )}
+
       {/* TODO: Allow bold text */}
-      <div
+      <section
+        id="introduction"
         className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
       >
         <div
@@ -299,48 +319,65 @@ export default function Home() {
             )}
 
             {textAnimationComplete && (
-              <a
-                href="#"
-                className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
-                style={{
-                  animationFillMode: "forwards",
-                }}
-              >
-                Read more about my notes app and my choice for going native
-              </a>
-            )}
+              <>
+                <Image
+                  src="/notes_app.png"
+                  alt="Image of notes app for macOS"
+                  width={0}
+                  height={0}
+                  className="animate-image-reveal mt-[50px] h-auto w-full rounded-3xl"
+                />
 
-            {textAnimationComplete && (
-              <Image
-                src="/notes_app.png"
-                alt="Image of notes app for macOS"
-                width={0}
-                height={0}
-                className="animate-image-reveal mt-[50px] h-auto w-full rounded-3xl"
-              />
+                <Link
+                  href="#"
+                  className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                  style={{
+                    animationFillMode: "forwards",
+                  }}
+                >
+                  Read more about my notes app and my choice for going native
+                </Link>
+
+                <div className="animate-image-reveal mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  <p className="leading-relaxed">
+                    In addition to doing software development, I&apos;m also
+                    exploring{" "}
+                    <div className="relative inline-block">
+                      <span
+                        className="emoji-tooltip font-bold"
+                        data-emoji="🪡 🧵"
+                      >
+                        Fashion Design
+                      </span>
+                    </div>
+                    . However, this is purely for fun and just a personal hobby.
+                    I suppose there are two reasons why I enjoy fashion design:
+                    <br />
+                    <br />
+                    Finding clothes that fit my body perfectly, has always been
+                    a bit of a challenge for me, so being able to design and sew
+                    my own garments is rewarding. Secondly, I&apos;m a creative
+                    person who loves good style, so I often get an idea about a
+                    nice design of a jacket or similar. I create garment
+                    concepts in 3D, draft patterns, and bring my designs to life
+                    through sewing.
+                  </p>
+
+                  <Link
+                    href="/fashion"
+                    className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                    style={{
+                      animationFillMode: "forwards",
+                    }}
+                  >
+                    Read more about my fashion design hobby
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </div>
-      </div>
-
-      {isHoveringSoftware && (
-        <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
-          <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
-            Building fun software projects while studying
-            <br />
-            for a degree in Software Engineering.
-          </h1>
-        </div>
-      )}
-
-      {isHoveringFashion && (
-        <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
-          <h1 className="max-w-3xl text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
-            Bringing my ideas to life through fashion design, pattern drafting,
-            and sewing.
-          </h1>
-        </div>
-      )}
+      </section>
 
       <ImageOverlayProvider>
         <div
@@ -353,7 +390,7 @@ export default function Home() {
             <HomeScrollIndicator />
           </div>
 
-          <section
+          {/*<section
             id="introduction"
             className="flex min-h-[calc(100vh-400px)] max-w-3xl items-center justify-center max-lg:mx-4"
           >
@@ -446,11 +483,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </section>
+          </section>*/}
 
           <section
             id="contact"
-            className="flex min-h-[calc(100vh-400px)] flex-col items-center gap-5 pt-24 max-lg:mx-4 sm:pt-52 md:w-[450px]"
+            className="flex min-h-[calc(100vh-400px)] flex-col items-center gap-5 pt-24 max-lg:mx-4 md:w-[450px]"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               CONTACT
