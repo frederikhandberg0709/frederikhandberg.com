@@ -13,7 +13,7 @@ import NameWithHoverImage from "@/components/NameWithHoverImage";
 import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/MobileNavMenu";
 import { HomeScrollIndicator } from "@/components/HomeScrollIndicator";
-import Image from "next/image";
+import RoundedImage from "@/components/Image";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -59,6 +59,165 @@ export default function Home() {
     const dimmingClass = `transition-all duration-400 ease-in-out ${
       isNameHovered ? "opacity-30 blur-[1px]" : "opacity-100"
     }`;
+
+    // Helper function to render text and check for "Software Engineering"
+    const renderTextWithSoftwareEngineering = (
+      text: string,
+      skipFirstSpace: boolean,
+    ) => {
+      if (text.includes("Software Engineering")) {
+        const engineeringParts = text.split("Software Engineering");
+
+        return (
+          <>
+            {/* Text before "Software Engineering" */}
+            {engineeringParts[0].split(" ").map((word, wordIndex) => {
+              if (!word) return null;
+              const segmenter = new Intl.Segmenter("en", {
+                granularity: "grapheme",
+              });
+              const chars = Array.from(
+                segmenter.segment(word),
+                (s) => s.segment,
+              );
+
+              const wordChars = chars.map((char, i) => {
+                const currentIndex = charIndex++;
+                return (
+                  <span
+                    key={i}
+                    className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                    style={{
+                      animationDelay: `${currentIndex * 15}ms`,
+                    }}
+                  >
+                    {char}
+                  </span>
+                );
+              });
+
+              charIndex++;
+
+              return (
+                <span
+                  key={`se-before-${wordIndex}`}
+                  className={`inline-block ${dimmingClass}`}
+                >
+                  {skipFirstSpace && wordIndex === 0
+                    ? ""
+                    : wordIndex === 0
+                      ? ""
+                      : "\u00A0"}
+                  {wordChars}
+                </span>
+              );
+            })}
+
+            {/* Space before "Software Engineering" */}
+            {"\u00A0"}
+
+            {/* "Software Engineering" with emoji tooltip */}
+            <span className="relative inline-block">
+              <span
+                className="emoji-tooltip sm:emoji-hover font-bold"
+                data-emoji="💻 🚀"
+              >
+                {"Software Engineering".split("").map((char, i) => {
+                  const currentIndex = charIndex++;
+                  return (
+                    <span
+                      key={i}
+                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      style={{
+                        animationDelay: `${currentIndex * 15}ms`,
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  );
+                })}
+              </span>
+            </span>
+
+            {/* Text after "Software Engineering" */}
+            {engineeringParts[1] &&
+              engineeringParts[1].split(" ").map((word, wordIndex) => {
+                if (!word) return null;
+                const segmenter = new Intl.Segmenter("en", {
+                  granularity: "grapheme",
+                });
+                const chars = Array.from(
+                  segmenter.segment(word),
+                  (s) => s.segment,
+                );
+
+                const wordChars = chars.map((char, i) => {
+                  const currentIndex = charIndex++;
+                  return (
+                    <span
+                      key={i}
+                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      style={{
+                        animationDelay: `${currentIndex * 15}ms`,
+                      }}
+                    >
+                      {char}
+                    </span>
+                  );
+                });
+
+                charIndex++;
+
+                return (
+                  <span
+                    key={`se-after-${wordIndex}`}
+                    className={`inline-block ${dimmingClass}`}
+                  >
+                    {wordIndex > 0 && "\u00A0"}
+                    {wordChars}
+                  </span>
+                );
+              })}
+          </>
+        );
+      }
+
+      // Regular text rendering
+      return text.split(" ").map((word, wordIndex) => {
+        if (!word) return null;
+        const segmenter = new Intl.Segmenter("en", {
+          granularity: "grapheme",
+        });
+        const chars = Array.from(segmenter.segment(word), (s) => s.segment);
+
+        const wordChars = chars.map((char, i) => {
+          const currentIndex = charIndex++;
+          return (
+            <span
+              key={i}
+              className="animate-char-reveal inline-block leading-relaxed opacity-0"
+              style={{
+                animationDelay: `${currentIndex * 15}ms`,
+              }}
+            >
+              {char}
+            </span>
+          );
+        });
+
+        charIndex++;
+
+        return (
+          <span
+            key={`regular-${wordIndex}`}
+            className={`inline-block ${dimmingClass}`}
+          >
+            {wordIndex > 0 && "\u00A0"}
+            {wordChars}
+          </span>
+        );
+      });
+    };
 
     return lines.map((line, lineIndex) => {
       // Check if this line contains "Frederik Handberg"
@@ -149,45 +308,18 @@ export default function Home() {
             </span>
 
             {/* Render text after name */}
-            {parts[1] &&
-              parts[1].split(" ").map((word, wordIndex) => {
-                if (!word) return null;
-                const segmenter = new Intl.Segmenter("en", {
-                  granularity: "grapheme",
-                });
-                const chars = Array.from(
-                  segmenter.segment(word),
-                  (s) => s.segment,
-                );
+            {parts[1] && renderTextWithSoftwareEngineering(parts[1], false)}
 
-                const wordChars = chars.map((char, i) => {
-                  const currentIndex = charIndex++;
-                  return (
-                    <span
-                      key={i}
-                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
-                      style={{
-                        animationDelay: `${currentIndex * 15}ms`,
-                      }}
-                    >
-                      {char}
-                    </span>
-                  );
-                });
+            {lineIndex < lines.length - 1 && "\n"}
+          </span>
+        );
+      }
 
-                charIndex++;
-
-                return (
-                  <span
-                    key={`after-${wordIndex}`}
-                    className={`inline-block ${dimmingClass}`}
-                  >
-                    {wordIndex > 0 && "\u00A0"}
-                    {wordChars}
-                  </span>
-                );
-              })}
-
+      // Check if this line contains "Software Engineering" (for lines without Frederik)
+      if (line.includes("Software Engineering")) {
+        return (
+          <span key={lineIndex}>
+            {renderTextWithSoftwareEngineering(line, false)}
             {lineIndex < lines.length - 1 && "\n"}
           </span>
         );
@@ -284,102 +416,100 @@ export default function Home() {
         </div>
       )}
 
-      {/* TODO: Allow bold text */}
-      <section
-        id="introduction"
-        className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
-      >
-        <div
-          className={`${!textAnimationComplete ? "animate-move-to-top" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[200px]" : "absolute"}`}
+      <ImageOverlayProvider>
+        {/* TODO: Allow bold text */}
+        <section
+          id="introduction"
+          className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
         >
-          <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
-            Hello and welcome to my personal website! 👋
-          </h1>
           <div
-            className={`flex flex-col items-center ${showSecondText ? "max-w-4xl" : "max-w-auto"}`}
+            className={`${!textAnimationComplete ? "animate-move-to-top" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[200px]" : "absolute"}`}
           >
-            {showSecondText && (
-              <>
-                <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                  {renderAnimatedText(firstParagraph)}
-                </div>
+            <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
+              Hello and welcome to my personal website! 👋
+            </h1>
+            <div
+              className={`flex flex-col items-center ${showSecondText ? "max-w-4xl" : "max-w-auto"}`}
+            >
+              {showSecondText && (
+                <>
+                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                    {renderAnimatedText(firstParagraph)}
+                  </div>
 
-                <Image
-                  src="/photo-of-me.JPG"
-                  alt="Image of me"
-                  width={0}
-                  height={0}
-                  className="my-5 h-auto w-full rounded-3xl sm:hidden"
-                />
+                  <RoundedImage
+                    src="/photo-of-me.JPG"
+                    alt="Image of me"
+                    className="my-5 sm:hidden"
+                  />
 
-                <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                  {renderAnimatedText(secondParagraph, firstParagraph.length)}
-                </div>
-              </>
-            )}
+                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                    {renderAnimatedText(secondParagraph, firstParagraph.length)}
+                  </div>
+                </>
+              )}
 
-            {textAnimationComplete && (
-              <>
-                <Image
-                  src="/notes_app.png"
-                  alt="Image of notes app for macOS"
-                  width={0}
-                  height={0}
-                  className="animate-image-reveal mt-[50px] h-auto w-full rounded-3xl"
-                />
-
-                <Link
-                  href="#"
-                  className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
-                  style={{
-                    animationFillMode: "forwards",
-                  }}
-                >
-                  Read more about my notes app and my choice for going native
-                </Link>
-
-                <div className="animate-image-reveal mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                  <p className="leading-relaxed">
-                    In addition to doing software development, I&apos;m also
-                    exploring{" "}
-                    <div className="relative inline-block">
-                      <span
-                        className="emoji-tooltip font-bold"
-                        data-emoji="🪡 🧵"
-                      >
-                        Fashion Design
-                      </span>
-                    </div>
-                    . However, this is purely for fun and just a personal hobby.
-                    I suppose there are two reasons why I enjoy fashion design:
-                    <br />
-                    <br />
-                    Finding clothes that fit my body perfectly, has always been
-                    a bit of a challenge for me, so being able to design and sew
-                    my own garments is rewarding. Secondly, I&apos;m a creative
-                    person who loves good style, so I often get an idea about a
-                    nice design of a jacket or similar. I create garment
-                    concepts in 3D, draft patterns, and bring my designs to life
-                    through sewing.
-                  </p>
+              {textAnimationComplete && (
+                <>
+                  <div className="animate-image-reveal mt-[50px]">
+                    <RoundedImage
+                      src="/notes_app.png"
+                      alt="Image of notes app for macOS"
+                    />
+                  </div>
 
                   <Link
-                    href="/fashion"
+                    href="#"
                     className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                     style={{
                       animationFillMode: "forwards",
                     }}
                   >
-                    Read more about my fashion design hobby
+                    Read more about my notes app and my choice for going native
                   </Link>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
 
-      <ImageOverlayProvider>
+                  <div className="animate-image-reveal mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                    <p className="leading-relaxed">
+                      In addition to doing software development, I&apos;m also
+                      exploring{" "}
+                      <div className="relative inline-block">
+                        <span
+                          className="emoji-tooltip font-bold"
+                          data-emoji="🪡 🧵"
+                        >
+                          Fashion Design
+                        </span>
+                      </div>
+                      . However, this is purely for fun and just a personal
+                      hobby. I suppose there are two reasons why I enjoy fashion
+                      design:
+                      <br />
+                      <br />
+                      Finding clothes that fit my body perfectly, has always
+                      been a bit of a challenge for me, so being able to design
+                      and sew my own garments is rewarding. Secondly, I&apos;m a
+                      creative person who loves good style, so I often get an
+                      idea about a nice design of a jacket or similar. I create
+                      garment concepts in 3D, draft patterns, and bring my
+                      designs to life through sewing.
+                    </p>
+
+                    <Link
+                      href="/fashion"
+                      className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                      style={{
+                        animationFillMode: "forwards",
+                      }}
+                    >
+                      Read more about my fashion design hobby
+                    </Link>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
         <div
           className="relative flex min-h-screen flex-col items-center overflow-x-hidden"
           style={{ gap: "4rem" }}

@@ -55,7 +55,7 @@ export default function NameWithHoverImage({
       <span
         ref={containerRef}
         className={cn(
-          "duration-400 relative z-10 inline-block cursor-pointer font-bold transition-colors hover:text-blue-500",
+          "duration-400 relative inline-block cursor-pointer font-bold transition-colors hover:text-blue-500",
           className,
         )}
         onMouseEnter={() => {
