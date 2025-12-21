@@ -1,6 +1,7 @@
 import { cn } from "@/utils/cn";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export default function NameWithHoverImage({
   children,
@@ -15,17 +16,23 @@ export default function NameWithHoverImage({
 }) {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
+
+  const FLIP_THRESHOLD = 250;
+
   const imageRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (isHovered) {
-        setMousePosition({
-          x: e.clientX,
-          y: e.clientY,
-        });
-      }
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
     };
 
     if (isHovered) {
@@ -37,12 +44,7 @@ export default function NameWithHoverImage({
     };
   }, [isHovered]);
 
-  useEffect(() => {
-    if (imageRef.current && isHovered) {
-      imageRef.current.style.left = `${mousePosition.x}px`;
-      imageRef.current.style.top = `${mousePosition.y}px`;
-    }
-  }, [mousePosition, isHovered]);
+  const showBelow = mousePosition.y < FLIP_THRESHOLD;
 
   return (
     <>
@@ -58,25 +60,31 @@ export default function NameWithHoverImage({
         {children}
       </span>
 
-      <div
-        ref={imageRef}
-        className={`pointer-events-none fixed z-50 transition-all duration-300 ease-out ${
-          isHovered ? "scale-100 opacity-100" : "scale-80 opacity-0"
-        }`}
-        style={{
-          left: mousePosition.x,
-          top: mousePosition.y,
-          transform: "translate(-50%, -110%)",
-        }}
-      >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          width={300}
-          height={400}
-          className="rounded-lg shadow-2xl"
-        />
-      </div>
+      {mounted &&
+        createPortal(
+          <div
+            ref={imageRef}
+            className={`pointer-events-none fixed z-50 transition-all duration-300 ease-out ${
+              isHovered ? "scale-100 opacity-100" : "scale-80 opacity-0"
+            }`}
+            style={{
+              left: mousePosition.x,
+              top: mousePosition.y,
+              transform: showBelow
+                ? "translate(-50%, 20px)"
+                : "translate(-50%, -110%)",
+            }}
+          >
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              width={300}
+              height={400}
+              className="rounded-lg shadow-2xl"
+            />
+          </div>,
+          document.body,
+        )}
     </>
   );
 }
