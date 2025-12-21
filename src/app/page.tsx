@@ -26,8 +26,10 @@ export default function Home() {
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const [isNameHovered, setIsNameHovered] = useState(false);
 
-  const secondText =
-    "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰\n\nI'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
+  const firstParagraph =
+    "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
+  const secondParagraph =
+    "I'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -40,7 +42,7 @@ export default function Home() {
     if (!showSecondText) return;
 
     // Calculate total animation duration
-    const charCount = secondText.length;
+    const charCount = (firstParagraph + secondParagraph).length;
     const animationDuration = charCount * 15; // 15ms per char
 
     const timer = setTimeout(() => {
@@ -50,9 +52,9 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [showSecondText]);
 
-  const renderAnimatedText = () => {
-    const lines = secondText.split("\n");
-    let charIndex = 0;
+  const renderAnimatedText = (text: string, startCharIndex = 0) => {
+    const lines = text.split("\n");
+    let charIndex = startCharIndex;
 
     const dimmingClass = `transition-all duration-400 ease-in-out ${
       isNameHovered ? "opacity-30 blur-[1px]" : "opacity-100"
@@ -104,28 +106,47 @@ export default function Home() {
               );
             })}
 
-            {/* Render animated name component */}
-            <NameWithHoverImage
-              imageSrc="/photo-of-me.JPG"
-              className="hidden sm:inline-block"
-            >
-              {"Frederik Handberg".split("").map((char, i) => {
-                const currentIndex = charIndex++;
-                return (
-                  <span
-                    key={i}
-                    className="animate-char-reveal inline-block leading-relaxed opacity-0"
-                    style={{
-                      animationDelay: `${currentIndex * 15}ms`,
-                    }}
-                    onMouseEnter={() => setIsNameHovered(true)}
-                    onMouseLeave={() => setIsNameHovered(false)}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                );
-              })}
-            </NameWithHoverImage>
+            <span>
+              {/* Render animated name component */}
+              <NameWithHoverImage
+                imageSrc="/photo-of-me.JPG"
+                className="hidden sm:inline-block"
+              >
+                {"Frederik Handberg".split("").map((char, i) => {
+                  const currentIndex = charIndex++;
+                  return (
+                    <span
+                      key={i}
+                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      style={{
+                        animationDelay: `${currentIndex * 15}ms`,
+                      }}
+                      onMouseEnter={() => setIsNameHovered(true)}
+                      onMouseLeave={() => setIsNameHovered(false)}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  );
+                })}
+              </NameWithHoverImage>
+
+              <span className="sm:hidden">
+                {"Frederik Handberg".split("").map((char, i) => {
+                  const currentIndex = charIndex++;
+                  return (
+                    <span
+                      key={i}
+                      className="animate-char-reveal inline-block font-bold leading-relaxed opacity-0"
+                      style={{
+                        animationDelay: `${currentIndex * 15}ms`,
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  );
+                })}
+              </span>
+            </span>
 
             {/* Render text after name */}
             {parts[1] &&
@@ -258,15 +279,29 @@ export default function Home() {
             className={`flex flex-col items-center ${showSecondText ? "max-w-4xl" : "max-w-auto"}`}
           >
             {showSecondText && (
-              <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                {renderAnimatedText()}
-              </div>
+              <>
+                <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  {renderAnimatedText(firstParagraph)}
+                </div>
+
+                <Image
+                  src="/photo-of-me.JPG"
+                  alt="Image of me"
+                  width={0}
+                  height={0}
+                  className="my-5 h-auto w-full rounded-3xl sm:hidden"
+                />
+
+                <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  {renderAnimatedText(secondParagraph, firstParagraph.length)}
+                </div>
+              </>
             )}
 
             {textAnimationComplete && (
               <a
                 href="#"
-                className="animate-image-reveal duration-400 before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-[linear-gradient(to_right,theme(colors.black)_50%,theme(colors.gray.600)_50%)] bg-[length:200%_100%] bg-clip-text bg-right text-center text-lg font-medium text-transparent transition-[background-position] ease-out before:absolute before:-bottom-1 before:left-0 before:h-[2px] before:w-full before:origin-left before:scale-x-0 before:bg-blue-500 before:transition-transform before:ease-out hover:bg-left hover:before:scale-x-100 dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                 style={{
                   animationFillMode: "forwards",
                 }}
