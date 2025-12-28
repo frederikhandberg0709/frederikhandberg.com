@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
-import NavbarLogo from "@/components/NavbarLogo";
+import NavbarLogo from "@/components/nav/NavbarLogo";
 import BlogTimeline from "@/components/blog/BlogTimeline";
 import { NostrProvider } from "nostr-react";
 import { ProfileProvider } from "@/context/ProfileContext";
@@ -11,9 +11,9 @@ import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
 import ContactForm from "@/components/ContactForm";
 import NameWithHoverImage from "@/components/NameWithHoverImage";
 import ButtonLink from "@/components/buttons/ButtonLink";
-import MobileNavMenu from "@/components/MobileNavMenu";
-import { HomeScrollIndicator } from "@/components/HomeScrollIndicator";
+import MobileNavMenu from "@/components/nav/MobileNavMenu";
 import RoundedImage from "@/components/Image";
+import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -26,6 +26,12 @@ export default function Home() {
   const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
 
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  const aboutRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
+  const blogRef = useRef<HTMLElement>(null);
+
   const firstParagraph =
     "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
@@ -36,6 +42,33 @@ export default function Home() {
       setShowSecondText(true);
     }, 1900);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        { id: "about", ref: aboutRef },
+        { id: "contact", ref: contactRef },
+        { id: "blog", ref: blogRef },
+      ];
+
+      const currentSection = sections.find((section) => {
+        const element = section.ref.current;
+        if (!element) return false;
+
+        const { top, bottom } = element.getBoundingClientRect();
+        const isInView =
+          top + window.pageYOffset < window.scrollY + 5 &&
+          bottom + window.pageYOffset > window.scrollY + 5;
+        return isInView;
+      });
+
+      setActiveSection(currentSection ? currentSection.id : "");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -126,8 +159,9 @@ export default function Home() {
             {"\u00A0"}
 
             {/* "Software Engineering" with emoji tooltip */}
-            <span
-              className={`relative inline-block ${engineeringDimmingClass}`}
+            <Link
+              href="/software"
+              className={`relative inline-block hover:text-blue-500 ${engineeringDimmingClass}`}
               onMouseEnter={() => setIsHoveringSoftwareText(true)}
               onMouseLeave={() => setIsHoveringSoftwareText(false)}
             >
@@ -150,7 +184,7 @@ export default function Home() {
                   );
                 })}
               </span>
-            </span>
+            </Link>
 
             {/* Text after "Software Engineering" */}
             {engineeringParts[1] &&
@@ -415,6 +449,17 @@ export default function Home() {
         </div>
       </nav>
 
+      <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2">
+        <PillNavbarMenu
+          links={[
+            { href: "#about", text: "About", sectionId: "about" },
+            { href: "#contact", text: "Contact", sectionId: "contact" },
+            { href: "#blog", text: "Blog", sectionId: "blog" },
+          ]}
+          activeSection={activeSection}
+        />
+      </div>
+
       {isHoveringSoftware && (
         <div className="fixed z-20 flex h-full w-full items-center justify-center backdrop-blur-xl">
           <h1 className="text-center text-4xl font-bold leading-normal max-[810px]:text-2xl">
@@ -436,13 +481,14 @@ export default function Home() {
 
       <ImageOverlayProvider>
         <section
-          id="introduction"
+          id="about"
+          ref={aboutRef}
           className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
         >
           <div
             className={`${!textAnimationComplete ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
           >
-            <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
+            <h1 className="animate-scale-down text-center text-4xl font-bold">
               Hello and welcome to my personal website! 👋
             </h1>
             <div
@@ -461,75 +507,76 @@ export default function Home() {
                   <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
                     {renderAnimatedText(secondParagraph, firstParagraph.length)}
                   </div>
-                </>
-              )}
 
-              {textAnimationComplete && (
-                <>
-                  <div className="mt-[50px] animate-image-reveal">
-                    <RoundedImage
-                      src="/notes_app.png"
-                      alt="Image of notes app for macOS"
-                    />
-                  </div>
-
-                  <Link
-                    href="#"
-                    className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
-                    style={{
-                      animationFillMode: "forwards",
-                    }}
+                  <div
+                    className={`flex flex-col items-center ${textAnimationComplete ? "pointer-events-auto animate-image-reveal select-auto" : "pointer-events-none select-none opacity-0"}`}
                   >
-                    Read more about my notes app and my choice for going native
-                  </Link>
-
-                  <div className="mt-[100px] max-w-3xl animate-image-reveal whitespace-pre-line text-center text-xl md:text-2xl">
-                    <p className="leading-relaxed">
-                      <span
-                        className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
-                      >
-                        In addition to doing software development, I&apos;m also
-                        exploring
-                      </span>{" "}
-                      <div
-                        className="relative inline-block"
-                        onMouseOver={() => setIsHoveringFashionText(true)}
-                        onMouseLeave={() => setIsHoveringFashionText(false)}
-                      >
-                        <span
-                          className="emoji-tooltip font-bold"
-                          data-emoji="🪡 🧵"
-                        >
-                          Fashion Design
-                        </span>
-                      </div>
-                      <span
-                        className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
-                      >
-                        . However, this is purely for fun and just a personal
-                        hobby. I suppose there are two reasons why I enjoy
-                        fashion design:
-                        <br />
-                        <br />
-                        Finding clothes that fit my body perfectly, has always
-                        been a bit of a challenge for me, so being able to
-                        design and sew my own garments is rewarding. Secondly,
-                        I&apos;m a creative person who loves good style, so I
-                        often get an idea about a nice design of a jacket or
-                        similar. I create garment concepts in 3D, draft
-                        patterns, and bring my designs to life through sewing.
-                      </span>
-                    </p>
+                    <div className="mt-[50px]">
+                      <RoundedImage
+                        src="/notes_app.png"
+                        alt="Image of notes app for macOS"
+                      />
+                    </div>
 
                     <Link
-                      href="/fashion"
+                      href="#"
                       className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                       style={{
                         animationFillMode: "forwards",
                       }}
                     >
-                      Read more about my fashion design hobby
+                      Read more about my notes app and my choice for going
+                      native
                     </Link>
+
+                    <div className="mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                      <p className="leading-relaxed">
+                        <span
+                          className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                        >
+                          In addition to doing software development, I&apos;m
+                          also learning
+                        </span>{" "}
+                        <div className="relative inline-block">
+                          <Link
+                            href="/software"
+                            className="emoji-tooltip font-bold hover:text-blue-500"
+                            data-emoji="🪡 🧵"
+                            onMouseOver={() => setIsHoveringFashionText(true)}
+                            onMouseLeave={() => setIsHoveringFashionText(false)}
+                          >
+                            Fashion Design
+                          </Link>
+                        </div>
+                        <span
+                          className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                        >
+                          . However, this is purely for fun and just a personal
+                          hobby of mine.
+                          <br />
+                          <br />
+                          Because I like tailored and well-fitting clothing,
+                          finding pieces that truly fit my body has always been
+                          difficult. Designing and sewing my own garments allows
+                          me to solve that problem creatively, combining my love
+                          for classic design with bold design twists.
+                          <br />
+                          <br />I create garment concepts in 3D, draft patterns
+                          with my measurements, and bring my designs to life
+                          through sewing.
+                        </span>
+                      </p>
+
+                      <Link
+                        href="/fashion"
+                        className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                        style={{
+                          animationFillMode: "forwards",
+                        }}
+                      >
+                        Read more about my fashion design hobby
+                      </Link>
+                    </div>
                   </div>
                 </>
               )}
@@ -537,18 +584,10 @@ export default function Home() {
           </div>
         </section>
 
-        <div
-          className="relative flex min-h-screen flex-col items-center overflow-x-hidden"
-          style={{ gap: "4rem" }}
-        >
-          <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black max-[809px]:hidden"></div>
-
-          <div className="hidden lg:block">
-            <HomeScrollIndicator />
-          </div>
-
+        <div className="relative flex min-h-screen flex-col items-center overflow-x-hidden">
           <section
             id="contact"
+            ref={contactRef}
             className="flex min-h-[calc(100vh-400px)] flex-col items-center gap-5 pt-24 max-lg:mx-4 md:w-[450px]"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
@@ -572,6 +611,7 @@ export default function Home() {
 
           <section
             id="blog"
+            ref={blogRef}
             className="flex flex-col items-center gap-5 sm:pt-24"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">

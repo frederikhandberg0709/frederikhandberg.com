@@ -1,7 +1,7 @@
 "use client";
 
-import NavbarMenu from "@/components/NavbarMenu";
 import { useRef } from "react";
+import Navbar from "@/components/nav/Navbar";
 import Header from "@/components/sections/Header";
 import Portfolio from "@/components/sections/Portfolio";
 import TechStack from "@/components/sections/TechStack";
@@ -19,7 +19,7 @@ export default function Software() {
 
   return (
     <main className="w-full overflow-x-hidden">
-      <NavbarMenu
+      <Navbar
         homeRef={homeRef}
         portfolioRef={portfolioRef}
         techStackRef={techStackRef}

@@ -1,12 +1,12 @@
 "use client";
 
-import NavbarLink from "./NavbarLink";
 import { useEffect, useState } from "react";
-import ButtonLink from "./buttons/ButtonLink";
+import ButtonLink from "../buttons/ButtonLink";
 import MobileNavMenu from "./MobileNavMenu";
 import NavbarLogo from "./NavbarLogo";
+import PillNavbarMenu from "./PillNavbarMenu";
 
-interface NavbarMenuProps {
+interface Navbar {
   homeRef: React.RefObject<HTMLElement | null>;
   portfolioRef: React.RefObject<HTMLElement | null>;
   techStackRef: React.RefObject<HTMLElement | null>;
@@ -15,14 +15,14 @@ interface NavbarMenuProps {
   menuType: "homepage" | "software" | "fashion";
 }
 
-export default function NavbarMenu({
+export default function Navbar({
   homeRef,
   portfolioRef,
   techStackRef,
   aboutMeRef,
   contactRef,
   menuType,
-}: NavbarMenuProps) {
+}: Navbar) {
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
@@ -64,68 +64,38 @@ export default function NavbarMenu({
     }
   };
 
-  const linkClass = (section: string) =>
-    `${
-      activeSection === section
-        ? "text-black dark:text-white"
-        : "text-black/50 hover:text-black dark:text-white/50 dark:hover:text-white"
-    }`;
+  const getMenuLinks = () => {
+    if (menuType === "software") {
+      return [
+        { href: "#home", text: "Home", sectionId: "home" },
+        { href: "#portfolio", text: "Portfolio", sectionId: "portfolio" },
+        { href: "#tech-stack", text: "Tech Stack", sectionId: "techstack" },
+        { href: "#about-me", text: "About Me", sectionId: "aboutme" },
+      ];
+    }
+
+    if (menuType === "fashion") {
+      return [
+        { href: "#", text: "", sectionId: "" },
+        { href: "#", text: "", sectionId: "" },
+        { href: "#", text: "", sectionId: "" },
+        { href: "#", text: "", sectionId: "" },
+      ];
+    }
+
+    return [];
+  };
 
   return (
     <nav className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex w-full items-center justify-center">
       <div className="mx-20 my-3 hidden w-full items-center justify-between min-[810px]:container max-[900px]:mx-12 min-[810px]:flex">
         <NavbarLogo />
 
-        <div className="pointer-events-auto rounded-full bg-white/20 backdrop-blur-xl dark:bg-black/50">
-          <div className="m-2 flex gap-2.5">
-            {menuType === "homepage" && (
-              <>
-                <NavbarLink href="/software" text="Software" />
-                <NavbarLink href="/fashion" text="Fashion" />
-              </>
-            )}
-            {menuType === "software" && (
-              <>
-                <NavbarLink
-                  href="#home"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavLinkClick("home");
-                  }}
-                  className={linkClass("home")}
-                  text="Home"
-                />
-                <NavbarLink
-                  href="#portfolio"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavLinkClick("portfolio");
-                  }}
-                  className={linkClass("portfolio")}
-                  text="Portfolio"
-                />
-                <NavbarLink
-                  href="#tech-stack"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavLinkClick("tech-stack");
-                  }}
-                  text="Tech Stack"
-                  className={linkClass("techstack")}
-                />
-                <NavbarLink
-                  href="#about-me"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavLinkClick("about-me");
-                  }}
-                  className={linkClass("aboutme")}
-                  text="About Me"
-                />
-              </>
-            )}
-          </div>
-        </div>
+        <PillNavbarMenu
+          links={getMenuLinks()}
+          activeSection={activeSection}
+          onNavLinkClick={handleNavLinkClick}
+        />
 
         <div className="flex w-[105px] justify-end">
           <ButtonLink

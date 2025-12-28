@@ -55,7 +55,7 @@ export default function NameWithHoverImage({
       <span
         ref={containerRef}
         className={cn(
-          "duration-400 relative inline-block cursor-pointer font-bold transition-colors hover:text-blue-500",
+          "relative inline-block font-bold transition-colors duration-400 hover:text-blue-500",
           className,
         )}
         onMouseEnter={() => {
@@ -74,7 +74,7 @@ export default function NameWithHoverImage({
         createPortal(
           <div
             ref={imageRef}
-            className={`duration-400 pointer-events-none fixed z-50 transition-all ease-out ${
+            className={`pointer-events-none fixed z-50 transition-all duration-400 ease-out ${
               isHovered ? "scale-100 opacity-100" : "scale-80 opacity-0"
             }`}
             style={{
