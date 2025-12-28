@@ -1,3 +1,4 @@
+import { MdOpacity } from "react-icons/md";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -39,7 +40,7 @@ const config: Config = {
             transform: "translateY(-50%)",
           },
           "100%": {
-            top: "200px",
+            top: "var(--move-to-top-dest, 200px)",
             transform: "translateY(0)",
           },
         },
@@ -65,6 +66,16 @@ const config: Config = {
             transform: "translateY(0)",
           },
         },
+        "image-opacity": {
+          "0%": {
+            opacity: "0",
+            scale: "0.90",
+          },
+          "100%": {
+            opacity: "1",
+            scale: "1",
+          },
+        },
       },
       animation: {
         scrollhint: "scrollhint 1.5s ease-in-out infinite",
@@ -73,6 +84,7 @@ const config: Config = {
         "scale-and-rise": "scale-and-rise 1.5s ease-in-out forwards",
         "char-reveal": "char-reveal 300ms ease-out forwards",
         "image-reveal": "image-reveal 800ms ease-out forwards",
+        "image-opacity": "image-opacity 800ms ease-out forwards",
       },
     },
   },

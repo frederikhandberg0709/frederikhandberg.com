@@ -18,13 +18,13 @@ import RoundedImage from "@/components/Image";
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
+  const [isHoveringNameText, setIsHoveringNameText] = useState(false);
+  const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
+  const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
   const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
 
-  // When H1 is finished animation
   const [showSecondText, setShowSecondText] = useState(false);
-  // When H1 and second text is done animating
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
-  const [isNameHovered, setIsNameHovered] = useState(false);
 
   const firstParagraph =
     "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
@@ -56,8 +56,17 @@ export default function Home() {
     const lines = text.split("\n");
     let charIndex = startCharIndex;
 
-    const dimmingClass = `transition-all duration-400 ease-in-out ${
-      isNameHovered ? "opacity-30 blur-[1px]" : "opacity-100"
+    const isAnyHovered = isHoveringNameText || isHoveringSoftwareText;
+    const regularDimmingClass = `transition-all duration-400 ease-in-out ${
+      isAnyHovered ? "opacity-30 blur-[1px]" : "opacity-100"
+    }`;
+
+    const nameDimmingClass = `transition-all duration-400 ease-in-out ${
+      isHoveringSoftwareText ? "opacity-30 blur-[1px]" : "opacity-100"
+    }`;
+
+    const engineeringDimmingClass = `transition-all duration-400 ease-in-out ${
+      isHoveringNameText ? "opacity-30 blur-[1px]" : "opacity-100"
     }`;
 
     // Helper function to render text and check for "Software Engineering"
@@ -86,7 +95,7 @@ export default function Home() {
                 return (
                   <span
                     key={i}
-                    className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                    className="inline-block animate-char-reveal leading-relaxed opacity-0"
                     style={{
                       animationDelay: `${currentIndex * 15}ms`,
                     }}
@@ -101,7 +110,7 @@ export default function Home() {
               return (
                 <span
                   key={`se-before-${wordIndex}`}
-                  className={`inline-block ${dimmingClass}`}
+                  className={`inline-block ${regularDimmingClass}`}
                 >
                   {skipFirstSpace && wordIndex === 0
                     ? ""
@@ -117,7 +126,11 @@ export default function Home() {
             {"\u00A0"}
 
             {/* "Software Engineering" with emoji tooltip */}
-            <span className="relative inline-block">
+            <span
+              className={`relative inline-block ${engineeringDimmingClass}`}
+              onMouseEnter={() => setIsHoveringSoftwareText(true)}
+              onMouseLeave={() => setIsHoveringSoftwareText(false)}
+            >
               <span
                 className="emoji-tooltip sm:emoji-hover font-bold"
                 data-emoji="💻 🚀"
@@ -127,7 +140,7 @@ export default function Home() {
                   return (
                     <span
                       key={i}
-                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      className="inline-block animate-char-reveal leading-relaxed opacity-0"
                       style={{
                         animationDelay: `${currentIndex * 15}ms`,
                       }}
@@ -156,7 +169,7 @@ export default function Home() {
                   return (
                     <span
                       key={i}
-                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      className="inline-block animate-char-reveal leading-relaxed opacity-0"
                       style={{
                         animationDelay: `${currentIndex * 15}ms`,
                       }}
@@ -171,7 +184,7 @@ export default function Home() {
                 return (
                   <span
                     key={`se-after-${wordIndex}`}
-                    className={`inline-block ${dimmingClass}`}
+                    className={`inline-block ${regularDimmingClass}`}
                   >
                     {wordIndex > 0 && "\u00A0"}
                     {wordChars}
@@ -195,7 +208,7 @@ export default function Home() {
           return (
             <span
               key={i}
-              className="animate-char-reveal inline-block leading-relaxed opacity-0"
+              className="inline-block animate-char-reveal leading-relaxed opacity-0"
               style={{
                 animationDelay: `${currentIndex * 15}ms`,
               }}
@@ -210,7 +223,7 @@ export default function Home() {
         return (
           <span
             key={`regular-${wordIndex}`}
-            className={`inline-block ${dimmingClass}`}
+            className={`inline-block ${regularDimmingClass}`}
           >
             {wordIndex > 0 && "\u00A0"}
             {wordChars}
@@ -242,7 +255,7 @@ export default function Home() {
                 return (
                   <span
                     key={i}
-                    className={`animate-char-reveal inline-block leading-relaxed opacity-0`}
+                    className={`inline-block animate-char-reveal leading-relaxed opacity-0`}
                     style={{
                       animationDelay: `${currentIndex * 15}ms`,
                     }}
@@ -257,7 +270,7 @@ export default function Home() {
               return (
                 <span
                   key={wordIndex}
-                  className={`inline-block ${dimmingClass}`}
+                  className={`inline-block ${regularDimmingClass}`}
                 >
                   {wordChars}
                   {"\u00A0"}
@@ -269,19 +282,19 @@ export default function Home() {
               {/* Render animated name component */}
               <NameWithHoverImage
                 imageSrc="/photo-of-me.JPG"
-                className="hidden sm:inline-block"
+                className={`hidden sm:inline-block ${nameDimmingClass}`}
               >
                 {"Frederik Handberg".split("").map((char, i) => {
                   const currentIndex = charIndex++;
                   return (
                     <span
                       key={i}
-                      className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                      className={`inline-block animate-char-reveal leading-relaxed opacity-0`}
                       style={{
                         animationDelay: `${currentIndex * 15}ms`,
                       }}
-                      onMouseEnter={() => setIsNameHovered(true)}
-                      onMouseLeave={() => setIsNameHovered(false)}
+                      onMouseEnter={() => setIsHoveringNameText(true)}
+                      onMouseLeave={() => setIsHoveringNameText(false)}
                     >
                       {char === " " ? "\u00A0" : char}
                     </span>
@@ -289,16 +302,18 @@ export default function Home() {
                 })}
               </NameWithHoverImage>
 
-              <span className="sm:hidden">
+              <span className={`sm:hidden ${nameDimmingClass}`}>
                 {"Frederik Handberg".split("").map((char, i) => {
                   const currentIndex = charIndex++;
                   return (
                     <span
                       key={i}
-                      className="animate-char-reveal inline-block font-bold leading-relaxed opacity-0"
+                      className="inline-block animate-char-reveal font-bold leading-relaxed opacity-0"
                       style={{
                         animationDelay: `${currentIndex * 15}ms`,
                       }}
+                      onMouseEnter={() => setIsHoveringNameText(true)}
+                      onMouseLeave={() => setIsHoveringNameText(false)}
                     >
                       {char === " " ? "\u00A0" : char}
                     </span>
@@ -338,7 +353,7 @@ export default function Home() {
               return (
                 <span
                   key={i}
-                  className="animate-char-reveal inline-block leading-relaxed opacity-0"
+                  className="inline-block animate-char-reveal leading-relaxed opacity-0"
                   style={{
                     animationDelay: `${currentIndex * 15}ms`,
                   }}
@@ -351,7 +366,10 @@ export default function Home() {
             charIndex++;
 
             return (
-              <span key={wordIndex} className={`inline-block ${dimmingClass}`}>
+              <span
+                key={wordIndex}
+                className={`inline-block ${regularDimmingClass}`}
+              >
                 {wordChars}
                 {wordIndex < line.split(" ").length - 1 && "\u00A0"}
               </span>
@@ -417,13 +435,12 @@ export default function Home() {
       )}
 
       <ImageOverlayProvider>
-        {/* TODO: Allow bold text */}
         <section
           id="introduction"
           className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
         >
           <div
-            className={`${!textAnimationComplete ? "animate-move-to-top" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[200px]" : "absolute"}`}
+            className={`${!textAnimationComplete ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
           >
             <h1 className="animate-scale-down text-center text-4xl font-bold md:text-5xl">
               Hello and welcome to my personal website! 👋
@@ -437,11 +454,9 @@ export default function Home() {
                     {renderAnimatedText(firstParagraph)}
                   </div>
 
-                  <RoundedImage
-                    src="/photo-of-me.JPG"
-                    alt="Image of me"
-                    className="my-5 sm:hidden"
-                  />
+                  <div className="animate-image-opacity my-5 sm:hidden">
+                    <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
+                  </div>
 
                   <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
                     {renderAnimatedText(secondParagraph, firstParagraph.length)}
@@ -451,7 +466,7 @@ export default function Home() {
 
               {textAnimationComplete && (
                 <>
-                  <div className="animate-image-reveal mt-[50px]">
+                  <div className="mt-[50px] animate-image-reveal">
                     <RoundedImage
                       src="/notes_app.png"
                       alt="Image of notes app for macOS"
@@ -460,7 +475,7 @@ export default function Home() {
 
                   <Link
                     href="#"
-                    className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                    className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                     style={{
                       animationFillMode: "forwards",
                     }}
@@ -468,11 +483,19 @@ export default function Home() {
                     Read more about my notes app and my choice for going native
                   </Link>
 
-                  <div className="animate-image-reveal mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  <div className="mt-[100px] max-w-3xl animate-image-reveal whitespace-pre-line text-center text-xl md:text-2xl">
                     <p className="leading-relaxed">
-                      In addition to doing software development, I&apos;m also
-                      exploring{" "}
-                      <div className="relative inline-block">
+                      <span
+                        className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                      >
+                        In addition to doing software development, I&apos;m also
+                        exploring
+                      </span>{" "}
+                      <div
+                        className="relative inline-block"
+                        onMouseOver={() => setIsHoveringFashionText(true)}
+                        onMouseLeave={() => setIsHoveringFashionText(false)}
+                      >
                         <span
                           className="emoji-tooltip font-bold"
                           data-emoji="🪡 🧵"
@@ -480,23 +503,27 @@ export default function Home() {
                           Fashion Design
                         </span>
                       </div>
-                      . However, this is purely for fun and just a personal
-                      hobby. I suppose there are two reasons why I enjoy fashion
-                      design:
-                      <br />
-                      <br />
-                      Finding clothes that fit my body perfectly, has always
-                      been a bit of a challenge for me, so being able to design
-                      and sew my own garments is rewarding. Secondly, I&apos;m a
-                      creative person who loves good style, so I often get an
-                      idea about a nice design of a jacket or similar. I create
-                      garment concepts in 3D, draft patterns, and bring my
-                      designs to life through sewing.
+                      <span
+                        className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                      >
+                        . However, this is purely for fun and just a personal
+                        hobby. I suppose there are two reasons why I enjoy
+                        fashion design:
+                        <br />
+                        <br />
+                        Finding clothes that fit my body perfectly, has always
+                        been a bit of a challenge for me, so being able to
+                        design and sew my own garments is rewarding. Secondly,
+                        I&apos;m a creative person who loves good style, so I
+                        often get an idea about a nice design of a jacket or
+                        similar. I create garment concepts in 3D, draft
+                        patterns, and bring my designs to life through sewing.
+                      </span>
                     </p>
 
                     <Link
                       href="/fashion"
-                      className="animate-image-reveal duration-400 sm:before:duration-400 relative mt-[20px] inline-block cursor-pointer bg-right text-center text-lg font-medium ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                      className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                       style={{
                         animationFillMode: "forwards",
                       }}
@@ -519,101 +546,6 @@ export default function Home() {
           <div className="hidden lg:block">
             <HomeScrollIndicator />
           </div>
-
-          {/*<section
-            id="introduction"
-            className="flex min-h-[calc(100vh-400px)] max-w-3xl items-center justify-center max-lg:mx-4"
-          >
-            <div className="flex flex-col items-start justify-center gap-5 pt-24 md:pt-36">
-              <h1 className="text-2xl font-medium">
-                Hello and welcome to my personal website! 👋
-              </h1>
-              <div className="space-y-7">
-                <p className="leading-relaxed">
-                  My name is{" "}
-                  <NameWithHoverImage
-                    imageSrc="/photo-of-me.JPG"
-                    className="hidden sm:inline-block"
-                  >
-                    Frederik Handberg
-                  </NameWithHoverImage>
-                  <span className="inline-block sm:hidden">
-                    Frederik Handberg
-                  </span>
-                  . I&apos;m 23 years old and currently studying{" "}
-                  <div className="relative inline-block">
-                    <span
-                      className="emoji-tooltip sm:emoji-hover font-bold"
-                      data-emoji="💻 🚀"
-                    >
-                      Software Engineering
-                    </span>
-                  </div>{" "}
-                  in Horsens, Denmark 🇩🇰
-                </p>
-                <Image
-                  src="/photo-of-me.JPG"
-                  alt="Image of me"
-                  width={0}
-                  height={0}
-                  className="h-auto w-full rounded-lg sm:hidden"
-                />
-
-                <div>
-                  <p className="leading-relaxed">
-                    I&apos;m passionate about developing full-stack web
-                    applications and native apps, mainly for Apple platforms
-                    with Swift, but also for Android with Kotlin. I enjoy
-                    designing and crafting beautiful, thoughtful user interfaces
-                    using tools like Next.js and TailwindCSS, and building
-                    scalable server architectures with Spring Boot and .NET. I’m
-                    also interested in exploring how Artificial Intelligence and
-                    LLMs can enhance user experiences, for example through
-                    smarter recommendation algorithms and personalized
-                    interactions. Besides that, I’m experimenting with
-                    developing decentralized applications built upon open
-                    protocols like Nostr, with a focus on freedom,
-                    interoperability, and user ownership.
-                  </p>
-                  <Link
-                    href="/software"
-                    className="mt-1 inline-block font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
-                  >
-                    Read more about my software development projects
-                  </Link>
-                </div>
-                <div>
-                  <p className="leading-relaxed">
-                    In addition to doing software development, I&apos;m also
-                    exploring{" "}
-                    <div className="relative inline-block">
-                      <span
-                        className="emoji-tooltip font-bold"
-                        data-emoji="🪡 🧵"
-                      >
-                        Fashion Design
-                      </span>
-                    </div>
-                    . However, this is purely for fun and just a personal hobby.
-                    I suppose there are two reasons why I enjoy fashion design.
-                    Firstly, finding clothes that fit my body, has always been a
-                    challenge for me. So being able to design and sew my own
-                    garments is rewarding. Secondly, I&apos;m a creative person
-                    who loves good style, so I often get an idea about a nice
-                    design of a jacket or similar. I create garment concepts in
-                    3D, draft patterns, and bring my designs to life through
-                    sewing.
-                  </p>
-                  <Link
-                    href="/fashion"
-                    className="mt-1 inline-block font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
-                  >
-                    Read more about my fashion design hobby
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </section>*/}
 
           <section
             id="contact"
