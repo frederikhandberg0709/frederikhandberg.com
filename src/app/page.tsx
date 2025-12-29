@@ -35,7 +35,7 @@ export default function Home() {
   const firstParagraph =
     "My name is Frederik Handberg. I'm 23 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
-    "I'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
+    "\nI'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -500,7 +500,7 @@ export default function Home() {
                     {renderAnimatedText(firstParagraph)}
                   </div>
 
-                  <div className="animate-image-opacity my-5 sm:hidden">
+                  <div className="my-5 animate-image-opacity sm:hidden">
                     <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
                   </div>
 
