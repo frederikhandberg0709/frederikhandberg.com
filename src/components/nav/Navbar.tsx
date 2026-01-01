@@ -30,8 +30,8 @@ export default function Navbar({
       const sections = [
         { id: "home", ref: homeRef },
         { id: "portfolio", ref: portfolioRef },
-        { id: "techstack", ref: techStackRef },
-        { id: "aboutme", ref: aboutMeRef },
+        { id: "tech-stack", ref: techStackRef },
+        { id: "about-me", ref: aboutMeRef },
         { id: "contact", ref: contactRef },
       ];
 
@@ -69,8 +69,8 @@ export default function Navbar({
       return [
         { href: "#home", text: "Home", sectionId: "home" },
         { href: "#portfolio", text: "Portfolio", sectionId: "portfolio" },
-        { href: "#tech-stack", text: "Tech Stack", sectionId: "techstack" },
-        { href: "#about-me", text: "About Me", sectionId: "aboutme" },
+        { href: "#tech-stack", text: "Tech Stack", sectionId: "tech-stack" },
+        { href: "#about-me", text: "About Me", sectionId: "about-me" },
       ];
     }
 

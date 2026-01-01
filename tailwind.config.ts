@@ -1,4 +1,3 @@
-import { MdOpacity } from "react-icons/md";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -76,6 +75,14 @@ const config: Config = {
             scale: "1",
           },
         },
+        "modal-fadeIn": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "modal-scaleIn": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         scrollhint: "scrollhint 1.5s ease-in-out infinite",
@@ -85,6 +92,8 @@ const config: Config = {
         "char-reveal": "char-reveal 300ms ease-out forwards",
         "image-reveal": "image-reveal 800ms ease-out forwards",
         "image-opacity": "image-opacity 800ms ease-out forwards",
+        "modal-fadeIn": "modal-fadeIn 0.2s ease-out",
+        "modal-scaleIn": "modal-scaleIn 0.3s ease-out",
       },
     },
   },

@@ -79,7 +79,7 @@ export const ImageOverlayProvider: React.FC<ImageOverlayProviderProps> = ({
             <img
               src={overlayImage}
               alt="Fullscreen"
-              className="max-h-[90vh] max-w-[90vw] rounded-lg"
+              className="max-h-[90vh] max-w-[90vw] rounded-3xl"
             />
           </div>
         </div>

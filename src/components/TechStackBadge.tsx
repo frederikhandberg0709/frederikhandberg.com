@@ -53,7 +53,7 @@ export default function TechStackBadge({
 
       {hasDetails && detailedInfo && (
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-          <DialogContent className="max-w-md border-neutral-200 bg-white text-black dark:border-neutral-800 dark:bg-neutral-900 dark:text-white">
+          <DialogContent className="text-black dark:text-white">
             <DialogHeader>
               <DialogTitle className="flex items-center justify-between gap-2 text-lg font-bold">
                 <div className="flex items-center gap-2">

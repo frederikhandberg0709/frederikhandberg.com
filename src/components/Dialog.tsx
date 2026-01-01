@@ -38,11 +38,11 @@ export const Dialog: React.FC<DialogProps> = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div className="animate-modal-fadeIn fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="fixed inset-0 z-50" onClick={() => onOpenChange(false)} />
       <div
         ref={dialogRef}
-        className="z-50 max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg border border-neutral-300 bg-white p-6 shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
+        className="animate-modal-scaleIn z-50 max-h-[80vh] w-full max-w-md overflow-y-auto rounded-lg border border-neutral-200 bg-white p-6 shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
         onClick={(e) => e.stopPropagation()}
       >
         {children}

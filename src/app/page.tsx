@@ -14,6 +14,7 @@ import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/nav/MobileNavMenu";
 import RoundedImage from "@/components/Image";
 import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
+import UnderConstruction from "@/components/UnderConstruction";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -27,6 +28,9 @@ export default function Home() {
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
 
   const [activeSection, setActiveSection] = useState<string>("");
+
+  const [underConstructionDialogOpen, setUnderConstructionDialogOpen] =
+    useState(false);
 
   const aboutRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
@@ -103,10 +107,7 @@ export default function Home() {
     }`;
 
     // Helper function to render text and check for "Software Engineering"
-    const renderTextWithSoftwareEngineering = (
-      text: string,
-      skipFirstSpace: boolean,
-    ) => {
+    const renderTextWithSoftwareEngineering = (text: string) => {
       if (text.includes("Software Engineering")) {
         const engineeringParts = text.split("Software Engineering");
 
@@ -145,18 +146,14 @@ export default function Home() {
                   key={`se-before-${wordIndex}`}
                   className={`inline-block ${regularDimmingClass}`}
                 >
-                  {skipFirstSpace && wordIndex === 0
-                    ? ""
-                    : wordIndex === 0
-                      ? ""
-                      : "\u00A0"}
                   {wordChars}
+                  {wordIndex < engineeringParts[0].split(" ").length - 1 &&
+                    "\u00A0"}
                 </span>
               );
             })}
 
             {/* Space before "Software Engineering" */}
-            {"\u00A0"}
 
             {/* "Software Engineering" with emoji tooltip */}
             <Link
@@ -183,6 +180,7 @@ export default function Home() {
                     </span>
                   );
                 })}
+                {"\u00A0"}
               </span>
             </Link>
 
@@ -220,8 +218,9 @@ export default function Home() {
                     key={`se-after-${wordIndex}`}
                     className={`inline-block ${regularDimmingClass}`}
                   >
-                    {wordIndex > 0 && "\u00A0"}
                     {wordChars}
+                    {wordIndex < engineeringParts[1].split(" ").length - 1 &&
+                      "\u00A0"}
                   </span>
                 );
               })}
@@ -259,8 +258,8 @@ export default function Home() {
             key={`regular-${wordIndex}`}
             className={`inline-block ${regularDimmingClass}`}
           >
-            {wordIndex > 0 && "\u00A0"}
             {wordChars}
+            {wordIndex < text.split(" ").length - 1 && "\u00A0"}
           </span>
         );
       });
@@ -307,7 +306,7 @@ export default function Home() {
                   className={`inline-block ${regularDimmingClass}`}
                 >
                   {wordChars}
-                  {"\u00A0"}
+                  {wordIndex < parts[0].split(" ").length - 1 && "\u00A0"}
                 </span>
               );
             })}
@@ -357,7 +356,7 @@ export default function Home() {
             </span>
 
             {/* Render text after name */}
-            {parts[1] && renderTextWithSoftwareEngineering(parts[1], false)}
+            {parts[1] && renderTextWithSoftwareEngineering(parts[1])}
 
             {lineIndex < lines.length - 1 && "\n"}
           </span>
@@ -368,7 +367,7 @@ export default function Home() {
       if (line.includes("Software Engineering")) {
         return (
           <span key={lineIndex}>
-            {renderTextWithSoftwareEngineering(line, false)}
+            {renderTextWithSoftwareEngineering(line)}
             {lineIndex < lines.length - 1 && "\n"}
           </span>
         );
@@ -449,7 +448,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2">
+      <div className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2">
         <PillNavbarMenu
           links={[
             { href: "#about", text: "About", sectionId: "about" },
@@ -479,7 +478,14 @@ export default function Home() {
         </div>
       )}
 
+      <UnderConstruction
+        onOpen={underConstructionDialogOpen}
+        setDialogOpen={setUnderConstructionDialogOpen}
+      />
+
       <ImageOverlayProvider>
+        <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black max-[809px]:hidden"></div>
+
         <section
           id="about"
           ref={aboutRef}
@@ -496,7 +502,7 @@ export default function Home() {
             >
               {showSecondText && (
                 <>
-                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
                     {renderAnimatedText(firstParagraph)}
                   </div>
 
@@ -504,7 +510,7 @@ export default function Home() {
                     <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
                   </div>
 
-                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                  <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
                     {renderAnimatedText(secondParagraph, firstParagraph.length)}
                   </div>
 
@@ -518,8 +524,8 @@ export default function Home() {
                       />
                     </div>
 
-                    <Link
-                      href="#"
+                    <button
+                      onClick={() => setUnderConstructionDialogOpen(true)}
                       className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
                       style={{
                         animationFillMode: "forwards",
@@ -527,9 +533,9 @@ export default function Home() {
                     >
                       Read more about my notes app and my choice for going
                       native
-                    </Link>
+                    </button>
 
-                    <div className="mt-[100px] max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
+                    <div className="mt-[100px] max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
                       <p className="leading-relaxed">
                         <span
                           className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
@@ -588,31 +594,33 @@ export default function Home() {
           <section
             id="contact"
             ref={contactRef}
-            className="flex min-h-[calc(100vh-400px)] flex-col items-center gap-5 pt-24 max-lg:mx-4 md:w-[450px]"
+            className="flex min-h-[90vh] justify-center"
           >
-            <h2 className="text-center text-xl font-bold tracking-wider">
-              CONTACT
-            </h2>
+            <div className="flex flex-col items-center justify-center gap-5 max-lg:mx-4 sm:py-24 md:w-[450px]">
+              <h2 className="text-center text-xl font-bold tracking-wider">
+                CONTACT
+              </h2>
 
-            <p className="text-center">
-              Please use the form below to send me a message, or reach out
-              directly via email at{" "}
-              <Link
-                href="mailto:hello@frederikhandberg.com"
-                aria-label="Email hello@frederikhandberg.com"
-                className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
-              >
-                hello@frederikhandberg.com
-              </Link>
-            </p>
+              <p className="text-center">
+                Please use the form below to send me a message, or reach out
+                directly via email at{" "}
+                <Link
+                  href="mailto:hello@frederikhandberg.com"
+                  aria-label="Email hello@frederikhandberg.com"
+                  className="font-semibold text-blue-500 transition-colors hover:text-blue-700 hover:underline"
+                >
+                  hello@frederikhandberg.com
+                </Link>
+              </p>
 
-            <ContactForm />
+              <ContactForm />
+            </div>
           </section>
 
           <section
             id="blog"
             ref={blogRef}
-            className="flex flex-col items-center gap-5 sm:pt-24"
+            className="flex flex-col items-center gap-5"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG

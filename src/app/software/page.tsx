@@ -41,7 +41,7 @@ export default function Software() {
       <section
         ref={portfolioRef}
         id="portfolio"
-        className="flex min-h-screen items-center justify-center py-20"
+        className="flex min-h-screen items-center justify-center py-40"
       >
         <Portfolio />
       </section>
@@ -57,7 +57,7 @@ export default function Software() {
       <section
         ref={aboutMeRef}
         id="about-me"
-        className="flex min-h-screen items-center justify-center"
+        className="flex min-h-screen items-center justify-center py-40"
       >
         <AboutMe />
       </section>
