@@ -594,9 +594,9 @@ export default function Home() {
           <section
             id="contact"
             ref={contactRef}
-            className="flex min-h-[90vh] justify-center"
+            className="flex justify-center sm:pb-20 sm:pt-52"
           >
-            <div className="flex flex-col items-center justify-center gap-5 max-lg:mx-4 sm:py-24 md:w-[450px]">
+            <div className="flex flex-col items-center justify-center gap-5 max-lg:mx-4 md:w-[450px]">
               <h2 className="text-center text-xl font-bold tracking-wider">
                 CONTACT
               </h2>
@@ -620,7 +620,7 @@ export default function Home() {
           <section
             id="blog"
             ref={blogRef}
-            className="flex flex-col items-center gap-5"
+            className="flex flex-col items-center gap-5 sm:pt-20"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG
