@@ -590,11 +590,11 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="relative flex min-h-screen flex-col items-center overflow-x-hidden">
+        <div className="relative flex min-h-screen flex-col items-center overflow-x-hidden pt-10">
           <section
             id="contact"
             ref={contactRef}
-            className="flex justify-center sm:pb-20 sm:pt-52"
+            className="flex justify-center pb-20 pt-40"
           >
             <div className="flex flex-col items-center justify-center gap-5 max-lg:mx-4 md:w-[450px]">
               <h2 className="text-center text-xl font-bold tracking-wider">
@@ -620,7 +620,7 @@ export default function Home() {
           <section
             id="blog"
             ref={blogRef}
-            className="flex flex-col items-center gap-5 sm:pt-20"
+            className="flex flex-col items-center gap-5 pt-32"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG
