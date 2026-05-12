@@ -163,7 +163,9 @@ export function ContentRenderer({
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        p: ({ children }) => <>{children}</>,
+                        p: ({ children }) => (
+                          <>{processChildrenWithHashtags(children)}</>
+                        ),
                         li: ({ children }) => (
                           <li>{processChildrenWithHashtags(children)}</li>
                         ),

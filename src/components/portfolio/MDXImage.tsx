@@ -19,7 +19,7 @@ export const MDXImage = ({
     <figure className="my-8">
       <div className="overflow-hidden">
         <Image
-          src={src}
+          src={src as string}
           alt={alt || ""}
           width={1200}
           height={800}
@@ -30,7 +30,7 @@ export const MDXImage = ({
           }}
           onClick={() => {
             if (setOverlayImage) {
-              setOverlayImage(src);
+              setOverlayImage(src as string);
               document.body.style.overflow = "hidden"; // Disable scrolling
             }
           }}
