@@ -1,0 +1,153 @@
+1:"$Sreact.fragment"
+2:I[74620,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default"]
+3:I[53751,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default"]
+4:I[88656,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default",1]
+a:I[97367,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js"],"OutletBoundary"]
+b:"$Sreact.suspense"
+5:T1aac,"use strict";
+const {Fragment: _Fragment, jsx: _jsx, jsxs: _jsxs} = arguments[0];
+const {useMDXComponents: _provideComponents} = arguments[0];
+function _createMdxContent(props) {
+  const _components = {
+    a: "a",
+    code: "code",
+    h2: "h2",
+    img: "img",
+    li: "li",
+    p: "p",
+    pre: "pre",
+    strong: "strong",
+    ul: "ul",
+    ..._provideComponents(),
+    ...props.components
+  };
+  return _jsxs(_Fragment, {
+    children: [_jsxs(_components.p, {
+      children: ["GitHub repository: ", _jsx(_components.a, {
+        href: "https://github.com/frederikhandberg0709/pokemon-project",
+        children: "https://github.com/frederikhandberg0709/pokemon-project"
+      })]
+    }), "\n", _jsx(_components.h2, {
+      children: "Tech Stack"
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "Build-Tool:"
+        }), " Vite"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "Language:"
+        }), " TypeScript"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "Routing:"
+        }), " React Router v7"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "Data Fetching"
+        }), ": React Query"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "Styling:"
+        }), " TailwindCSS"]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "API:"
+        }), " PokéAPI"]
+      }), "\n"]
+    }), "\n", _jsx(_components.h2, {
+      children: "Implementation"
+    }), "\n", _jsx(_components.p, {
+      children: "I have two React Query hooks that I use to fetch Pokémon information from the PokéAPI."
+    }), "\n", _jsxs(_components.p, {
+      children: ["The first hook is called ", _jsx(_components.code, {
+        children: "usePokemonList"
+      }), ". I use this to fetch all Pokémon. I also added support for pagination in this hook, as implementing pagination was one of the requirements for the assignment."]
+    }), "\n", _jsx(_components.p, {
+      children: "I set the limit to 20, so that 20 Pokémon are displayed on each page.\nThe user can click on the \"Next\" button to go to the next page."
+    }), "\n", _jsxs(_components.p, {
+      children: ["The second React Query hook I implement is called ", _jsx(_components.code, {
+        children: "usePokemonDetails"
+      }), ". The purpose of this hook is to fetch information for a specific Pokémon by providing its ID.\nOne caveat of the PokéAPI is that it does not provide the ID in the JSON objects. Instead, the ID can be extracted from the URL. I achieved this by implementing a utility function that I called ", _jsx(_components.code, {
+        children: "getPokemonIdFromUrl"
+      }), "."]
+    }), "\n", _jsx(_components.p, {
+      children: "This is not the only utility function I implemented. I ended up creating three utility functions in total."
+    }), "\n", _jsxs(_components.p, {
+      children: [_jsx(_components.code, {
+        children: "getColorByPokemonId"
+      }), " is a utility function that assigns a color to each Pokémon depending on its ID. This function is being used in the Pokémon list. The color is simply assigned by calculation the remainder when dividing the ID by the number of types (which is 18)."]
+    }), "\n", _jsxs(_components.p, {
+      children: ["The last utility function I implement is called ", _jsx(_components.code, {
+        children: "getPokemonImageUrl"
+      }), ". I wanted to display an image of the Pokémon. This can be done using the URL ", _jsx(_components.code, {
+        children: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png"
+      }), ". Since I had already implemented the ", _jsx(_components.code, {
+        children: "getPokemonIdFromUrl"
+      }), " function, I was able to reuse it to extract the correct ID for the image URL."]
+    }), "\n", _jsxs(_components.p, {
+      children: ["As can be seen in the first image of the web app, the Pokémon cards all have the same layout, so for this I implemented a component called ", _jsx(_components.code, {
+        children: "PokemonCard"
+      }), ". The component needs five pieces of information:"]
+    }), "\n", _jsxs(_components.ul, {
+      children: ["\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "id"
+        }), " – The ID of the Pokémon, used to fetch the correct information for that specific Pokémon."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "number"
+        }), " – The ID displayed in the format of #5 if the ID is 5."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "name"
+        }), " – The name of the Pokémon."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "imageSrc"
+        }), " – The URL for the Pokémon's image."]
+      }), "\n", _jsxs(_components.li, {
+        children: [_jsx(_components.strong, {
+          children: "cardColor"
+        }), " – The background color of the card, based on the Pokémon’s ID."]
+      }), "\n"]
+    }), "\n", _jsx(_components.pre, {
+      children: _jsx(_components.code, {
+        className: "language-tsx",
+        children: "<PokemonCard\n  key={pokemon.id}\n  id={pokemon.id}\n  name={pokemon.name}\n  number={`#${getPokemonIdFromUrl(pokemon.url)}`}\n  imageSrc={getPokemonImageUrl(pokemon.url)}\n  cardColor={getColorByPokemonId(Number(pokemon.id))}\n/>\n"
+      })
+    }), "\n", _jsx(_components.p, {
+      children: "Besides supporting pagination, another requirement was to include at least two routes in our web app and use React Router to switch between the routes. Therefore, I added a second page to display detailed information about a specific Pokémon."
+    }), "\n", _jsx(_components.p, {
+      children: _jsx(_components.img, {
+        src: "/pokemon-details.png",
+        alt: "Pokémon details page"
+      })
+    }), "\n", _jsxs(_components.p, {
+      children: ["On this page, I use the ", _jsx(_components.code, {
+        children: "usePokemonDetails"
+      }), " hook to fetch additional information about the Pokémon, beyond just the name and URL."]
+    })]
+  });
+}
+function MDXContent(props = {}) {
+  const {wrapper: MDXLayout} = {
+    ..._provideComponents(),
+    ...props.components
+  };
+  return MDXLayout ? _jsx(MDXLayout, {
+    ...props,
+    children: _jsx(_createMdxContent, {
+      ...props
+    })
+  }) : _createMdxContent(props);
+}
+return {
+  default: MDXContent
+};
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"meta":{"title":"Pokémon Project","date":"2025-04-08","excerpt":"This project is the second assignment for my **WEB2** course. It is a Pokémon web app designed to display all Pokémon and their information such as height, weight, stats, and abilities.","author":"Frederik Handberg","coverImage":"/pokemon-list.png","tags":["Vite","TypeScript","React Router v7","React Query","TailwindCSS"],"readingTime":"3 min read","slug":"pokemon-project"},"tableOfContents":["$","$L3",null,{"items":[{"level":2,"text":"Tech Stack","id":"tech-stack"},{"level":2,"text":"Implementation","id":"implementation"}]}],"children":["$","$L4",null,{"source":{"compiledSource":"$5","frontmatter":{},"scope":{}}}]}],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Mj7Mb2KNHwMy1rMx_QK6H"}
+6:["$","script","script-0",{"src":"/_next/static/chunks/0fbx87w65xus6.js","async":true}]
+7:["$","script","script-1",{"src":"/_next/static/chunks/0nvjtgp95aexp.js","async":true}]
+8:["$","script","script-2",{"src":"/_next/static/chunks/0lj0iz4c1u.z3.js","async":true}]
+9:["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]
+c:null
