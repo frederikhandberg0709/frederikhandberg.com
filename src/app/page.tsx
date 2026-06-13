@@ -22,7 +22,14 @@ export default function Home() {
   const [isHoveringNameText, setIsHoveringNameText] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
-  const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
+  const relayUrls = [
+    "wss://relay.primal.net",
+    "wss://relay.damus.io",
+    "wss://relay.nostr.band",
+    "wss://relay.ditto.pub/",
+    "wss://nos.lol",
+    "wss://purplepag.es",
+  ];
 
   const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
@@ -543,7 +550,7 @@ export default function Home() {
                           In addition to doing software development, I&apos;m
                           also learning
                         </span>{" "}
-                        <div className="relative inline-block">
+                        <span className="relative inline-block">
                           <Link
                             href="/software"
                             className="emoji-tooltip font-bold hover:text-blue-500"
@@ -553,7 +560,7 @@ export default function Home() {
                           >
                             Fashion Design
                           </Link>
-                        </div>
+                        </span>
                         <span
                           className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
                         >
@@ -563,12 +570,13 @@ export default function Home() {
                           <br />
                           Because I like tailored and well-fitting clothing,
                           finding pieces that truly fit my body has always been
-                          difficult. Designing and sewing my own garments allows
-                          me to solve that problem creatively, combining my love
-                          for classic design with bold design twists.
+                          a challenge. Designing and sewing my own garments
+                          allows me to solve that problem creatively, combining
+                          my passion for classic design with bold design twists
+                          to make the pieces stand out.
                           <br />
                           <br />I create garment concepts in 3D, draft patterns
-                          with my measurements, and bring my designs to life
+                          with my measurements, and bring my designs to reality
                           through sewing.
                         </span>
                       </p>

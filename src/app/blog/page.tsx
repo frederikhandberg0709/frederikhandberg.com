@@ -9,7 +9,14 @@ import Link from "next/link";
 import { NostrProvider } from "nostr-react";
 
 export default function Blog() {
-  const relayUrls = ["wss://relay.primal.net", "wss://relay.damus.io"];
+  const relayUrls = [
+    "wss://relay.primal.net",
+    "wss://relay.damus.io",
+    "wss://relay.nostr.band",
+    "wss://relay.ditto.pub/",
+    "wss://nos.lol",
+    "wss://purplepag.es",
+  ];
 
   return (
     <div>
