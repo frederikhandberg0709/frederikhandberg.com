@@ -90,7 +90,7 @@ export default function NameWithHoverImage({
               alt={imageAlt}
               width={300}
               height={400}
-              className="rounded-3xl shadow-2xl"
+              className="h-auto w-64 rounded-3xl shadow-2xl"
             />
           </div>,
           document.body,
