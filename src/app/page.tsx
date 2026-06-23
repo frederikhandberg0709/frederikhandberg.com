@@ -51,7 +51,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowSecondText(true);
-    }, 1900);
+    }, 1000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -87,7 +87,7 @@ export default function Home() {
 
     // Calculate total animation duration
     const charCount = (firstParagraph + secondParagraph).length;
-    const animationDuration = charCount * 15; // 15ms per char
+    const animationDuration = charCount * 8; // 8ms per char
 
     const timer = setTimeout(() => {
       setTextAnimationComplete(true);
@@ -138,7 +138,7 @@ export default function Home() {
                     key={i}
                     className="inline-block animate-char-reveal leading-relaxed opacity-0"
                     style={{
-                      animationDelay: `${currentIndex * 15}ms`,
+                      animationDelay: `${currentIndex * 8}ms`,
                     }}
                   >
                     {char}
@@ -180,7 +180,7 @@ export default function Home() {
                       key={i}
                       className="inline-block animate-char-reveal leading-relaxed opacity-0"
                       style={{
-                        animationDelay: `${currentIndex * 15}ms`,
+                        animationDelay: `${currentIndex * 8}ms`,
                       }}
                     >
                       {char === " " ? "\u00A0" : char}
@@ -210,7 +210,7 @@ export default function Home() {
                       key={i}
                       className="inline-block animate-char-reveal leading-relaxed opacity-0"
                       style={{
-                        animationDelay: `${currentIndex * 15}ms`,
+                        animationDelay: `${currentIndex * 8}ms`,
                       }}
                     >
                       {char}
@@ -250,7 +250,7 @@ export default function Home() {
               key={i}
               className="inline-block animate-char-reveal leading-relaxed opacity-0"
               style={{
-                animationDelay: `${currentIndex * 15}ms`,
+                animationDelay: `${currentIndex * 8}ms`,
               }}
             >
               {char}
@@ -297,7 +297,7 @@ export default function Home() {
                     key={i}
                     className={`inline-block animate-char-reveal leading-relaxed opacity-0`}
                     style={{
-                      animationDelay: `${currentIndex * 15}ms`,
+                      animationDelay: `${currentIndex * 8}ms`,
                     }}
                   >
                     {char}
@@ -331,7 +331,7 @@ export default function Home() {
                       key={i}
                       className={`inline-block animate-char-reveal leading-relaxed opacity-0`}
                       style={{
-                        animationDelay: `${currentIndex * 15}ms`,
+                        animationDelay: `${currentIndex * 8}ms`,
                       }}
                       onMouseEnter={() => setIsHoveringNameText(true)}
                       onMouseLeave={() => setIsHoveringNameText(false)}
@@ -350,7 +350,7 @@ export default function Home() {
                       key={i}
                       className="inline-block animate-char-reveal font-bold leading-relaxed opacity-0"
                       style={{
-                        animationDelay: `${currentIndex * 15}ms`,
+                        animationDelay: `${currentIndex * 8}ms`,
                       }}
                       onMouseEnter={() => setIsHoveringNameText(true)}
                       onMouseLeave={() => setIsHoveringNameText(false)}
@@ -395,7 +395,7 @@ export default function Home() {
                   key={i}
                   className="inline-block animate-char-reveal leading-relaxed opacity-0"
                   style={{
-                    animationDelay: `${currentIndex * 15}ms`,
+                    animationDelay: `${currentIndex * 8}ms`,
                   }}
                 >
                   {char}
@@ -497,9 +497,10 @@ export default function Home() {
           id="about"
           ref={aboutRef}
           className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
+          style={{ overflowAnchor: "none" }}
         >
           <div
-            className={`${!textAnimationComplete ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
+            className={`${!showSecondText ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
           >
             <h1 className="animate-scale-down text-center text-4xl font-bold">
               Hello and welcome to my personal website! 👋
