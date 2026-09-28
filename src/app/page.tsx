@@ -15,6 +15,7 @@ import MobileNavMenu from "@/components/nav/MobileNavMenu";
 import RoundedImage from "@/components/Image";
 import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
 import UnderConstruction from "@/components/UnderConstruction";
+import { BLOG_RELAY_URLS } from "@/config/nostr";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -22,13 +23,6 @@ export default function Home() {
   const [isHoveringNameText, setIsHoveringNameText] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
-  const relayUrls = [
-    "wss://relay.primal.net",
-    "wss://relay.nostr.band",
-    "wss://relay.ditto.pub/",
-    "wss://nos.lol",
-  ];
-
   const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
 
@@ -644,7 +638,7 @@ export default function Home() {
             </p>
 
             <div className="mb-10 flex flex-col items-center gap-8">
-              <NostrProvider relayUrls={relayUrls} debug={false}>
+              <NostrProvider relayUrls={BLOG_RELAY_URLS} debug={false}>
                 <ProfileProvider>
                   <BlogTimeline filterType="all" />
                 </ProfileProvider>

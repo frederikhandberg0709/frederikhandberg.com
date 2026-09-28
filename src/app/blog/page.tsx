@@ -2,6 +2,7 @@
 
 import Author from "@/components/blog/Author";
 import BlogTimeline from "@/components/blog/BlogTimeline";
+import { BLOG_RELAY_URLS } from "@/config/nostr";
 import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
 import { ProfileProvider } from "@/context/ProfileContext";
 import { ChevronRight } from "lucide-react";
@@ -13,13 +14,6 @@ type BlogView = "timeline" | "media";
 
 export default function Blog() {
   const [activeView, setActiveView] = useState<BlogView>("timeline");
-
-  const relayUrls = [
-    "wss://relay.primal.net",
-    "wss://relay.nostr.band",
-    "wss://relay.ditto.pub/",
-    "wss://nos.lol",
-  ];
 
   return (
     <div>
@@ -47,7 +41,7 @@ export default function Blog() {
         </nav>
 
         <div className="mb-10 mt-24 flex flex-col items-center gap-8">
-          <NostrProvider relayUrls={relayUrls} debug={false}>
+          <NostrProvider relayUrls={BLOG_RELAY_URLS} debug={false}>
             <ProfileProvider>
               <Author />
 

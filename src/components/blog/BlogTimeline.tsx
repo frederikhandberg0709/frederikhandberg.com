@@ -2,10 +2,12 @@
 
 import { useNostrEvents } from "nostr-react";
 import BlogPost from "./BlogPost";
+import { BLOG_AUTHOR_PUBKEY, BLOG_RELAY_URLS } from "@/config/nostr";
 import { extractMediaUrls } from "@/utils/extractMediaUrls";
 import { NostrEvent } from "@/utils/convertTimestamp";
 import { useProfileContext } from "@/context/ProfileContext";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { SimplePool } from "nostr-tools/pool";
 import BlogMediaGrid from "./BlogMediaGrid";
 
 interface BlogTimelineProps {
@@ -17,8 +19,12 @@ interface BlogTimelineProps {
 
 const POSTS_PER_PAGE = 20;
 const SCROLL_THRESHOLD = 500;
-const PAGE_SETTLE_DELAY_MS = 2000;
-const EMPTY_PAGE_TIMEOUT_MS = 6000;
+const PAGE_TIMEOUT_MS = 6000;
+const EMPTY_PAGE_RETRIES = 1;
+
+// Keep one reconnecting pool for the lifetime of the client bundle. The legacy
+// nostr-react provider removes disconnected relays and never reconnects them.
+const postsPool = new SimplePool();
 
 export default function BlogTimeline({
   filterType,
@@ -36,8 +42,6 @@ export default function BlogTimeline({
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadingRef = useRef<HTMLDivElement | null>(null);
   const [loadTriggerCount, setLoadTriggerCount] = useState(0);
-  const processedPostsIds = useRef<Set<string>>(new Set());
-  const requestStartPostIds = useRef<Set<string>>(new Set());
 
   const logPagination = useCallback(
     (message: string, details: Record<string, unknown>) => {
@@ -48,83 +52,65 @@ export default function BlogTimeline({
     [],
   );
 
-  const { events: newPosts } = useNostrEvents({
-    filter: {
-      authors: [
-        "9c9f81ed795f0f5efa558932824687d84fc7e6a4cfa6db5d6d3b50fcb7ffaec2",
-      ],
-      until: oldestTimestamp,
-      kinds: [1],
-      limit: POSTS_PER_PAGE,
-    },
-  });
-
   useEffect(() => {
-    if (newPosts.length > 0) {
-      const newlyReceivedPosts = newPosts.filter(
-        (post) => !processedPostsIds.current.has(post.id),
-      );
+    let cancelled = false;
 
-      if (newlyReceivedPosts.length > 0) {
-        newPosts.forEach((p) => processedPostsIds.current.add(p.id));
+    const fetchPage = async () => {
+      setIsLoading(true);
 
-        logPagination("events received", {
-          request: loadTriggerCount,
-          newlyReceived: newlyReceivedPosts.length,
-          hookEventTotal: newPosts.length,
-          cursor: oldestTimestamp,
-        });
+      let receivedPosts: NostrEvent[] = [];
 
-        setAccumulatedPosts((prev) => {
-          const combined = [...prev, ...newPosts];
-          const unique = combined.filter(
-            (post, index, self) =>
-              index === self.findIndex((p) => p.id === post.id),
+      for (let attempt = 0; attempt <= EMPTY_PAGE_RETRIES; attempt++) {
+        try {
+          receivedPosts = await postsPool.querySync(
+            BLOG_RELAY_URLS,
+            {
+              authors: [BLOG_AUTHOR_PUBKEY],
+              until: oldestTimestamp,
+              kinds: [1],
+              limit: POSTS_PER_PAGE,
+            },
+            { maxWait: PAGE_TIMEOUT_MS },
           );
-          return unique.sort((a, b) => b.created_at - a.created_at);
-        });
+        } catch (error) {
+          console.error("Failed to fetch Nostr posts:", error);
+        }
+
+        if (cancelled || receivedPosts.length > 0) break;
       }
-    }
-  }, [loadTriggerCount, logPagination, newPosts.length, oldestTimestamp]);
 
-  useEffect(() => {
-    if (!isLoading) return;
-
-    const receivedForRequest = newPosts.filter(
-      (post) => !requestStartPostIds.current.has(post.id),
-    ).length;
-    const isInitialRequest = loadTriggerCount === 0;
-    const delay =
-      receivedForRequest > 0 ? PAGE_SETTLE_DELAY_MS : EMPTY_PAGE_TIMEOUT_MS;
-
-    // The hook does not expose a reliable EOSE signal for every connected relay,
-    // so treat a quiet period after the last event as the end of this request.
-    const timeout = setTimeout(() => {
-      const reachedEnd = !isInitialRequest && receivedForRequest === 0;
+      if (cancelled) return;
 
       logPagination("request settled", {
         request: loadTriggerCount,
-        received: receivedForRequest,
-        hookEventTotal: newPosts.length,
+        received: receivedPosts.length,
         cursor: oldestTimestamp,
-        reachedEnd,
+        reachedEnd: receivedPosts.length === 0,
       });
 
-      if (reachedEnd) {
+      if (receivedPosts.length === 0) {
         setHasMorePosts(false);
+      } else {
+        setAccumulatedPosts((previousPosts) => {
+          const postsById = new Map(
+            [...previousPosts, ...receivedPosts].map((post) => [post.id, post]),
+          );
+
+          return [...postsById.values()].sort(
+            (first, second) => second.created_at - first.created_at,
+          );
+        });
       }
 
       setIsLoading(false);
-    }, delay);
+    };
 
-    return () => clearTimeout(timeout);
-  }, [
-    isLoading,
-    loadTriggerCount,
-    logPagination,
-    newPosts.length,
-    oldestTimestamp,
-  ]);
+    void fetchPage();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [loadTriggerCount, logPagination, oldestTimestamp]);
 
   const allPosts = accumulatedPosts;
 
@@ -164,9 +150,7 @@ export default function BlogTimeline({
   const { events: mentions } = useNostrEvents({
     filter: {
       kinds: [1],
-      "#p": [
-        "9c9f81ed795f0f5efa558932824687d84fc7e6a4cfa6db5d6d3b50fcb7ffaec2",
-      ],
+      "#p": [BLOG_AUTHOR_PUBKEY],
       since: 0,
       limit: 50,
     },
@@ -207,14 +191,11 @@ export default function BlogTimeline({
         const newTimestamp = oldestPost.created_at - 1;
         const nextRequest = loadTriggerCount + 1;
 
-        requestStartPostIds.current = new Set(newPosts.map((post) => post.id));
-
         logPagination("request started", {
           request: nextRequest,
           trigger,
           cursor: newTimestamp,
           accumulatedPostTotal: allPosts.length,
-          hookEventTotal: newPosts.length,
         });
 
         setIsLoading(true);
@@ -222,14 +203,7 @@ export default function BlogTimeline({
         setLoadTriggerCount(nextRequest);
       }
     },
-    [
-      allPosts,
-      hasMorePosts,
-      isLoading,
-      loadTriggerCount,
-      logPagination,
-      newPosts,
-    ],
+    [allPosts, hasMorePosts, isLoading, loadTriggerCount, logPagination],
   );
 
   const handleScroll = useCallback(() => {
