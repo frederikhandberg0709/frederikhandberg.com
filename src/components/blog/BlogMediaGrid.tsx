@@ -86,11 +86,18 @@ export default function BlogMediaGrid({ posts }: BlogMediaGridProps) {
               />
             ) : (
               <video
-                src={item.url}
+                src={`${item.url}#t=0.1`}
                 muted
                 playsInline
-                preload="metadata"
+                preload="auto"
                 className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-105 group-hover:brightness-75 group-focus-visible:scale-105 group-focus-visible:brightness-75"
+                onLoadedMetadata={(event) => {
+                  const video = event.currentTarget;
+
+                  if (video.seekable.length > 0) {
+                    video.currentTime = Math.min(0.1, video.duration || 0.1);
+                  }
+                }}
                 onError={() =>
                   setFailedMedia((current) => new Set(current).add(item.url))
                 }
