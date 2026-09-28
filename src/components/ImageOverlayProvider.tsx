@@ -26,6 +26,9 @@ export const ImageOverlayProvider: React.FC<ImageOverlayProviderProps> = ({
   children,
 }) => {
   const [overlayImage, setOverlayImage] = useState<string | null>(null);
+  const isVideo = overlayImage
+    ? /\.(mp4|avi|mov)(?:[?#].*)?$/i.test(overlayImage)
+    : false;
 
   const handleSetOverlayImage = useCallback((src: string | null) => {
     setOverlayImage(src);
@@ -76,11 +79,21 @@ export const ImageOverlayProvider: React.FC<ImageOverlayProviderProps> = ({
             >
               Close
             </button>
-            <img
-              src={overlayImage}
-              alt="Fullscreen"
-              className="max-h-[90vh] max-w-[90vw] rounded-3xl"
-            />
+            {isVideo ? (
+              <video
+                src={overlayImage}
+                className="max-h-[90vh] max-w-[90vw] rounded-3xl"
+                controls
+                autoPlay
+                playsInline
+              />
+            ) : (
+              <img
+                src={overlayImage}
+                alt="Fullscreen"
+                className="max-h-[90vh] max-w-[90vw] rounded-3xl"
+              />
+            )}
           </div>
         </div>
       )}

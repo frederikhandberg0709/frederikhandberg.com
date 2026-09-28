@@ -7,8 +7,13 @@ import { ProfileProvider } from "@/context/ProfileContext";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { NostrProvider } from "nostr-react";
+import { useState } from "react";
+
+type BlogView = "timeline" | "media";
 
 export default function Blog() {
+  const [activeView, setActiveView] = useState<BlogView>("timeline");
+
   const relayUrls = [
     "wss://relay.primal.net",
     "wss://relay.nostr.band",
@@ -46,7 +51,44 @@ export default function Blog() {
             <ProfileProvider>
               <Author />
 
-              <BlogTimeline filterType="all" />
+              <div
+                className="grid w-full grid-cols-2 border-b border-gray-200 px-4 dark:border-gray-800 sm:w-[600px] sm:px-0"
+                role="tablist"
+                aria-label="Blog views"
+              >
+                {(["timeline", "media"] as const).map((view) => {
+                  const isActive = activeView === view;
+
+                  return (
+                    <button
+                      key={view}
+                      id={`${view}-tab`}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      aria-controls="blog-content"
+                      onClick={() => setActiveView(view)}
+                      className={`relative py-3 text-sm font-semibold capitalize transition-colors duration-200 ${
+                        isActive
+                          ? "text-gray-950 dark:text-white"
+                          : "text-gray-500 hover:text-gray-950 dark:hover:text-white"
+                      }`}
+                    >
+                      {view}
+                      <span
+                        aria-hidden="true"
+                        className={`absolute inset-x-8 bottom-[-1px] h-0.5 rounded-full bg-gray-950 transition-all duration-300 dark:bg-white ${
+                          isActive
+                            ? "scale-x-100 opacity-100"
+                            : "scale-x-0 opacity-0"
+                        }`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+
+              <BlogTimeline filterType="all" view={activeView} />
             </ProfileProvider>
           </NostrProvider>
         </div>

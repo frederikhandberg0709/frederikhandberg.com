@@ -6,9 +6,11 @@ import { extractMediaUrls } from "@/utils/extractMediaUrls";
 import { NostrEvent } from "@/utils/convertTimestamp";
 import { useProfileContext } from "@/context/ProfileContext";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import BlogMediaGrid from "./BlogMediaGrid";
 
 interface BlogTimelineProps {
   filterType: string;
+  view?: "timeline" | "media";
   activeSection?: string;
   maxElements?: number;
 }
@@ -18,6 +20,7 @@ const SCROLL_THRESHOLD = 500;
 
 export default function BlogTimeline({
   filterType,
+  view = "timeline",
   // activeSection,
   maxElements,
 }: BlogTimelineProps) {
@@ -283,7 +286,7 @@ export default function BlogTimeline({
     const showingReplies = visibleReplies.has(event.id);
 
     return (
-      <div key={event.id} className="w-full">
+      <div key={event.id} className="flex w-full justify-center">
         <div className="relative">
           <BlogPost
             profilePicture={userData?.picture}
@@ -309,8 +312,17 @@ export default function BlogTimeline({
     : filteredPosts;
 
   return (
-    <div className="flex flex-col items-center overflow-x-hidden sm:gap-5">
-      {postsToShow.map(renderPost)}
+    <div
+      id="blog-content"
+      role="tabpanel"
+      aria-labelledby={`${view}-tab`}
+      className="flex w-full flex-col items-center overflow-x-hidden sm:gap-5"
+    >
+      {view === "media" ? (
+        <BlogMediaGrid posts={postsToShow} />
+      ) : (
+        postsToShow.map(renderPost)
+      )}
 
       {hasMorePosts && !maxElements && (
         <div ref={loadingRef} className="flex items-center justify-center py-8">
