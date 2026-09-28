@@ -1,7 +1,7 @@
 1:"$Sreact.fragment"
-2:I[74620,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default"]
-3:I[53751,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default"]
-4:I[88656,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0lj0iz4c1u.z3.js"],"default",1]
+2:I[74620,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0~edpf91zmk25.js"],"default"]
+3:I[53751,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0~edpf91zmk25.js"],"default"]
+4:I[88656,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js","/_next/static/chunks/0fbx87w65xus6.js","/_next/static/chunks/0nvjtgp95aexp.js","/_next/static/chunks/0~edpf91zmk25.js"],"default",1]
 a:I[97367,["/_next/static/chunks/0diorrq5kut5q.js","/_next/static/chunks/06eutl3cpoejd.js"],"OutletBoundary"]
 b:"$Sreact.suspense"
 5:T13f6,"use strict";
@@ -100,9 +100,9 @@ function MDXContent(props = {}) {
 return {
   default: MDXContent
 };
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"meta":{"title":"macOS Notes App","date":"2025-11-04","excerpt":"Building a native macOS notes app. This project is still under active development.","author":"Frederik Handberg","coverImage":"/notes_app.png","tags":["Swift","AppKit","SwiftUI"],"readingTime":"3 min read","slug":"macos-notes-app"},"tableOfContents":["$","$L3",null,{"items":[{"level":2,"text":"The Mission","id":"the-mission"},{"level":3,"text":"How will this be achieved?","id":"how-will-this-be-achieved"},{"level":2,"text":"Note Documents","id":"note-documents"},{"level":3,"text":"Why not Markdown?","id":"why-not-markdown"}]}],"children":["$","$L4",null,{"source":{"compiledSource":"$5","frontmatter":{},"scope":{}}}]}],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"yuwGukFIgbQetxdk1R2aX"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"meta":{"title":"macOS Notes App","date":"2025-11-04","excerpt":"Building a native macOS notes app. This project is still under active development.","author":"Frederik Handberg","coverImage":"/notes_app.png","tags":["Swift","AppKit","SwiftUI"],"readingTime":"3 min read","slug":"macos-notes-app"},"tableOfContents":["$","$L3",null,{"items":[{"level":2,"text":"The Mission","id":"the-mission"},{"level":3,"text":"How will this be achieved?","id":"how-will-this-be-achieved"},{"level":2,"text":"Note Documents","id":"note-documents"},{"level":3,"text":"Why not Markdown?","id":"why-not-markdown"}]}],"children":["$","$L4",null,{"source":{"compiledSource":"$5","frontmatter":{},"scope":{}}}]}],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ktBOhU7RbbYu2P0LHLvvZ"}
 6:["$","script","script-0",{"src":"/_next/static/chunks/0fbx87w65xus6.js","async":true}]
 7:["$","script","script-1",{"src":"/_next/static/chunks/0nvjtgp95aexp.js","async":true}]
-8:["$","script","script-2",{"src":"/_next/static/chunks/0lj0iz4c1u.z3.js","async":true}]
+8:["$","script","script-2",{"src":"/_next/static/chunks/0~edpf91zmk25.js","async":true}]
 9:["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]
 c:null
