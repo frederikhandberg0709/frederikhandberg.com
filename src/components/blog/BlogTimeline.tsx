@@ -17,6 +17,8 @@ interface BlogTimelineProps {
 
 const POSTS_PER_PAGE = 20;
 const SCROLL_THRESHOLD = 500;
+const PAGE_SETTLE_DELAY_MS = 2000;
+const EMPTY_PAGE_TIMEOUT_MS = 6000;
 
 export default function BlogTimeline({
   filterType,
@@ -25,7 +27,7 @@ export default function BlogTimeline({
   maxElements,
 }: BlogTimelineProps) {
   const [visibleReplies, setVisibleReplies] = useState<Set<string>>(new Set());
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasMorePosts, setHasMorePosts] = useState(true);
   const [oldestTimestamp, setOldestTimestamp] = useState<number>(
     Math.floor(Date.now() / 1000),
@@ -34,9 +36,17 @@ export default function BlogTimeline({
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadingRef = useRef<HTMLDivElement | null>(null);
   const [loadTriggerCount, setLoadTriggerCount] = useState(0);
-  const initialPostCount = useRef<number>(0);
   const processedPostsIds = useRef<Set<string>>(new Set());
-  const pageStartPostIds = useRef<Set<string>>(new Set());
+  const requestStartPostIds = useRef<Set<string>>(new Set());
+
+  const logPagination = useCallback(
+    (message: string, details: Record<string, unknown>) => {
+      if (process.env.NODE_ENV !== "production") {
+        console.debug(`[BlogTimeline pagination] ${message}`, details);
+      }
+    },
+    [],
+  );
 
   const { events: newPosts } = useNostrEvents({
     filter: {
@@ -51,10 +61,19 @@ export default function BlogTimeline({
 
   useEffect(() => {
     if (newPosts.length > 0) {
-      const hasNew = newPosts.some((p) => !processedPostsIds.current.has(p.id));
+      const newlyReceivedPosts = newPosts.filter(
+        (post) => !processedPostsIds.current.has(post.id),
+      );
 
-      if (hasNew) {
+      if (newlyReceivedPosts.length > 0) {
         newPosts.forEach((p) => processedPostsIds.current.add(p.id));
+
+        logPagination("events received", {
+          request: loadTriggerCount,
+          newlyReceived: newlyReceivedPosts.length,
+          hookEventTotal: newPosts.length,
+          cursor: oldestTimestamp,
+        });
 
         setAccumulatedPosts((prev) => {
           const combined = [...prev, ...newPosts];
@@ -64,32 +83,48 @@ export default function BlogTimeline({
           );
           return unique.sort((a, b) => b.created_at - a.created_at);
         });
-
-        if (initialPostCount.current === 0) {
-          initialPostCount.current = newPosts.length;
-        }
       }
     }
-  }, [newPosts]);
+  }, [loadTriggerCount, logPagination, newPosts.length, oldestTimestamp]);
 
   useEffect(() => {
-    if (isLoading && loadTriggerCount > 0) {
-      // Wait a bit for the query to potentially return results
-      const timeout = setTimeout(() => {
-        const pagePostCount = newPosts.filter(
-          (post) => !pageStartPostIds.current.has(post.id),
-        ).length;
+    if (!isLoading) return;
 
-        if (pagePostCount < POSTS_PER_PAGE) {
-          setHasMorePosts(false);
-        }
+    const receivedForRequest = newPosts.filter(
+      (post) => !requestStartPostIds.current.has(post.id),
+    ).length;
+    const isInitialRequest = loadTriggerCount === 0;
+    const delay =
+      receivedForRequest > 0 ? PAGE_SETTLE_DELAY_MS : EMPTY_PAGE_TIMEOUT_MS;
 
-        setIsLoading(false);
-      }, 1500);
+    // The hook does not expose a reliable EOSE signal for every connected relay,
+    // so treat a quiet period after the last event as the end of this request.
+    const timeout = setTimeout(() => {
+      const reachedEnd = !isInitialRequest && receivedForRequest === 0;
 
-      return () => clearTimeout(timeout);
-    }
-  }, [isLoading, loadTriggerCount, newPosts.length]);
+      logPagination("request settled", {
+        request: loadTriggerCount,
+        received: receivedForRequest,
+        hookEventTotal: newPosts.length,
+        cursor: oldestTimestamp,
+        reachedEnd,
+      });
+
+      if (reachedEnd) {
+        setHasMorePosts(false);
+      }
+
+      setIsLoading(false);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [
+    isLoading,
+    loadTriggerCount,
+    logPagination,
+    newPosts.length,
+    oldestTimestamp,
+  ]);
 
   const allPosts = accumulatedPosts;
 
@@ -163,21 +198,39 @@ export default function BlogTimeline({
     });
   };
 
-  const loadMorePosts = useCallback(() => {
-    if (isLoading || !hasMorePosts || initialPostCount.current === 0) return;
+  const loadMorePosts = useCallback(
+    (trigger: "scroll" | "intersection") => {
+      if (isLoading || !hasMorePosts) return;
 
-    if (allPosts.length > 0) {
-      const oldestPost = allPosts[allPosts.length - 1];
-      const newTimestamp = oldestPost.created_at - 1;
+      if (allPosts.length > 0) {
+        const oldestPost = allPosts[allPosts.length - 1];
+        const newTimestamp = oldestPost.created_at - 1;
+        const nextRequest = loadTriggerCount + 1;
 
-      pageStartPostIds.current = new Set(newPosts.map((post) => post.id));
-      setIsLoading(true);
-      setOldestTimestamp(newTimestamp);
-      setLoadTriggerCount((prev) => prev + 1);
-    } else {
-      setHasMorePosts(false);
-    }
-  }, [isLoading, hasMorePosts, allPosts, newPosts]);
+        requestStartPostIds.current = new Set(newPosts.map((post) => post.id));
+
+        logPagination("request started", {
+          request: nextRequest,
+          trigger,
+          cursor: newTimestamp,
+          accumulatedPostTotal: allPosts.length,
+          hookEventTotal: newPosts.length,
+        });
+
+        setIsLoading(true);
+        setOldestTimestamp(newTimestamp);
+        setLoadTriggerCount(nextRequest);
+      }
+    },
+    [
+      allPosts,
+      hasMorePosts,
+      isLoading,
+      loadTriggerCount,
+      logPagination,
+      newPosts,
+    ],
+  );
 
   const handleScroll = useCallback(() => {
     if (maxElements) return;
@@ -190,7 +243,7 @@ export default function BlogTimeline({
     const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
 
     if (distanceFromBottom < SCROLL_THRESHOLD && !isLoading && hasMorePosts) {
-      loadMorePosts();
+      loadMorePosts("scroll");
     }
   }, [loadMorePosts, isLoading, hasMorePosts, maxElements]);
 
@@ -214,7 +267,7 @@ export default function BlogTimeline({
         const [entry] = entries;
 
         if (entry.isIntersecting && !isLoading && hasMorePosts) {
-          loadMorePosts();
+          loadMorePosts("intersection");
         }
       },
       {
