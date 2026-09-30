@@ -15,6 +15,7 @@ interface BlogTimelineProps {
   view?: "timeline" | "media";
   activeSection?: string;
   maxElements?: number;
+  searchQuery?: string;
 }
 
 const POSTS_PER_PAGE = 20;
@@ -31,6 +32,7 @@ export default function BlogTimeline({
   view = "timeline",
   // activeSection,
   maxElements,
+  searchQuery = "",
 }: BlogTimelineProps) {
   const [visibleReplies, setVisibleReplies] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(true);
@@ -183,7 +185,7 @@ export default function BlogTimeline({
   };
 
   const loadMorePosts = useCallback(
-    (trigger: "scroll" | "intersection") => {
+    (trigger: "scroll" | "intersection" | "search") => {
       if (isLoading || !hasMorePosts) return;
 
       if (allPosts.length > 0) {
@@ -205,6 +207,14 @@ export default function BlogTimeline({
     },
     [allPosts, hasMorePosts, isLoading, loadTriggerCount, logPagination],
   );
+
+  useEffect(() => {
+    if (!searchQuery.trim() || maxElements || isLoading || !hasMorePosts) {
+      return;
+    }
+
+    loadMorePosts("search");
+  }, [hasMorePosts, isLoading, loadMorePosts, maxElements, searchQuery]);
 
   const handleScroll = useCallback(() => {
     if (maxElements) return;
@@ -333,7 +343,27 @@ export default function BlogTimeline({
     );
   };
 
-  const filteredPosts = filterEvents(allPosts);
+  const normalizedSearchTerms = searchQuery
+    .trim()
+    .toLocaleLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .split(/\s+/)
+    .filter(Boolean);
+  const filteredPosts = filterEvents(allPosts).filter((post) => {
+    if (view !== "timeline" || normalizedSearchTerms.length === 0) {
+      return true;
+    }
+
+    const searchableContent = post.content
+      .toLocaleLowerCase()
+      .normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    return normalizedSearchTerms.every((term) =>
+      searchableContent.includes(term),
+    );
+  });
   const postsToShow = maxElements
     ? filteredPosts.slice(0, maxElements)
     : filteredPosts;
@@ -351,13 +381,27 @@ export default function BlogTimeline({
         postsToShow.map(renderPost)
       )}
 
+      {view === "timeline" &&
+        normalizedSearchTerms.length > 0 &&
+        postsToShow.length === 0 &&
+        !hasMorePosts && (
+          <div
+            className="flex min-h-32 w-full items-center justify-center px-4 text-center text-sm text-gray-500 sm:w-[600px]"
+            role="status"
+          >
+            No posts match “{searchQuery.trim()}”.
+          </div>
+        )}
+
       {hasMorePosts && !maxElements && (
         <div ref={loadingRef} className="flex items-center justify-center py-8">
           {isLoading ? (
             <div className="flex items-center space-x-2">
               <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-blue-500"></div>
               <span className="text-gray-600 dark:text-gray-400">
-                Loading more posts...
+                {normalizedSearchTerms.length > 0
+                  ? "Searching older posts..."
+                  : "Loading more posts..."}
               </span>
             </div>
           ) : (
@@ -366,11 +410,15 @@ export default function BlogTimeline({
         </div>
       )}
 
-      {!hasMorePosts && !maxElements && (
-        <div className="py-8 text-center text-gray-500 dark:text-gray-400">
-          No more posts to load
-        </div>
-      )}
+      {!hasMorePosts &&
+        !maxElements &&
+        (normalizedSearchTerms.length === 0 || postsToShow.length > 0) && (
+          <div className="py-8 text-center text-gray-500 dark:text-gray-400">
+            {normalizedSearchTerms.length > 0
+              ? "End of search results"
+              : "No more posts to load"}
+          </div>
+        )}
     </div>
   );
 }

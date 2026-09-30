@@ -5,7 +5,7 @@ import BlogTimeline from "@/components/blog/BlogTimeline";
 import { BLOG_RELAY_URLS } from "@/config/nostr";
 import { ImageOverlayProvider } from "@/components/ImageOverlayProvider";
 import { ProfileProvider } from "@/context/ProfileContext";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Search, X } from "lucide-react";
 import Link from "next/link";
 import { NostrProvider } from "nostr-react";
 import { useState } from "react";
@@ -14,6 +14,7 @@ type BlogView = "timeline" | "media";
 
 export default function Blog() {
   const [activeView, setActiveView] = useState<BlogView>("timeline");
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <div>
@@ -82,7 +83,51 @@ export default function Blog() {
                 })}
               </div>
 
-              <BlogTimeline filterType="all" view={activeView} />
+              {activeView === "timeline" && (
+                <div className="relative w-full px-4 sm:w-[600px] sm:px-0">
+                  <label htmlFor="blog-search" className="sr-only">
+                    Search blog posts
+                  </label>
+                  <Search
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-7 top-1/2 -translate-y-1/2 text-gray-400 sm:left-3"
+                    size={18}
+                  />
+                  <input
+                    id="blog-search"
+                    type="text"
+                    role="searchbox"
+                    value={searchQuery}
+                    onChange={(event) => setSearchQuery(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Escape") {
+                        setSearchQuery("");
+                        event.currentTarget.blur();
+                      }
+                    }}
+                    placeholder="Search posts"
+                    autoComplete="off"
+                    enterKeyHint="search"
+                    className="w-full rounded-xl border border-gray-200 bg-white py-2.5 pl-10 pr-10 text-sm outline-none transition-colors duration-200 placeholder:text-gray-400 hover:border-gray-300 focus:border-gray-400 focus:ring-2 focus:ring-gray-950/10 dark:border-gray-800 dark:bg-black dark:hover:border-gray-700 dark:focus:border-gray-600 dark:focus:ring-white/10"
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery("")}
+                      aria-label="Clear search"
+                      className="absolute right-6 top-1/2 -translate-y-1/2 rounded-full p-1 text-gray-400 transition hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:bg-gray-800 dark:hover:text-gray-200 sm:right-2"
+                    >
+                      <X aria-hidden="true" size={16} />
+                    </button>
+                  )}
+                </div>
+              )}
+
+              <BlogTimeline
+                filterType="all"
+                view={activeView}
+                searchQuery={activeView === "timeline" ? searchQuery : ""}
+              />
             </ProfileProvider>
           </NostrProvider>
         </div>
