@@ -21,6 +21,7 @@ export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const [isHoveringNameText, setIsHoveringNameText] = useState(false);
+  const [isForwardFutureActive, setIsForwardFutureActive] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
   const [showSecondText, setShowSecondText] = useState(false);
@@ -38,7 +39,7 @@ export default function Home() {
   const firstParagraph =
     "My name is Frederik Handberg. I'm 24 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
-    "\nI'm passionate about building cool and useful apps 🚀\n\nMost recently, I've taken on a massive task to build the best notes app for thinking and brainstorming. So now, I'm learning AppKit for the macOS app, and UIKit once I begin the iOS/iPadOS app.";
+    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future. Its three brands each have a mission of their own: VikingRobotics, HAPPYDIAMOND, and BeyondBiology.";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -92,17 +93,28 @@ export default function Home() {
     const lines = text.split("\n");
     let charIndex = startCharIndex;
 
-    const isAnyHovered = isHoveringNameText || isHoveringSoftwareText;
+    const isAnyHovered =
+      isHoveringNameText || isHoveringSoftwareText || isForwardFutureActive;
     const regularDimmingClass = `transition-all duration-400 ease-in-out ${
       isAnyHovered ? "opacity-30 blur-[1px]" : "opacity-100"
     }`;
 
     const nameDimmingClass = `transition-all duration-400 ease-in-out ${
-      isHoveringSoftwareText ? "opacity-30 blur-[1px]" : "opacity-100"
+      isHoveringSoftwareText || isForwardFutureActive
+        ? "opacity-30 blur-[1px]"
+        : "opacity-100"
     }`;
 
     const engineeringDimmingClass = `transition-all duration-400 ease-in-out ${
-      isHoveringNameText ? "opacity-30 blur-[1px]" : "opacity-100"
+      isHoveringNameText || isForwardFutureActive
+        ? "opacity-30 blur-[1px]"
+        : "opacity-100"
+    }`;
+
+    const forwardFutureDimmingClass = `transition-all duration-400 ease-in-out ${
+      !isForwardFutureActive && (isHoveringNameText || isHoveringSoftwareText)
+        ? "opacity-30 blur-[1px]"
+        : "opacity-100"
     }`;
 
     // Helper function to render text and check for "Software Engineering"
@@ -400,9 +412,32 @@ export default function Home() {
             return (
               <span
                 key={wordIndex}
-                className={`inline-block ${regularDimmingClass}`}
+                className={`inline-block ${word === "ForwardFuture." ? forwardFutureDimmingClass : regularDimmingClass}`}
               >
-                {wordChars}
+                {word === "ForwardFuture." ? (
+                  <>
+                    <a
+                      href="https://forwardfuture.world/"
+                      aria-label="ForwardFuture"
+                      className="inline-block font-bold hover:text-blue-500 focus-visible:text-blue-500"
+                      onMouseEnter={() => setIsForwardFutureActive(true)}
+                      onMouseLeave={(event) =>
+                        setIsForwardFutureActive(event.currentTarget.matches(":focus-visible"))
+                      }
+                      onFocus={(event) =>
+                        setIsForwardFutureActive(event.currentTarget.matches(":focus-visible"))
+                      }
+                      onBlur={(event) =>
+                        setIsForwardFutureActive(event.currentTarget.matches(":hover"))
+                      }
+                    >
+                      {wordChars.slice(0, -1)}
+                    </a>
+                    {wordChars.at(-1)}
+                  </>
+                ) : (
+                  wordChars
+                )}
                 {wordIndex < line.split(" ").length - 1 && "\u00A0"}
               </span>
             );
