@@ -58,7 +58,8 @@ export default function NameWithHoverImage({
           "relative inline-block font-bold transition-colors duration-400 hover:text-blue-500",
           className,
         )}
-        onMouseEnter={() => {
+        onMouseEnter={(event) => {
+          setMousePosition({ x: event.clientX, y: event.clientY });
           setIsHovered(true);
           onMouseEnter?.();
         }}
@@ -74,7 +75,7 @@ export default function NameWithHoverImage({
         createPortal(
           <div
             ref={imageRef}
-            className={`pointer-events-none fixed z-50 transition-all duration-400 ease-out ${
+            className={`pointer-events-none fixed z-50 transition-[opacity,transform] duration-400 ease-out ${
               isHovered ? "scale-100 opacity-100" : "scale-80 opacity-0"
             }`}
             style={{
