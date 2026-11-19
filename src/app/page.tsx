@@ -419,6 +419,7 @@ export default function Home() {
                     <a
                       href="https://forwardfuture.world/"
                       aria-label="ForwardFuture"
+                      target="_blank"
                       className="inline-block font-bold hover:text-blue-500 focus-visible:text-blue-500"
                       onMouseEnter={() => setIsForwardFutureActive(true)}
                       onMouseLeave={(event) =>
