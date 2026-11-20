@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import brandStyles from "./forwardfuture-brands.module.css";
 import ThemeToggle from "@/components/ThemeToggle";
 import NavbarLogo from "@/components/nav/NavbarLogo";
 import BlogTimeline from "@/components/blog/BlogTimeline";
@@ -14,7 +16,6 @@ import ButtonLink from "@/components/buttons/ButtonLink";
 import MobileNavMenu from "@/components/nav/MobileNavMenu";
 import RoundedImage from "@/components/Image";
 import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
-import UnderConstruction from "@/components/UnderConstruction";
 import { BLOG_RELAY_URLS } from "@/config/nostr";
 
 export default function Home() {
@@ -22,15 +23,18 @@ export default function Home() {
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const [isHoveringNameText, setIsHoveringNameText] = useState(false);
   const [isForwardFutureActive, setIsForwardFutureActive] = useState(false);
+  const [isHappyDiamondActive, setIsHappyDiamondActive] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
+  const fashionDimmingClass = `transition-all duration-400 ease-in-out ${
+    isHoveringFashionText || isHappyDiamondActive
+      ? "opacity-30 blur-[1px]"
+      : "opacity-100"
+  }`;
   const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
 
   const [activeSection, setActiveSection] = useState<string>("");
-
-  const [underConstructionDialogOpen, setUnderConstructionDialogOpen] =
-    useState(false);
 
   const aboutRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
@@ -39,7 +43,7 @@ export default function Home() {
   const firstParagraph =
     "My name is Frederik Handberg. I'm 24 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
-    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future. Its three brands each have a mission of their own: VikingRobotics, HAPPYDIAMOND, and BeyondBiology.";
+    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future.\n\nIts three brands each have a mission of their own:";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -434,7 +438,9 @@ export default function Home() {
                     >
                       {wordChars.slice(0, -1)}
                     </a>
-                    {wordChars.at(-1)}
+                    <span className={regularDimmingClass}>
+                      {wordChars.at(-1)}
+                    </span>
                   </>
                 ) : (
                   wordChars
@@ -513,11 +519,6 @@ export default function Home() {
         </div>
       )}
 
-      <UnderConstruction
-        onOpen={underConstructionDialogOpen}
-        setDialogOpen={setUnderConstructionDialogOpen}
-      />
-
       <ImageOverlayProvider>
         <div className="pointer-events-none fixed top-0 z-10 h-32 w-full bg-gradient-to-b from-white to-transparent dark:from-black max-[809px]:hidden"></div>
 
@@ -553,35 +554,75 @@ export default function Home() {
                   <div
                     className={`flex flex-col items-center ${textAnimationComplete ? "pointer-events-auto animate-image-reveal select-auto" : "pointer-events-none select-none opacity-0"}`}
                   >
-                    <div className="mt-[50px]">
-                      <RoundedImage
-                        src="/notes_app.png"
-                        alt="Image of notes app for macOS"
-                      />
-                    </div>
-
-                    <button
-                      onClick={() => setUnderConstructionDialogOpen(true)}
-                      className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
-                      style={{
-                        animationFillMode: "forwards",
-                      }}
+                    <ul
+                      aria-label="ForwardFuture brands"
+                      className={`mt-[50px] w-full ${brandStyles["brands-grid"]}`}
                     >
-                      Read more about my notes app and my choice for going
-                      native
-                    </button>
+                      <li className={brandStyles["brand-item"]}>
+                        <a
+                          className={brandStyles["viking-logo"]}
+                          href="https://vikingrobotics.tech/"
+                          target="_blank"
+                        >
+                          <span
+                            className={brandStyles["viking-logo-shell"]}
+                            aria-hidden="true"
+                          >
+                            <Image
+                              src="/brands/vikingrobotics-logo.svg"
+                              alt=""
+                              width={104}
+                              height={104}
+                            />
+                          </span>
+                          <span>VikingRobotics</span>
+                        </a>
+                      </li>
+                      <li className={brandStyles["brand-item"]}>
+                        <a
+                          className={brandStyles["happydiamond-logo"]}
+                          href="https://happydiamond.world/"
+                          aria-label="HAPPYDIAMOND — BE DIFFERENT. BE UNIQUE."
+                          target="_blank"
+                        >
+                          <span>HAPPY</span>
+                          <span>DIAMOND</span>
+                          <small className={brandStyles["happydiamond-tagline"]}>
+                            BE DIFFERENT. BE UNIQUE.
+                          </small>
+                        </a>
+                      </li>
+                      <li
+                        className={`${brandStyles["brand-item"]} ${brandStyles["beyondbiology-item"]}`}
+                      >
+                        <a
+                          className={brandStyles["beyondbiology-brand"]}
+                          href="https://beyondbiology.tech/"
+                          aria-label="BeyondBiology"
+                          aria-describedby="beyondbiology-description"
+                          target="_blank"
+                        >
+                          <span className={brandStyles["beyondbiology-logo"]}>
+                            BeyondBiology
+                          </span>
+                          <span
+                            className={brandStyles["beyondbiology-description"]}
+                            id="beyondbiology-description"
+                          >
+                            Experimenting with plant technology.
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
 
                     <div className="mt-[100px] max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
                       <p className="leading-relaxed">
-                        <span
-                          className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
-                        >
-                          In addition to doing software development, I&apos;m
-                          also learning
+                        <span className={fashionDimmingClass}>
+                          My interest in
                         </span>{" "}
-                        <span className="relative inline-block">
+                        <span className={`relative inline-block ${isHappyDiamondActive ? fashionDimmingClass : "opacity-100"}`}>
                           <Link
-                            href="/software"
+                            href="/fashion"
                             className="emoji-tooltip font-bold hover:text-blue-500"
                             data-emoji="🪡 🧵"
                             onMouseOver={() => setIsHoveringFashionText(true)}
@@ -590,23 +631,43 @@ export default function Home() {
                             Fashion Design
                           </Link>
                         </span>
-                        <span
-                          className={`transition-all duration-400 ease-in-out ${isHoveringFashionText ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                        <span className={fashionDimmingClass}>
+                          {" "}is mostly about techwear and workwear. I like
+                          making clothes that look good, hold up in demanding conditions,
+                          and last for years. I also love the sophisticated look of a
+                          well-tailored classic suit.
+                          <br />
+                          <br />
+                          I had trouble finding clothes that fit the way I
+                          wanted, so I learned to draft patterns and sew garments
+                          to my own measurements.
+                          <br />
+                          <br />
+                          I bring that same focus on fit, function, and
+                          durability to{" "}
+                        </span>
+                        <a
+                          href="https://happydiamond.world/"
+                          target="_blank"
+                          rel="noopener"
+                          className={`inline-block font-bold hover:text-blue-500 focus-visible:text-blue-500 transition-all duration-400 ease-in-out ${isHoveringFashionText && !isHappyDiamondActive ? "opacity-30 blur-[1px]" : "opacity-100"}`}
+                          onMouseEnter={() => setIsHappyDiamondActive(true)}
+                          onMouseLeave={(event) =>
+                            setIsHappyDiamondActive(event.currentTarget.matches(":focus-visible"))
+                          }
+                          onFocus={(event) =>
+                            setIsHappyDiamondActive(event.currentTarget.matches(":focus-visible"))
+                          }
+                          onBlur={(event) =>
+                            setIsHappyDiamondActive(event.currentTarget.matches(":hover"))
+                          }
                         >
-                          . However, this is purely for fun and just a personal
-                          hobby of mine.
-                          <br />
-                          <br />
-                          Because I like tailored and well-fitting clothing,
-                          finding pieces that truly fit my body has always been
-                          a challenge. Designing and sewing my own garments
-                          allows me to solve that problem creatively, combining
-                          my passion for classic design with bold design twists
-                          to make the pieces stand out.
-                          <br />
-                          <br />I create garment concepts in 3D, draft patterns
-                          with my measurements, and bring my designs to reality
-                          through sewing.
+                          HAPPYDIAMOND
+                        </a>
+                        <span className={fashionDimmingClass}>
+                          . I want to make
+                          apparel and gear that can handle tough conditions and
+                          still feel like something you&apos;d want to wear every day.
                         </span>
                       </p>
 
@@ -617,7 +678,7 @@ export default function Home() {
                           animationFillMode: "forwards",
                         }}
                       >
-                        Read more about my fashion design hobby
+                        Read more about my design process
                       </Link>
                     </div>
                   </div>

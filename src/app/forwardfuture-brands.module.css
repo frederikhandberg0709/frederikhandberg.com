@@ -1,0 +1,301 @@
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.brand-item {
+  display: grid;
+  min-height: 280px;
+  padding: 40px 24px;
+  place-items: center;
+}
+
+.viking-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: inherit;
+  font-size: clamp(22px, 2.5vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+.viking-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 300ms ease;
+}
+
+.happydiamond-logo {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(32px, 3.4vw, 46px);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
+.happydiamond-logo span {
+  display: block;
+  color: #4facfe;
+}
+
+.happydiamond-logo span+span {
+  color: #fe5196;
+}
+
+@media (max-width: 640px) {
+  .brands-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .brand-item {
+    min-height: 220px;
+  }
+}
+
+.viking-logo,
+.happydiamond-logo {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.viking-logo:focus-visible,
+.happydiamond-logo:focus-visible {
+  outline: 2px solid #888;
+  outline-offset: 16px;
+  border-radius: 2px;
+}
+
+.viking-logo {
+  transform-origin: center;
+  transition:
+    color 300ms ease,
+    transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.viking-logo-shell {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: clamp(64px, 8vw, 104px);
+  aspect-ratio: 1;
+  transition: transform 480ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.viking-logo-shell::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #991f24;
+  opacity: 0;
+  -webkit-mask: url("/brands/vikingrobotics-logo.svg") center / contain no-repeat;
+  mask: url("/brands/vikingrobotics-logo.svg") center / contain no-repeat;
+  transition: opacity 300ms ease;
+}
+
+.viking-logo:focus-visible {
+  color: #991f24;
+  transform: scale(1.045);
+}
+
+.viking-logo:focus-visible .viking-logo-shell {
+  transform: translateY(-2px) rotate(-6deg) scale(1.1);
+}
+
+.viking-logo:focus-visible img {
+  opacity: 0;
+}
+
+.viking-logo:focus-visible .viking-logo-shell::after {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .viking-logo:hover {
+    color: #991f24;
+    transform: scale(1.045);
+  }
+
+  .viking-logo:hover .viking-logo-shell {
+    transform: translateY(-2px) rotate(-6deg) scale(1.1);
+  }
+
+  .viking-logo:hover img {
+    opacity: 0;
+  }
+
+  .viking-logo:hover .viking-logo-shell::after {
+    opacity: 1;
+  }
+}
+
+@media (hover: none) {
+  .viking-logo:active {
+    color: #991f24;
+  }
+
+  .viking-logo:active .viking-logo-shell {
+    transform: translateY(-2px) rotate(-6deg) scale(1.1);
+  }
+
+  .viking-logo:active img {
+    opacity: 0;
+  }
+
+  .viking-logo:active .viking-logo-shell::after {
+    opacity: 1;
+  }
+}
+
+.viking-logo:active {
+  transform: scale(0.96);
+}
+
+.happydiamond-logo span {
+  transition: filter 250ms ease-out;
+}
+
+.happydiamond-logo:is(:active, :focus-visible) span {
+  filter: drop-shadow(0 0 35px rgb(79 172 254 / 99%));
+}
+
+.happydiamond-logo:is(:active, :focus-visible) span+span {
+  filter: drop-shadow(0 0 35px rgb(254 81 150 / 99%));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .happydiamond-logo:hover span {
+    filter: drop-shadow(0 0 35px rgb(79 172 254 / 99%));
+  }
+
+  .happydiamond-logo:hover span+span {
+    filter: drop-shadow(0 0 35px rgb(254 81 150 / 99%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .viking-logo,
+  .viking-logo-shell,
+  .viking-logo-shell::after,
+  .viking-logo img,
+  .happydiamond-logo span {
+    transition: none;
+  }
+
+  .viking-logo:is(:hover, :active, :focus-visible),
+  .viking-logo:is(:hover, :active, :focus-visible) .viking-logo-shell {
+    transform: none;
+  }
+}
+
+.happydiamond-tagline {
+  display: block;
+  margin-top: 5px;
+  color: inherit;
+  font-size: 0.25em;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.happydiamond-logo {
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.happydiamond-logo:active {
+  transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .happydiamond-logo {
+    transition: none;
+  }
+
+  .happydiamond-logo:active {
+    transform: none;
+  }
+}
+
+.beyondbiology-item {
+  grid-column: 1 / -1;
+}
+
+.beyondbiology-brand {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  transform-origin: center;
+  transition: transform 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  cursor: pointer;
+  text-align: center;
+}
+
+.beyondbiology-logo {
+  display: block;
+  padding: 0 0.05em;
+  border: 0;
+  background:
+    radial-gradient(ellipse 32% 130% at 36% 0%, #f1ffe8 0%, rgb(207 255 185 / 85%) 18%, rgb(173 255 145 / 35%) 45%, transparent 78%),
+    linear-gradient(180deg, #9ced78 0%, #4bc854 40%, #218f39 73%, #12632b 100%);
+  -webkit-text-stroke: 0.35px rgb(195 255 169 / 18%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.055em;
+  filter: brightness(1) drop-shadow(0 -3px 10px rgb(187 255 150 / 12%));
+  cursor: pointer;
+  transition: filter 450ms ease-in-out;
+}
+
+.beyondbiology-brand:is(:active, :focus-visible) .beyondbiology-logo {
+  filter: brightness(1.15) drop-shadow(0 -4px 18px rgb(187 255 150 / 30%));
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .beyondbiology-brand:hover .beyondbiology-logo {
+    filter: brightness(1.15) drop-shadow(0 -4px 18px rgb(187 255 150 / 30%));
+  }
+}
+
+.beyondbiology-brand:active {
+  transform: scale(0.96);
+}
+
+.beyondbiology-brand:focus-visible {
+  outline: 2px solid #68ef77;
+  outline-offset: 12px;
+  border-radius: 2px;
+}
+
+.beyondbiology-description {
+  display: block;
+  margin: 12px 0 0;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beyondbiology-brand,
+  .beyondbiology-logo {
+    transition: none;
+  }
+
+  .beyondbiology-brand:active {
+    transform: none;
+  }
+}
+
+:global(.dark) .viking-logo img {
+  filter: invert(1);
+}
