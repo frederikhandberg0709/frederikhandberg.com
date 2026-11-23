@@ -491,6 +491,7 @@ export default function Home() {
 
       <div className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2">
         <PillNavbarMenu
+          className="hover:border-black/10 hover:shadow-xl motion-safe:transition-[border-color,box-shadow] dark:hover:border-white/10"
           links={[
             { href: "#about", text: "About", sectionId: "about" },
             { href: "#contact", text: "Contact", sectionId: "contact" },
