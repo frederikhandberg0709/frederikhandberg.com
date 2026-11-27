@@ -673,7 +673,7 @@ export default function Home() {
             >
               {showSecondText && (
                 <>
-                  <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
+                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
                     {renderAnimatedText(firstParagraph)}
                   </div>
 
@@ -681,7 +681,7 @@ export default function Home() {
                     <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
                   </div>
 
-                  <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
+                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
                     {renderAnimatedText(secondParagraph, firstParagraph.length)}
                   </div>
 
@@ -750,7 +750,7 @@ export default function Home() {
                       id="brand-missions"
                       ref={missionsRef}
                       data-direction={brandSelection.direction}
-                      className={`w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl ${brandStyles["brand-missions"]}`}
+                      className={`w-full max-w-3xl text-center text-xl md:text-2xl ${brandStyles["brand-missions"]}`}
                       {...missionSwipeProps}
                     >
                       {Object.entries(brandMissions).map(([brand, mission]) => (
