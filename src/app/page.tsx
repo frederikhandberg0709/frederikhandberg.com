@@ -4,7 +4,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import brandStyles from "./forwardfuture-brands.module.css";
 import ThemeToggle from "@/components/ThemeToggle";
 import NavbarLogo from "@/components/nav/NavbarLogo";
@@ -92,8 +91,6 @@ const brandMissions = {
 type Brand = keyof typeof brandMissions;
 type MissionDirection = "previous" | "next";
 const brandOrder = Object.keys(brandMissions) as Brand[];
-const missionArrowClass =
-  "inline-flex size-11 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-blue-500 hover:text-blue-500 focus-visible:text-blue-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-blue-400 dark:hover:text-blue-400 dark:focus-visible:text-blue-400";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
@@ -103,38 +100,30 @@ export default function Home() {
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [brandSelection, setBrandSelection] = useState<{
     brand: Brand;
-    expanded: boolean;
     outgoing: Brand | null;
     direction: MissionDirection | null;
   }>({
     brand: brandOrder[0],
-    expanded: true,
     outgoing: null,
     direction: null,
   });
-  const openBrand = brandSelection.expanded ? brandSelection.brand : null;
   const missionsRef = useRef<HTMLDivElement>(null);
 
   function brandButtonProps(brand: Brand) {
     return {
-      "aria-expanded": openBrand === brand,
+      "aria-current": brandSelection.brand === brand,
       "aria-controls": `${brand}-mission`,
       onClick: () =>
         setBrandSelection((current) => {
-          if (current.brand === brand) {
-            return current.expanded
-              ? { ...current, expanded: false }
-              : { brand, expanded: true, outgoing: null, direction: null };
-          }
+          if (current.brand === brand) return current;
 
           const direction = brandOrder.indexOf(brand) > brandOrder.indexOf(current.brand)
             ? "next"
             : "previous";
           return {
             brand,
-            expanded: true,
-            outgoing: current.expanded ? current.brand : null,
-            direction: current.expanded ? direction : null,
+            outgoing: current.brand,
+            direction,
           };
         }),
     };
@@ -146,8 +135,7 @@ export default function Home() {
       const next = (index + direction + brandOrder.length) % brandOrder.length;
       return {
         brand: brandOrder[next],
-        expanded: true,
-        outgoing: current.expanded ? current.brand : null,
+        outgoing: current.brand,
         direction: direction === 1 ? "next" : "previous",
       };
     });
@@ -157,7 +145,7 @@ export default function Home() {
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const missionSwipeProps = useMissionSwipe(
     missionsRef,
-    textAnimationComplete && openBrand !== null,
+    textAnimationComplete,
     stepBrand,
   );
 
@@ -165,7 +153,7 @@ export default function Home() {
     const viewport = missionsRef.current;
     if (!viewport) return;
 
-    const panel = viewport.querySelector<HTMLElement>('[data-open="true"]');
+    const panel = viewport.querySelector<HTMLElement>('[data-current="true"]');
     if (!panel) return;
 
     const updateHeight = () => {
@@ -186,7 +174,7 @@ export default function Home() {
   const firstParagraph =
     "My name is Frederik Handberg. I'm 24 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
-    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future.\n\nIts three brands each have a mission of their own:";
+    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future.\n\nSelect a brand below to read its mission:";
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -752,80 +740,49 @@ export default function Home() {
                     </ul>
 
                     <p role="status" className="sr-only">
-                      {openBrand
-                        ? `Showing the ${brandMissions[openBrand].domain} mission`
-                        : "Brand mission closed"}
+                      Showing the {brandMissions[brandSelection.brand].domain} mission
                     </p>
 
                     <div
-                      className={`w-full max-w-3xl ${brandStyles["mission-disclosure"]}`}
-                      data-open={openBrand !== null}
-                      inert={openBrand === null}
+                      id="brand-missions"
+                      ref={missionsRef}
+                      data-direction={brandSelection.direction}
+                      className={`w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl ${brandStyles["brand-missions"]}`}
+                      {...missionSwipeProps}
                     >
-                      <div className={brandStyles["mission-disclosure-inner"]}>
-                        <div role="group" aria-label="Browse brand missions" className="flex gap-3">
-                          <button
-                            type="button"
-                            className={missionArrowClass}
-                            aria-label="Previous brand mission"
-                            aria-controls="brand-missions"
-                            onClick={() => stepBrand(-1)}
-                          >
-                            <ChevronLeft aria-hidden="true" size={20} />
-                          </button>
-                          <button
-                            type="button"
-                            className={missionArrowClass}
-                            aria-label="Next brand mission"
-                            aria-controls="brand-missions"
-                            onClick={() => stepBrand(1)}
-                          >
-                            <ChevronRight aria-hidden="true" size={20} />
-                          </button>
-                        </div>
-
+                      {Object.entries(brandMissions).map(([brand, mission]) => (
                         <div
-                          id="brand-missions"
-                          ref={missionsRef}
-                          data-direction={brandSelection.direction}
-                          className={`w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl ${brandStyles["brand-missions"]}`}
-                          {...missionSwipeProps}
+                          key={brand}
+                          id={`${brand}-mission`}
+                          className={brandStyles["brand-mission"]}
+                          data-current={brandSelection.brand === brand}
+                          data-leaving={brandSelection.outgoing === brand}
+                          inert={brandSelection.brand !== brand}
                         >
-                          {Object.entries(brandMissions).map(([brand, mission]) => (
-                            <div
-                              key={brand}
-                              id={`${brand}-mission`}
-                              className={brandStyles["brand-mission"]}
-                              data-open={brandSelection.brand === brand}
-                              data-leaving={brandSelection.outgoing === brand}
-                              inert={brandSelection.brand !== brand}
-                            >
-                              <div className="space-y-4 pb-2 pt-4 leading-relaxed">
-                                <div className={`space-y-4 ${brandStyles["mission-copy"]}`}>
-                                  {mission.content(
-                                    <a
-                                      href={mission.url}
-                                      target="_blank"
-                                      rel="noopener"
-                                      className={`${brandStyles["mission-name"]} font-bold motion-safe:transition-colors hover:text-blue-500 focus-visible:text-blue-500`}
-                                    >
-                                      {mission.name}
-                                    </a>,
-                                  )}
-                                </div>
+                          <div className="space-y-4 pb-2 pt-4 leading-relaxed">
+                            <div className={`space-y-4 ${brandStyles["mission-copy"]}`}>
+                              {mission.content(
                                 <a
                                   href={mission.url}
                                   target="_blank"
                                   rel="noopener"
-                                  className={slidingLinkClass}
+                                  className={`${brandStyles["mission-name"]} font-bold motion-safe:transition-colors hover:text-blue-500 focus-visible:text-blue-500`}
                                 >
-                                  Visit {mission.domain}
-                                </a>
-                              </div>
+                                  {mission.name}
+                                </a>,
+                              )}
                             </div>
-                          ))}
+                            <a
+                              href={mission.url}
+                              target="_blank"
+                              rel="noopener"
+                              className={slidingLinkClass}
+                            >
+                              Visit {mission.domain}
+                            </a>
+                          </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </>
