@@ -3,36 +3,137 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.brand-mission {
+/* Keep the viewport still when a mission resizes the content below it. */
+:global(html):has(.brand-missions) {
+  overflow-anchor: none;
+}
+
+.mission-disclosure {
+  --mission-duration: 320ms;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 320ms ease,
-    opacity 240ms ease;
+    grid-template-rows var(--mission-duration) ease,
+    opacity var(--mission-duration) ease;
 }
 
-.brand-mission[data-open="true"] {
+.mission-disclosure[data-open="true"] {
   grid-template-rows: 1fr;
   opacity: 1;
 }
 
-.brand-mission-clip {
+.mission-disclosure-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 0;
-  overflow: hidden;
+  transform: translateY(-12px);
+  transition: transform var(--mission-duration) ease;
+}
+
+.mission-disclosure[data-open="true"] .mission-disclosure-inner {
+  transform: none;
+}
+
+.mission-disclosure-inner > * {
+  flex-shrink: 0;
+}
+
+.brand-missions {
+  --mission-distance: clamp(12px, calc((100vw - 48rem) / 2 - 12px), 80px);
+  --mission-offset: var(--mission-distance);
+  position: relative;
+  touch-action: pan-y pinch-zoom;
+  transition: height var(--mission-duration) ease;
+}
+
+.brand-missions[data-direction="previous"] {
+  --mission-offset: calc(-1 * var(--mission-distance));
+}
+
+.brand-mission {
+  position: absolute;
+  inset: 0 0 auto;
+  opacity: 0;
+  transition: opacity var(--mission-duration) ease;
+}
+
+.brand-mission[data-open="true"] {
+  position: relative;
+  opacity: 1;
+}
+
+.mission-copy :is(p:not(:has(.mission-name)), p > span) {
+  transition: opacity 250ms ease;
+}
+
+.mission-copy:has(.mission-name:is(:hover, :focus-visible)) :is(p:not(:has(.mission-name)), p > span) {
+  opacity: 0.3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-missions[data-direction] .brand-mission[data-open="true"] {
+    animation: mission-enter var(--mission-duration) ease both;
+  }
+
+  .brand-missions[data-direction] .brand-mission[data-leaving="true"] {
+    animation: mission-exit 240ms ease both;
+  }
+
+  .mission-disclosure[data-open="false"] .brand-missions[data-direction] .brand-mission {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes mission-enter {
+  from {
+    transform: translateX(var(--mission-offset));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes mission-exit {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(-1 * var(--mission-offset)));
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .brand-mission {
+  .mission-disclosure,
+  .mission-disclosure-inner,
+  .brand-missions,
+  .brand-mission,
+  .mission-copy :is(p:not(:has(.mission-name)), p > span) {
     transition: none;
   }
 }
 
 .brand-item {
   display: grid;
-  min-height: 280px;
-  padding: 40px 24px;
+  min-height: 220px;
+  padding: 32px 24px;
   place-items: center;
+  transition: opacity 250ms ease;
+}
+
+.brands-grid:has(button[aria-expanded="true"]) .brand-item:has(button[aria-expanded="false"]) {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-item {
+    transition: none;
+  }
 }
 
 .viking-logo {
@@ -75,7 +176,7 @@
   }
 
   .brand-item {
-    min-height: 220px;
+    min-height: 170px;
   }
 }
 
@@ -121,24 +222,28 @@
   transition: opacity 300ms ease;
 }
 
-.viking-logo:is(:focus-visible, [aria-expanded="true"]) {
+.viking-logo:focus-visible:where([aria-expanded="false"]) {
   color: #991f24;
   transform: scale(1.045);
 }
 
-.viking-logo:is(:focus-visible, [aria-expanded="true"]) .viking-logo-shell {
+.viking-logo:focus-visible:where([aria-expanded="false"]) .viking-logo-shell {
   transform: translateY(-2px) rotate(-6deg) scale(1.1);
 }
 
-.viking-logo:is(:focus-visible, [aria-expanded="true"]) img {
+.viking-logo:focus-visible:where([aria-expanded="false"]) img {
   opacity: 0;
 }
 
-.viking-logo:is(:focus-visible, [aria-expanded="true"]) .viking-logo-shell::after {
+.viking-logo:focus-visible:where([aria-expanded="false"]) .viking-logo-shell::after {
   opacity: 1;
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .brands-grid:has(button[aria-expanded="true"]) .brand-item:has(button[aria-expanded="false"]:hover) {
+    opacity: 1;
+  }
+
   .viking-logo:hover {
     color: #991f24;
     transform: scale(1.045);
@@ -158,19 +263,19 @@
 }
 
 @media (hover: none) {
-  .viking-logo:active {
+  .viking-logo:active:where([aria-expanded="false"]) {
     color: #991f24;
   }
 
-  .viking-logo:active .viking-logo-shell {
+  .viking-logo:active:where([aria-expanded="false"]) .viking-logo-shell {
     transform: translateY(-2px) rotate(-6deg) scale(1.1);
   }
 
-  .viking-logo:active img {
+  .viking-logo:active:where([aria-expanded="false"]) img {
     opacity: 0;
   }
 
-  .viking-logo:active .viking-logo-shell::after {
+  .viking-logo:active:where([aria-expanded="false"]) .viking-logo-shell::after {
     opacity: 1;
   }
 }
@@ -183,11 +288,11 @@
   transition: filter 250ms ease-out;
 }
 
-.happydiamond-logo:is(:active, :focus-visible, [aria-expanded="true"]) span {
+.happydiamond-logo:is(:active, :focus-visible):where([aria-expanded="false"]) span {
   filter: drop-shadow(0 0 35px rgb(79 172 254 / 99%));
 }
 
-.happydiamond-logo:is(:active, :focus-visible, [aria-expanded="true"]) span+span {
+.happydiamond-logo:is(:active, :focus-visible):where([aria-expanded="false"]) span+span {
   filter: drop-shadow(0 0 35px rgb(254 81 150 / 99%));
 }
 
@@ -211,8 +316,8 @@
     transition: none;
   }
 
-  .viking-logo:is(:hover, :active, :focus-visible, [aria-expanded="true"]),
-  .viking-logo:is(:hover, :active, :focus-visible, [aria-expanded="true"]) .viking-logo-shell {
+  .viking-logo:is(:hover, :active, :focus-visible),
+  .viking-logo:is(:hover, :active, :focus-visible) .viking-logo-shell {
     transform: none;
   }
 }
@@ -282,7 +387,7 @@
   transition: filter 450ms ease-in-out;
 }
 
-.beyondbiology-brand:is(:active, :focus-visible, [aria-expanded="true"]) .beyondbiology-logo {
+.beyondbiology-brand:is(:active, :focus-visible):where([aria-expanded="false"]) .beyondbiology-logo {
   filter: brightness(1.15) drop-shadow(0 -4px 18px rgb(187 255 150 / 30%));
 }
 

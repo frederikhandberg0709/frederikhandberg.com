@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import brandStyles from "./forwardfuture-brands.module.css";
 import ThemeToggle from "@/components/ThemeToggle";
 import NavbarLogo from "@/components/nav/NavbarLogo";
@@ -17,21 +19,26 @@ import MobileNavMenu from "@/components/nav/MobileNavMenu";
 import RoundedImage from "@/components/Image";
 import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
 import { BLOG_RELAY_URLS } from "@/config/nostr";
+import { useMissionSwipe } from "@/hooks/useMissionSwipe";
 
 const slidingLinkClass =
   "relative inline-block cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:focus-visible:text-blue-500 max-sm:focus-visible:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:focus-visible:bg-left sm:focus-visible:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]";
 
 const brandMissions = {
   vikingrobotics: {
-    linkLabel: "Visit VikingRobotics.tech",
+    name: "VikingRobotics",
+    domain: "VikingRobotics.tech",
     url: "https://vikingrobotics.tech/",
-    content: (
+    content: (name: ReactNode) => (
       <>
         <p>
-          <strong>Building advanced drone technology.</strong>
-          <br />
-          At VikingRobotics, I’m building modular drones that can adapt to
-          missions ranging from search and rescue to defense.
+          <span>At </span>
+          {name}
+          <span>
+            , I’m building advanced drone technology for missions ranging from
+            search and rescue to defense. I design the drones to be modular so
+            they can adapt to what each mission needs.
+          </span>
         </p>
         <p>
           I design custom frames in CAD, 3D-print the molds, and use them to make
@@ -43,14 +50,18 @@ const brandMissions = {
     ),
   },
   happydiamond: {
-    linkLabel: "Visit HAPPYDIAMOND.world",
+    name: "HAPPYDIAMOND",
+    domain: "HAPPYDIAMOND.world",
     url: "https://happydiamond.world/",
-    content: (
+    content: (name: ReactNode) => (
       <>
         <p>
-          <strong>HAPPYDIAMOND</strong> makes high-end apparel and gear built for
-          demanding conditions, with a style you’ll want to wear every day,
-          whether you’re in the city or out in nature.
+          {name}
+          <span>
+            {" "}makes high-end apparel and gear built for demanding conditions,
+            with a style you’ll want to wear every day, whether you’re in the
+            city or out in nature.
+          </span>
         </p>
         <p>
           Durability is a core principle to ensure pieces last for years and can
@@ -61,46 +72,110 @@ const brandMissions = {
     ),
   },
   beyondbiology: {
-    linkLabel: "Visit BeyondBiology.tech",
+    name: "BeyondBiology",
+    domain: "BeyondBiology.tech",
     url: "https://beyondbiology.tech/",
-    content: (
+    content: (name: ReactNode) => (
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        {name}
+        <span>
+          . Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </span>
       </p>
     ),
   },
 };
 
 type Brand = keyof typeof brandMissions;
+type MissionDirection = "previous" | "next";
+const brandOrder = Object.keys(brandMissions) as Brand[];
+const missionArrowClass =
+  "inline-flex size-11 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors hover:border-blue-500 hover:text-blue-500 focus-visible:text-blue-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-blue-400 dark:hover:text-blue-400 dark:focus-visible:text-blue-400";
 
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
   const [isHoveringNameText, setIsHoveringNameText] = useState(false);
   const [isForwardFutureActive, setIsForwardFutureActive] = useState(false);
-  const [isHappyDiamondActive, setIsHappyDiamondActive] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
-  const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
-  const [openBrand, setOpenBrand] = useState<Brand | null>(null);
+  const [brandSelection, setBrandSelection] = useState<{
+    brand: Brand;
+    expanded: boolean;
+    outgoing: Brand | null;
+    direction: MissionDirection | null;
+  }>({
+    brand: brandOrder[0],
+    expanded: true,
+    outgoing: null,
+    direction: null,
+  });
+  const openBrand = brandSelection.expanded ? brandSelection.brand : null;
+  const missionsRef = useRef<HTMLDivElement>(null);
 
   function brandButtonProps(brand: Brand) {
     return {
       "aria-expanded": openBrand === brand,
       "aria-controls": `${brand}-mission`,
-      onClick: () => setOpenBrand((current) => (current === brand ? null : brand)),
+      onClick: () =>
+        setBrandSelection((current) => {
+          if (current.brand === brand) {
+            return current.expanded
+              ? { ...current, expanded: false }
+              : { brand, expanded: true, outgoing: null, direction: null };
+          }
+
+          const direction = brandOrder.indexOf(brand) > brandOrder.indexOf(current.brand)
+            ? "next"
+            : "previous";
+          return {
+            brand,
+            expanded: true,
+            outgoing: current.expanded ? current.brand : null,
+            direction: current.expanded ? direction : null,
+          };
+        }),
     };
   }
 
-  const fashionDimmingClass = `transition-all duration-400 ease-in-out ${
-    isHoveringFashionText || isHappyDiamondActive
-      ? "opacity-30 blur-[1px]"
-      : "opacity-100"
-  }`;
+  const stepBrand = useCallback((direction: -1 | 1) => {
+    setBrandSelection((current) => {
+      const index = brandOrder.indexOf(current.brand);
+      const next = (index + direction + brandOrder.length) % brandOrder.length;
+      return {
+        brand: brandOrder[next],
+        expanded: true,
+        outgoing: current.expanded ? current.brand : null,
+        direction: direction === 1 ? "next" : "previous",
+      };
+    });
+  }, []);
+
   const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
+  const missionSwipeProps = useMissionSwipe(
+    missionsRef,
+    textAnimationComplete && openBrand !== null,
+    stepBrand,
+  );
+
+  useLayoutEffect(() => {
+    const viewport = missionsRef.current;
+    if (!viewport) return;
+
+    const panel = viewport.querySelector<HTMLElement>('[data-open="true"]');
+    if (!panel) return;
+
+    const updateHeight = () => {
+      viewport.style.height = `${panel.getBoundingClientRect().height}px`;
+    };
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, [brandSelection.brand, showSecondText]);
 
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -595,7 +670,6 @@ export default function Home() {
           id="about"
           ref={aboutRef}
           className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
-          style={{ overflowAnchor: "none" }}
         >
           <div
             className={`${!showSecondText ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
@@ -677,97 +751,81 @@ export default function Home() {
                       </li>
                     </ul>
 
-                    <div className="w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl">
-                      {Object.entries(brandMissions).map(([brand, mission]) => (
-                        <div
-                          key={brand}
-                          id={`${brand}-mission`}
-                          className={brandStyles["brand-mission"]}
-                          data-open={openBrand === brand}
-                          inert={openBrand !== brand}
-                        >
-                          <div className={brandStyles["brand-mission-clip"]}>
-                            <div className="space-y-4 pb-2 pt-4 leading-relaxed">
-                              {mission.content}
-                              <a
-                                href={mission.url}
-                                target="_blank"
-                                rel="noopener"
-                                className={slidingLinkClass}
-                              >
-                                {mission.linkLabel}
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <p role="status" className="sr-only">
+                      {openBrand
+                        ? `Showing the ${brandMissions[openBrand].domain} mission`
+                        : "Brand mission closed"}
+                    </p>
 
-                    <div className="mt-[100px] max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
-                      <p className="leading-relaxed">
-                        <span className={fashionDimmingClass}>
-                          My interest in
-                        </span>{" "}
-                        <span className={`relative inline-block ${isHappyDiamondActive ? fashionDimmingClass : "opacity-100"}`}>
-                          <Link
-                            href="/fashion"
-                            className="emoji-tooltip font-bold hover:text-blue-500"
-                            data-emoji="🪡 🧵"
-                            onMouseOver={() => setIsHoveringFashionText(true)}
-                            onMouseLeave={() => setIsHoveringFashionText(false)}
+                    <div
+                      className={`w-full max-w-3xl ${brandStyles["mission-disclosure"]}`}
+                      data-open={openBrand !== null}
+                      inert={openBrand === null}
+                    >
+                      <div className={brandStyles["mission-disclosure-inner"]}>
+                        <div role="group" aria-label="Browse brand missions" className="flex gap-3">
+                          <button
+                            type="button"
+                            className={missionArrowClass}
+                            aria-label="Previous brand mission"
+                            aria-controls="brand-missions"
+                            onClick={() => stepBrand(-1)}
                           >
-                            Fashion Design
-                          </Link>
-                        </span>
-                        <span className={fashionDimmingClass}>
-                          {" "}is mostly about techwear and workwear. I like
-                          making clothes that look good, hold up in demanding conditions,
-                          and last for years. I also love the sophisticated look of a
-                          well-tailored classic suit.
-                          <br />
-                          <br />
-                          I had trouble finding clothes that fit the way I
-                          wanted, so I learned to draft patterns and sew garments
-                          to my own measurements.
-                          <br />
-                          <br />
-                          I bring that same focus on fit, function, and
-                          durability to{" "}
-                        </span>
-                        <a
-                          href="https://happydiamond.world/"
-                          target="_blank"
-                          rel="noopener"
-                          className={`inline-block font-bold hover:text-blue-500 focus-visible:text-blue-500 transition-all duration-400 ease-in-out ${isHoveringFashionText && !isHappyDiamondActive ? "opacity-30 blur-[1px]" : "opacity-100"}`}
-                          onMouseEnter={() => setIsHappyDiamondActive(true)}
-                          onMouseLeave={(event) =>
-                            setIsHappyDiamondActive(event.currentTarget.matches(":focus-visible"))
-                          }
-                          onFocus={(event) =>
-                            setIsHappyDiamondActive(event.currentTarget.matches(":focus-visible"))
-                          }
-                          onBlur={(event) =>
-                            setIsHappyDiamondActive(event.currentTarget.matches(":hover"))
-                          }
-                        >
-                          HAPPYDIAMOND
-                        </a>
-                        <span className={fashionDimmingClass}>
-                          . I want to make
-                          apparel and gear that can handle tough conditions and
-                          still feel like something you&apos;d want to wear every day.
-                        </span>
-                      </p>
+                            <ChevronLeft aria-hidden="true" size={20} />
+                          </button>
+                          <button
+                            type="button"
+                            className={missionArrowClass}
+                            aria-label="Next brand mission"
+                            aria-controls="brand-missions"
+                            onClick={() => stepBrand(1)}
+                          >
+                            <ChevronRight aria-hidden="true" size={20} />
+                          </button>
+                        </div>
 
-                      <Link
-                        href="/fashion"
-                        className={`mt-[20px] animate-image-reveal ${slidingLinkClass}`}
-                        style={{
-                          animationFillMode: "forwards",
-                        }}
-                      >
-                        Read more about my design process
-                      </Link>
+                        <div
+                          id="brand-missions"
+                          ref={missionsRef}
+                          data-direction={brandSelection.direction}
+                          className={`w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl ${brandStyles["brand-missions"]}`}
+                          {...missionSwipeProps}
+                        >
+                          {Object.entries(brandMissions).map(([brand, mission]) => (
+                            <div
+                              key={brand}
+                              id={`${brand}-mission`}
+                              className={brandStyles["brand-mission"]}
+                              data-open={brandSelection.brand === brand}
+                              data-leaving={brandSelection.outgoing === brand}
+                              inert={brandSelection.brand !== brand}
+                            >
+                              <div className="space-y-4 pb-2 pt-4 leading-relaxed">
+                                <div className={`space-y-4 ${brandStyles["mission-copy"]}`}>
+                                  {mission.content(
+                                    <a
+                                      href={mission.url}
+                                      target="_blank"
+                                      rel="noopener"
+                                      className={`${brandStyles["mission-name"]} font-bold motion-safe:transition-colors hover:text-blue-500 focus-visible:text-blue-500`}
+                                    >
+                                      {mission.name}
+                                    </a>,
+                                  )}
+                                </div>
+                                <a
+                                  href={mission.url}
+                                  target="_blank"
+                                  rel="noopener"
+                                  className={slidingLinkClass}
+                                >
+                                  Visit {mission.domain}
+                                </a>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </>
