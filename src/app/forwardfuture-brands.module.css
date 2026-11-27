@@ -3,6 +3,31 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.brand-mission {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 320ms ease,
+    opacity 240ms ease;
+}
+
+.brand-mission[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.brand-mission-clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mission {
+    transition: none;
+  }
+}
+
 .brand-item {
   display: grid;
   min-height: 280px;
@@ -96,20 +121,20 @@
   transition: opacity 300ms ease;
 }
 
-.viking-logo:focus-visible {
+.viking-logo:is(:focus-visible, [aria-expanded="true"]) {
   color: #991f24;
   transform: scale(1.045);
 }
 
-.viking-logo:focus-visible .viking-logo-shell {
+.viking-logo:is(:focus-visible, [aria-expanded="true"]) .viking-logo-shell {
   transform: translateY(-2px) rotate(-6deg) scale(1.1);
 }
 
-.viking-logo:focus-visible img {
+.viking-logo:is(:focus-visible, [aria-expanded="true"]) img {
   opacity: 0;
 }
 
-.viking-logo:focus-visible .viking-logo-shell::after {
+.viking-logo:is(:focus-visible, [aria-expanded="true"]) .viking-logo-shell::after {
   opacity: 1;
 }
 
@@ -158,11 +183,11 @@
   transition: filter 250ms ease-out;
 }
 
-.happydiamond-logo:is(:active, :focus-visible) span {
+.happydiamond-logo:is(:active, :focus-visible, [aria-expanded="true"]) span {
   filter: drop-shadow(0 0 35px rgb(79 172 254 / 99%));
 }
 
-.happydiamond-logo:is(:active, :focus-visible) span+span {
+.happydiamond-logo:is(:active, :focus-visible, [aria-expanded="true"]) span+span {
   filter: drop-shadow(0 0 35px rgb(254 81 150 / 99%));
 }
 
@@ -186,8 +211,8 @@
     transition: none;
   }
 
-  .viking-logo:is(:hover, :active, :focus-visible),
-  .viking-logo:is(:hover, :active, :focus-visible) .viking-logo-shell {
+  .viking-logo:is(:hover, :active, :focus-visible, [aria-expanded="true"]),
+  .viking-logo:is(:hover, :active, :focus-visible, [aria-expanded="true"]) .viking-logo-shell {
     transform: none;
   }
 }
@@ -257,7 +282,7 @@
   transition: filter 450ms ease-in-out;
 }
 
-.beyondbiology-brand:is(:active, :focus-visible) .beyondbiology-logo {
+.beyondbiology-brand:is(:active, :focus-visible, [aria-expanded="true"]) .beyondbiology-logo {
   filter: brightness(1.15) drop-shadow(0 -4px 18px rgb(187 255 150 / 30%));
 }
 
@@ -275,14 +300,6 @@
   outline: 2px solid #68ef77;
   outline-offset: 12px;
   border-radius: 2px;
-}
-
-.beyondbiology-description {
-  display: block;
-  margin: 12px 0 0;
-  color: #888;
-  font-size: 13px;
-  line-height: 1.5;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,6 +18,64 @@ import RoundedImage from "@/components/Image";
 import PillNavbarMenu from "@/components/nav/PillNavbarMenu";
 import { BLOG_RELAY_URLS } from "@/config/nostr";
 
+const slidingLinkClass =
+  "relative inline-block cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:focus-visible:text-blue-500 max-sm:focus-visible:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:focus-visible:bg-left sm:focus-visible:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]";
+
+const brandMissions = {
+  vikingrobotics: {
+    linkLabel: "Visit VikingRobotics.tech",
+    url: "https://vikingrobotics.tech/",
+    content: (
+      <>
+        <p>
+          <strong>Building advanced drone technology.</strong>
+          <br />
+          At VikingRobotics, I’m building modular drones that can adapt to
+          missions ranging from search and rescue to defense.
+        </p>
+        <p>
+          I design custom frames in CAD, 3D-print the molds, and use them to make
+          carbon fiber frames and structural components. I also develop the
+          software application that operators use to plan flights, monitor their
+          drones, and control them from the ground.
+        </p>
+      </>
+    ),
+  },
+  happydiamond: {
+    linkLabel: "Visit HAPPYDIAMOND.world",
+    url: "https://happydiamond.world/",
+    content: (
+      <>
+        <p>
+          <strong>HAPPYDIAMOND</strong> makes high-end apparel and gear built for
+          demanding conditions, with a style you’ll want to wear every day,
+          whether you’re in the city or out in nature.
+        </p>
+        <p>
+          Durability is a core principle to ensure pieces last for years and can
+          survive tough conditions.
+        </p>
+        <p>Clothing so good it makes you happy to wear it. That’s the goal.</p>
+      </>
+    ),
+  },
+  beyondbiology: {
+    linkLabel: "Visit BeyondBiology.tech",
+    url: "https://beyondbiology.tech/",
+    content: (
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
+    ),
+  },
+};
+
+type Brand = keyof typeof brandMissions;
+
 export default function Home() {
   const [isHoveringSoftware, setIsHoveringSoftware] = useState(false);
   const [isHoveringFashion, setIsHoveringFashion] = useState(false);
@@ -26,6 +84,16 @@ export default function Home() {
   const [isHappyDiamondActive, setIsHappyDiamondActive] = useState(false);
   const [isHoveringSoftwareText, setIsHoveringSoftwareText] = useState(false);
   const [isHoveringFashionText, setIsHoveringFashionText] = useState(false);
+  const [openBrand, setOpenBrand] = useState<Brand | null>(null);
+
+  function brandButtonProps(brand: Brand) {
+    return {
+      "aria-expanded": openBrand === brand,
+      "aria-controls": `${brand}-mission`,
+      onClick: () => setOpenBrand((current) => (current === brand ? null : brand)),
+    };
+  }
+
   const fashionDimmingClass = `transition-all duration-400 ease-in-out ${
     isHoveringFashionText || isHappyDiamondActive
       ? "opacity-30 blur-[1px]"
@@ -554,16 +622,17 @@ export default function Home() {
 
                   <div
                     className={`flex flex-col items-center ${textAnimationComplete ? "pointer-events-auto animate-image-reveal select-auto" : "pointer-events-none select-none opacity-0"}`}
+                    inert={!textAnimationComplete}
                   >
                     <ul
                       aria-label="ForwardFuture brands"
                       className={`mt-[50px] w-full ${brandStyles["brands-grid"]}`}
                     >
                       <li className={brandStyles["brand-item"]}>
-                        <a
+                        <button
+                          type="button"
                           className={brandStyles["viking-logo"]}
-                          href="https://vikingrobotics.tech/"
-                          target="_blank"
+                          {...brandButtonProps("vikingrobotics")}
                         >
                           <span
                             className={brandStyles["viking-logo-shell"]}
@@ -577,44 +646,62 @@ export default function Home() {
                             />
                           </span>
                           <span>VikingRobotics</span>
-                        </a>
+                        </button>
                       </li>
                       <li className={brandStyles["brand-item"]}>
-                        <a
+                        <button
+                          type="button"
                           className={brandStyles["happydiamond-logo"]}
-                          href="https://happydiamond.world/"
                           aria-label="HAPPYDIAMOND — BE DIFFERENT. BE UNIQUE."
-                          target="_blank"
+                          {...brandButtonProps("happydiamond")}
                         >
                           <span>HAPPY</span>
                           <span>DIAMOND</span>
                           <small className={brandStyles["happydiamond-tagline"]}>
                             BE DIFFERENT. BE UNIQUE.
                           </small>
-                        </a>
+                        </button>
                       </li>
                       <li
                         className={`${brandStyles["brand-item"]} ${brandStyles["beyondbiology-item"]}`}
                       >
-                        <a
+                        <button
+                          type="button"
                           className={brandStyles["beyondbiology-brand"]}
-                          href="https://beyondbiology.tech/"
-                          aria-label="BeyondBiology"
-                          aria-describedby="beyondbiology-description"
-                          target="_blank"
+                          {...brandButtonProps("beyondbiology")}
                         >
                           <span className={brandStyles["beyondbiology-logo"]}>
                             BeyondBiology
                           </span>
-                          <span
-                            className={brandStyles["beyondbiology-description"]}
-                            id="beyondbiology-description"
-                          >
-                            Experimenting with plant technology.
-                          </span>
-                        </a>
+                        </button>
                       </li>
                     </ul>
+
+                    <div className="w-full max-w-3xl text-left text-xl sm:text-center md:text-2xl">
+                      {Object.entries(brandMissions).map(([brand, mission]) => (
+                        <div
+                          key={brand}
+                          id={`${brand}-mission`}
+                          className={brandStyles["brand-mission"]}
+                          data-open={openBrand === brand}
+                          inert={openBrand !== brand}
+                        >
+                          <div className={brandStyles["brand-mission-clip"]}>
+                            <div className="space-y-4 pb-2 pt-4 leading-relaxed">
+                              {mission.content}
+                              <a
+                                href={mission.url}
+                                target="_blank"
+                                rel="noopener"
+                                className={slidingLinkClass}
+                              >
+                                {mission.linkLabel}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
 
                     <div className="mt-[100px] max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
                       <p className="leading-relaxed">
@@ -674,7 +761,7 @@ export default function Home() {
 
                       <Link
                         href="/fashion"
-                        className="relative mt-[20px] inline-block animate-image-reveal cursor-pointer bg-right text-center text-lg font-medium duration-400 ease-out max-sm:text-gray-500 max-sm:hover:text-blue-500 max-sm:hover:underline max-sm:active:text-blue-500 dark:max-sm:text-gray-400 sm:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.600)_50%)] sm:bg-[length:200%_100%] sm:bg-clip-text sm:text-transparent sm:transition-[background-position] sm:before:absolute sm:before:-bottom-1 sm:before:left-0 sm:before:h-[2px] sm:before:w-full sm:before:origin-left sm:before:scale-x-0 sm:before:bg-blue-500 sm:before:transition-transform sm:before:duration-400 sm:before:ease-out sm:hover:bg-left sm:hover:before:scale-x-100 sm:dark:bg-[linear-gradient(to_right,theme(colors.blue.500)_50%,theme(colors.gray.400)_50%)]"
+                        className={`mt-[20px] animate-image-reveal ${slidingLinkClass}`}
                         style={{
                           animationFillMode: "forwards",
                         }}
