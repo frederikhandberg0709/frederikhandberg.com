@@ -750,7 +750,7 @@ export default function Home() {
                       id="brand-missions"
                       ref={missionsRef}
                       data-direction={brandSelection.direction}
-                      className={`w-full max-w-3xl text-center text-xl md:text-2xl ${brandStyles["brand-missions"]}`}
+                      className={`w-full max-w-3xl text-center text-lg sm:text-xl md:text-2xl ${brandStyles["brand-missions"]}`}
                       {...missionSwipeProps}
                     >
                       {Object.entries(brandMissions).map(([brand, mission]) => (
