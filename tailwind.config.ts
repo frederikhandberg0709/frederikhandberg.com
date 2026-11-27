@@ -25,23 +25,13 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(8px)" },
         },
-        "scale-down": {
-          "0%": {
-            transform: "scale(1)",
-          },
-          "100%": {
-            transform: "scale(0.5)",
-          },
+        "navbar-enter": {
+          from: { opacity: "0", translate: "0 calc(-100% - 0.75rem)" },
+          to: { opacity: "1", translate: "0 0" },
         },
-        "move-to-top": {
-          "0%": {
-            top: "50%",
-            transform: "translateY(-50%)",
-          },
-          "100%": {
-            top: "var(--move-to-top-dest, 200px)",
-            transform: "translateY(0)",
-          },
+        "pill-menu-enter": {
+          from: { opacity: "0", translate: "0 calc(100% + 1.25rem)" },
+          to: { opacity: "1", translate: "0 0" },
         },
         "char-reveal": {
           "0%": {
@@ -86,8 +76,8 @@ const config: Config = {
       },
       animation: {
         scrollhint: "scrollhint 1.5s ease-in-out infinite",
-        "scale-down": "scale-down 0.8s ease-in-out 200ms forwards",
-        "move-to-top": "move-to-top 0.8s ease-in-out 200ms forwards",
+        "navbar-enter": "navbar-enter 900ms cubic-bezier(0.22, 0.61, 0.36, 1) backwards",
+        "pill-menu-enter": "pill-menu-enter 1000ms cubic-bezier(0.22, 0.61, 0.36, 1) 90ms backwards",
         "scale-and-rise": "scale-and-rise 0.8s ease-in-out forwards",
         "char-reveal": "char-reveal 150ms ease-out forwards",
         "image-reveal": "image-reveal 400ms ease-out forwards",

@@ -145,7 +145,8 @@
   }
 
   .brand-item {
-    min-height: 170px;
+    min-height: 120px;
+    padding-block: 20px;
   }
 }
 

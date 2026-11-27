@@ -144,7 +144,6 @@ export default function Home() {
     });
   }, []);
 
-  const [showSecondText, setShowSecondText] = useState(false);
   const [textAnimationComplete, setTextAnimationComplete] = useState(false);
   const missionSwipeProps = useMissionSwipe(
     missionsRef,
@@ -166,7 +165,7 @@ export default function Home() {
     const observer = new ResizeObserver(updateHeight);
     observer.observe(panel);
     return () => observer.disconnect();
-  }, [brandSelection.brand, showSecondText]);
+  }, [brandSelection.brand]);
 
   const [activeSection, setActiveSection] = useState<string>("");
 
@@ -177,14 +176,9 @@ export default function Home() {
   const firstParagraph =
     "My name is Frederik Handberg. I'm 24 years old and studying Software Engineering in Horsens, Denmark 🇩🇰";
   const secondParagraph =
-    "\nI'm passionate about building cool and useful technology 🚀\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future.\n\nSelect a brand below to read its mission:";
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSecondText(true);
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+    "\nI'm passionate about building cool and useful technology 🚀";
+  const introDetails =
+    "\n\nThat ranges from apps that help people think, create, and get things done to autonomous drones that can support security and search-and-rescue teams.\n\nI'm bringing these interests together at ForwardFuture. The company's mission is to accelerate the world forward to a more sustainable future.\n\nSelect a brand below to read its mission:";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -214,10 +208,9 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (!showSecondText) return;
-
     // Calculate total animation duration
-    const charCount = (firstParagraph + secondParagraph).length;
+    const charCount =
+      firstParagraph.length + secondParagraph.length + introDetails.length;
     const animationDuration = charCount * 8; // 8ms per char
 
     const timer = setTimeout(() => {
@@ -225,7 +218,7 @@ export default function Home() {
     }, animationDuration + 500); // Add 500ms buffer
 
     return () => clearTimeout(timer);
-  }, [showSecondText]);
+  }, []);
 
   const renderAnimatedText = (text: string, startCharIndex = 0) => {
     const lines = text.split("\n");
@@ -592,7 +585,7 @@ export default function Home() {
   return (
     <>
       <nav className="pointer-events-none fixed left-0 right-0 top-0 z-50 flex w-full justify-center">
-        <div className="mx-20 my-3 hidden w-full items-center justify-between min-[810px]:container min-[810px]:flex">
+        <div className="mx-20 my-3 hidden w-full items-center justify-between motion-safe:animate-navbar-enter min-[810px]:container min-[810px]:flex">
           <NavbarLogo />
 
           <div className="flex gap-0.5">
@@ -619,11 +612,14 @@ export default function Home() {
         </div>
 
         <div className="pointer-events-auto w-full min-[810px]:hidden">
-          <MobileNavMenu menuType={"homepage"} />
+          <MobileNavMenu
+            menuType="homepage"
+            headerClassName="motion-safe:animate-navbar-enter"
+          />
         </div>
       </nav>
 
-      <div className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2">
+      <div className="fixed bottom-5 left-1/2 z-40 -translate-x-1/2 motion-safe:animate-pill-menu-enter">
         <PillNavbarMenu
           className="hover:border-black/10 hover:shadow-xl motion-safe:transition-[border-color,box-shadow] dark:hover:border-white/10"
           links={[
@@ -660,136 +656,129 @@ export default function Home() {
         <section
           id="about"
           ref={aboutRef}
-          className={`relative flex min-h-screen flex-col items-center px-4 ${showSecondText ? "justify-start" : "justify-center"}`}
+          className="relative flex min-h-screen flex-col items-center px-4"
         >
-          <div
-            className={`${!showSecondText ? "animate-move-to-top [--move-to-top-dest:100px] sm:[--move-to-top-dest:200px]" : ""} flex flex-col items-center gap-[30px] ${showSecondText ? "relative top-[0px] mt-[100px] sm:mt-[200px]" : "absolute"}`}
-          >
-            <h1 className="animate-scale-down text-center text-4xl font-bold">
-              Hello and welcome to my personal website! 👋
-            </h1>
+          <div className="mt-[100px] flex w-full max-w-4xl flex-col items-center sm:mt-[200px]">
+            <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
+              {renderAnimatedText(firstParagraph)}
+            </div>
+
+            <div className="my-5 animate-image-opacity sm:hidden">
+              <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
+            </div>
+
+            <div className="max-w-3xl whitespace-pre-line text-left text-xl sm:text-center md:text-2xl">
+              {renderAnimatedText(secondParagraph, firstParagraph.length)}
+              <span className="max-sm:text-lg">
+                {renderAnimatedText(
+                  introDetails,
+                  firstParagraph.length + secondParagraph.length,
+                )}
+              </span>
+            </div>
+
             <div
-              className={`flex flex-col items-center ${showSecondText ? "max-w-4xl" : "max-w-auto"}`}
+              className={`flex flex-col items-center ${textAnimationComplete ? "pointer-events-auto animate-image-reveal select-auto" : "pointer-events-none select-none opacity-0"}`}
+              inert={!textAnimationComplete}
             >
-              {showSecondText && (
-                <>
-                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                    {renderAnimatedText(firstParagraph)}
-                  </div>
-
-                  <div className="my-5 animate-image-opacity sm:hidden">
-                    <RoundedImage src="/photo-of-me.JPG" alt="Image of me" />
-                  </div>
-
-                  <div className="max-w-3xl whitespace-pre-line text-center text-xl md:text-2xl">
-                    {renderAnimatedText(secondParagraph, firstParagraph.length)}
-                  </div>
-
-                  <div
-                    className={`flex flex-col items-center ${textAnimationComplete ? "pointer-events-auto animate-image-reveal select-auto" : "pointer-events-none select-none opacity-0"}`}
-                    inert={!textAnimationComplete}
+              <ul
+                aria-label="ForwardFuture brands"
+                className={`mt-5 w-full sm:mt-[50px] ${brandStyles["brands-grid"]}`}
+              >
+                <li className={brandStyles["brand-item"]}>
+                  <button
+                    type="button"
+                    className={brandStyles["viking-logo"]}
+                    {...brandButtonProps("vikingrobotics")}
                   >
-                    <ul
-                      aria-label="ForwardFuture brands"
-                      className={`mt-[50px] w-full ${brandStyles["brands-grid"]}`}
+                    <span
+                      className={brandStyles["viking-logo-shell"]}
+                      aria-hidden="true"
                     >
-                      <li className={brandStyles["brand-item"]}>
-                        <button
-                          type="button"
-                          className={brandStyles["viking-logo"]}
-                          {...brandButtonProps("vikingrobotics")}
-                        >
-                          <span
-                            className={brandStyles["viking-logo-shell"]}
-                            aria-hidden="true"
+                      <Image
+                        src="/brands/vikingrobotics-logo.svg"
+                        alt=""
+                        width={104}
+                        height={104}
+                      />
+                    </span>
+                    <span>VikingRobotics</span>
+                  </button>
+                </li>
+                <li className={brandStyles["brand-item"]}>
+                  <button
+                    type="button"
+                    className={brandStyles["happydiamond-logo"]}
+                    aria-label="HAPPYDIAMOND — BE DIFFERENT. BE UNIQUE."
+                    {...brandButtonProps("happydiamond")}
+                  >
+                    <span>HAPPY</span>
+                    <span>DIAMOND</span>
+                    <small className={brandStyles["happydiamond-tagline"]}>
+                      BE DIFFERENT. BE UNIQUE.
+                    </small>
+                  </button>
+                </li>
+                <li
+                  className={`${brandStyles["brand-item"]} ${brandStyles["beyondbiology-item"]}`}
+                >
+                  <button
+                    type="button"
+                    className={brandStyles["beyondbiology-brand"]}
+                    {...brandButtonProps("beyondbiology")}
+                  >
+                    <span className={brandStyles["beyondbiology-logo"]}>
+                      BeyondBiology
+                    </span>
+                  </button>
+                </li>
+              </ul>
+
+              <p role="status" className="sr-only">
+                Showing the {brandMissions[brandSelection.brand].domain} mission
+              </p>
+
+              <div
+                id="brand-missions"
+                ref={missionsRef}
+                data-direction={brandSelection.direction}
+                className={`w-full max-w-3xl text-left text-lg sm:text-center sm:text-xl md:text-2xl ${brandStyles["brand-missions"]}`}
+                {...missionSwipeProps}
+              >
+                {Object.entries(brandMissions).map(([brand, mission]) => (
+                  <div
+                    key={brand}
+                    id={`${brand}-mission`}
+                    className={brandStyles["brand-mission"]}
+                    data-current={brandSelection.brand === brand}
+                    data-leaving={brandSelection.outgoing === brand}
+                    inert={brandSelection.brand !== brand}
+                  >
+                    <div className="space-y-4 pb-2 pt-4 leading-relaxed">
+                      <div className={`space-y-4 ${brandStyles["mission-copy"]}`}>
+                        {mission.content(
+                          <a
+                            href={mission.url}
+                            target="_blank"
+                            rel="noopener"
+                            className={`${brandStyles["mission-name"]} font-bold hover:text-blue-500 focus-visible:text-blue-500`}
                           >
-                            <Image
-                              src="/brands/vikingrobotics-logo.svg"
-                              alt=""
-                              width={104}
-                              height={104}
-                            />
-                          </span>
-                          <span>VikingRobotics</span>
-                        </button>
-                      </li>
-                      <li className={brandStyles["brand-item"]}>
-                        <button
-                          type="button"
-                          className={brandStyles["happydiamond-logo"]}
-                          aria-label="HAPPYDIAMOND — BE DIFFERENT. BE UNIQUE."
-                          {...brandButtonProps("happydiamond")}
-                        >
-                          <span>HAPPY</span>
-                          <span>DIAMOND</span>
-                          <small className={brandStyles["happydiamond-tagline"]}>
-                            BE DIFFERENT. BE UNIQUE.
-                          </small>
-                        </button>
-                      </li>
-                      <li
-                        className={`${brandStyles["brand-item"]} ${brandStyles["beyondbiology-item"]}`}
+                            {mission.name}
+                          </a>,
+                        )}
+                      </div>
+                      <a
+                        href={mission.url}
+                        target="_blank"
+                        rel="noopener"
+                        className={slidingLinkClass}
                       >
-                        <button
-                          type="button"
-                          className={brandStyles["beyondbiology-brand"]}
-                          {...brandButtonProps("beyondbiology")}
-                        >
-                          <span className={brandStyles["beyondbiology-logo"]}>
-                            BeyondBiology
-                          </span>
-                        </button>
-                      </li>
-                    </ul>
-
-                    <p role="status" className="sr-only">
-                      Showing the {brandMissions[brandSelection.brand].domain} mission
-                    </p>
-
-                    <div
-                      id="brand-missions"
-                      ref={missionsRef}
-                      data-direction={brandSelection.direction}
-                      className={`w-full max-w-3xl text-center text-lg sm:text-xl md:text-2xl ${brandStyles["brand-missions"]}`}
-                      {...missionSwipeProps}
-                    >
-                      {Object.entries(brandMissions).map(([brand, mission]) => (
-                        <div
-                          key={brand}
-                          id={`${brand}-mission`}
-                          className={brandStyles["brand-mission"]}
-                          data-current={brandSelection.brand === brand}
-                          data-leaving={brandSelection.outgoing === brand}
-                          inert={brandSelection.brand !== brand}
-                        >
-                          <div className="space-y-4 pb-2 pt-4 leading-relaxed">
-                            <div className={`space-y-4 ${brandStyles["mission-copy"]}`}>
-                              {mission.content(
-                                <a
-                                  href={mission.url}
-                                  target="_blank"
-                                  rel="noopener"
-                                  className={`${brandStyles["mission-name"]} font-bold hover:text-blue-500 focus-visible:text-blue-500`}
-                                >
-                                  {mission.name}
-                                </a>,
-                              )}
-                            </div>
-                            <a
-                              href={mission.url}
-                              target="_blank"
-                              rel="noopener"
-                              className={slidingLinkClass}
-                            >
-                              Visit {mission.domain}
-                            </a>
-                          </div>
-                        </div>
-                      ))}
+                        Visit {mission.domain}
+                      </a>
                     </div>
                   </div>
-                </>
-              )}
+                ))}
+              </div>
             </div>
           </div>
         </section>

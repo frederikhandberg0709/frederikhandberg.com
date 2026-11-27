@@ -3,14 +3,9 @@ import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const ThemeToggle = ({ alwaysDisplayLabel = false }) => {
-  const { setTheme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const { setTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (isAnimating) {
@@ -25,42 +20,39 @@ const ThemeToggle = ({ alwaysDisplayLabel = false }) => {
   const toggleTheme = () => {
     if (!isAnimating) {
       setIsAnimating(true);
-      setTheme(resolvedTheme === "dark" ? "light" : "dark");
+      setTheme(
+        document.documentElement.classList.contains("dark") ? "light" : "dark",
+      );
     }
   };
 
-  const isDarkMode = mounted && resolvedTheme === "dark";
-
-  if (!mounted) {
-    return <div className="h-12 w-12 rounded-full bg-gray-200"></div>;
-  }
+  const iconTransition = isAnimating
+    ? "motion-safe:transition-[transform,opacity] motion-safe:duration-500 motion-safe:ease-in-out"
+    : "";
 
   return (
     <div className="relative flex flex-col items-center gap-6">
       <button
+        type="button"
         onClick={toggleTheme}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        className={`relative flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 dark:bg-gray-800 ${isAnimating ? "pointer-events-none" : ""}`}
-        aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+        className={`relative flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 ${isAnimating ? "pointer-events-none motion-safe:transition-colors motion-safe:duration-300" : ""}`}
       >
-        <div className="relative flex size-full items-center justify-center">
+        <span className="sr-only dark:hidden">Switch to dark mode</span>
+        <span className="sr-only hidden dark:inline">Switch to light mode</span>
+        <div
+          aria-hidden="true"
+          className="relative flex size-full items-center justify-center"
+        >
           <div
-            className={`absolute transition-all duration-500 ease-in-out ${
-              isDarkMode
-                ? "rotate-180 scale-0 opacity-0"
-                : "rotate-0 scale-100 opacity-100"
-            }`}
+            className={`absolute rotate-0 scale-100 opacity-100 dark:rotate-180 dark:scale-0 dark:opacity-0 ${iconTransition}`}
           >
             <Sun size={24} className="text-amber-500" />
           </div>
 
           <div
-            className={`absolute transition-all duration-500 ease-in-out ${
-              isDarkMode
-                ? "rotate-0 scale-100 opacity-100"
-                : "rotate-180 scale-0 opacity-0"
-            }`}
+            className={`absolute rotate-180 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100 ${iconTransition}`}
           >
             <Moon size={24} className="text-indigo-400" />
           </div>
@@ -69,14 +61,16 @@ const ThemeToggle = ({ alwaysDisplayLabel = false }) => {
 
       {!alwaysDisplayLabel && isHovering && (
         <div className="pointer-events-none absolute top-full mt-2 w-fit overflow-hidden text-ellipsis whitespace-nowrap rounded bg-black/50 px-2.5 py-1.5 text-center text-sm text-white backdrop-blur-md">
-          Current theme: {isDarkMode ? "Dark" : "Light"}
+          Current theme: <span className="dark:hidden">Light</span>
+          <span className="hidden dark:inline">Dark</span>
         </div>
       )}
 
       {alwaysDisplayLabel && (
         <p className="text-center">
           Current theme:{" "}
-          <strong>{isDarkMode ? "Dark Mode" : "Light Mode"}</strong>
+          <strong className="dark:hidden">Light Mode</strong>
+          <strong className="hidden dark:inline">Dark Mode</strong>
         </p>
       )}
     </div>

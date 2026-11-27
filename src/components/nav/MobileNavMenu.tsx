@@ -6,8 +6,10 @@ import ThemeToggle from "../ThemeToggle";
 
 export default function MobileNavMenu({
   menuType,
+  headerClassName = "",
 }: {
   menuType: "homepage" | "software" | "fashion";
+  headerClassName?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
@@ -85,7 +87,7 @@ export default function MobileNavMenu({
 
   return (
     <>
-      <div className="flex h-full w-full items-center justify-between gap-2.5 bg-white/80 px-4 py-3 backdrop-blur-lg dark:bg-black/80">
+      <div className={`flex h-full w-full items-center justify-between gap-2.5 bg-white/80 px-4 py-3 backdrop-blur-lg dark:bg-black/80 ${headerClassName}`}>
         <Link
           href="#home"
           onClick={(e) => {
