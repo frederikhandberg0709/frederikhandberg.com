@@ -34,11 +34,17 @@
 }
 
 .mission-copy :is(p:not(:has(.mission-name)), p > span) {
-  transition: opacity 250ms ease;
+  transition: opacity 250ms ease, filter 250ms ease;
 }
 
-.mission-copy:has(.mission-name:is(:hover, :focus-visible)) :is(p:not(:has(.mission-name)), p > span) {
+.mission-copy .mission-name {
+  transition: opacity 250ms ease, filter 250ms ease, color 150ms ease;
+}
+
+.mission-copy:has(.mission-name:hover) :is(p:not(:has(.mission-name)), p > span, .mission-name:not(:hover)),
+.mission-copy:not(:has(.mission-name:hover)):has(.mission-name:focus-visible) :is(p:not(:has(.mission-name)), p > span, .mission-name:not(:focus-visible)) {
   opacity: 0.3;
+  filter: blur(1px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -76,7 +82,7 @@
 @media (prefers-reduced-motion: reduce) {
   .brand-missions,
   .brand-mission,
-  .mission-copy :is(p:not(:has(.mission-name)), p > span) {
+  .mission-copy :is(p:not(:has(.mission-name)), p > span, .mission-name) {
     transition: none;
   }
 }

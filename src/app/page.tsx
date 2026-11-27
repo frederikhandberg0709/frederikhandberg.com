@@ -57,16 +57,22 @@ const brandMissions = {
         <p>
           {name}
           <span>
-            {" "}makes high-end apparel and gear built for demanding conditions,
-            with a style you’ll want to wear every day, whether you’re in the
-            city or out in nature.
+            {" "}is where I'm building a HAPPY WORLD.
           </span>
         </p>
         <p>
-          Durability is a core principle to ensure pieces last for years and can
-          survive tough conditions.
+          I’m tired of companies deciding what we’re allowed to fix, when we have to replace the things we buy, and how much of our lives they get to track.
         </p>
-        <p>Clothing so good it makes you happy to wear it. That’s the goal.</p>
+        <p>To me, a happy world is one where the things you use every day are fun to use, built to last, easy to repair, and doesn't spy on you. When you buy something, it’s yours to keep, change, and make your own.</p>
+        <p>
+          <span>At </span>
+          {name}
+          <span>
+            , I'm sewing functional techwear and workwear designed to look cool
+            and last for years. I’m also building open-source apps that help you
+            stay organized and get things done without tracking you.
+          </span>
+        </p>
       </>
     ),
   },
@@ -78,10 +84,7 @@ const brandMissions = {
       <p>
         {name}
         <span>
-          . Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {" "}is researching how fertilizers can help plants grow faster.
         </span>
       </p>
     ),
@@ -766,7 +769,7 @@ export default function Home() {
                                   href={mission.url}
                                   target="_blank"
                                   rel="noopener"
-                                  className={`${brandStyles["mission-name"]} font-bold motion-safe:transition-colors hover:text-blue-500 focus-visible:text-blue-500`}
+                                  className={`${brandStyles["mission-name"]} font-bold hover:text-blue-500 focus-visible:text-blue-500`}
                                 >
                                   {mission.name}
                                 </a>,
