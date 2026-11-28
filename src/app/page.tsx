@@ -813,7 +813,7 @@ export default function Home() {
           <section
             id="blog"
             ref={blogRef}
-            className="flex flex-col items-center gap-5 pt-32"
+            className="flex w-full flex-col items-center gap-5 pt-32"
           >
             <h2 className="text-center text-xl font-bold tracking-wider">
               BLOG
@@ -829,7 +829,7 @@ export default function Home() {
               </Link>
             </p>
 
-            <div className="mb-10 flex flex-col items-center gap-8">
+            <div className="mb-10 flex w-full flex-col items-center gap-8">
               <NostrProvider relayUrls={BLOG_RELAY_URLS} debug={false}>
                 <ProfileProvider>
                   <BlogTimeline filterType="all" />

@@ -324,7 +324,7 @@ export default function BlogTimeline({
 
     return (
       <div key={event.id} className="flex w-full justify-center">
-        <div className="relative">
+        <div className="relative w-full sm:w-auto">
           <BlogPost
             profilePicture={userData?.picture}
             displayName={userData?.display_name}
